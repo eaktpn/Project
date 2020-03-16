@@ -7,7 +7,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
 import * as mdbvue from "mdbvue";
+for (const component in mdbvue) {
+   Vue.component(component, mdbvue[component]);
+}
 
 import VueSession from "vue-session";
 Vue.use(VueSession);
@@ -25,10 +29,6 @@ Vue.prototype.$keypayload = keypayload;
 import axios from "axios";
 axios.defaults.baseURL = "//slotimlive22.abatopup.com/api";
 Vue.prototype.$axios = axios;
-
-for (const component in mdbvue) {
-   Vue.component(component, mdbvue[component]);
-}
 
 window.$ = require("jquery"); //ติตตั้งเรียกใช้ jquery
 

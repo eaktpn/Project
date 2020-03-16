@@ -4,21 +4,23 @@
          <div class="row justify-content-center">
             <div class="col-xl-8 col-md-8 col-11 text-center "><img src="/images/logo/joker24h.png" width="100%;" style="max-width:160px;" /></div>
          </div>
-         <div class="row justify-content-center mt-3">
-            <div class="col-xl-7 col-md-9 col-11 ">
-               <i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์
-               <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)" />
+         <form @submit.prevent="checklogin()">
+            <div class="row justify-content-center mt-3">
+               <div class="col-xl-7 col-md-9 col-11 ">
+                  <i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์
+                  <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)" />
+               </div>
+               <div class="col-xl-7 col-md-9 col-11 mt-2">
+                  <i class="fas fa-key"></i> กรอกรหัสผ่าน
+                  <input type="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" v-model="password" maxlength="16" />
+               </div>
             </div>
-            <div class="col-xl-7 col-md-9 col-11 mt-2">
-               <i class="fas fa-key"></i> กรอกรหัสผ่าน
-               <input type="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" v-model="password" maxlength="16"/>
+            <div class="row justify-content-center ">
+               <div class="col-xl-5 col-md-6 col-11 mt-3">
+                  <mdb-btn @click="checklogin()" block size="sm" class="btn-login-orange color_back font18" style="font-weight:400;">เข้าสู่ระบบ</mdb-btn>
+               </div>
             </div>
-         </div>
-         <div class="row justify-content-center ">
-            <div class="col-xl-5 col-md-6 col-11 mt-3">
-               <mdb-btn block size="sm" class="btn-login-orange color_back font18" style="font-weight:400;">เข้าสู่ระบบ</mdb-btn>
-            </div>
-         </div>
+         </form>
          <div class="row justify-content-center color_yellow font16 mt-3">
             <div class style="cursor: pointer;" @click="showModal = true">ลงทะเบียนใช้งาน</div>
          </div>
@@ -51,6 +53,9 @@
 </template>
 
 <script>
+const jwt = require("jsonwebtoken");
+import {mapActions} from "vuex";
+import $ from "jquery";
 export default {
    name: "Login",
    data() {
@@ -58,10 +63,14 @@ export default {
          phonenumber: "",
          password: "",
          check_condition: false,
-         showModal: false
+         showModal: false,
+         errors: []
       };
    },
    methods: {
+      ...mapActions({
+         storeLogin: "login"
+      }),
       isNumber: function(evt) {
          evt = evt ? evt : window.event;
          var charCode = evt.which ? evt.which : evt.keyCode;
@@ -81,6 +90,125 @@ export default {
       },
       GoRegister() {
          this.$router.push("/Register");
+      },
+      checklogin: function() {
+         this.errors = [];
+         // Check phonenumber
+         if (this.phonenumber.length !== 10) {
+            this.errors.push("กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก");
+            return this.$swal({
+               title: "เบอร์โทรศัพท์",
+               text: "กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก",
+               icon: "warning", //error warning success
+               timer: 5000,
+               showConfirmButton: true,
+               allowOutsideClick: false,
+               allowEscapeKey: false
+            });
+         } else if (this.phonenumber[0] !== "0") {
+            this.errors.push("เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 0 เท่านั้น");
+            return this.$swal({
+               title: "เบอร์โทรศัพท์",
+               text: "เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 0 เท่านั้น",
+               icon: "warning",
+               timer: 5000,
+               showConfirmButton: true,
+               allowOutsideClick: false,
+               allowEscapeKey: false
+            });
+         } else if (this.phonenumber[0] === "0") {
+            if (this.phonenumber[1] === "8" || this.phonenumber[1] === "9" || this.phonenumber[1] === "6") {
+               //  this.$router.push("/");
+            } else {
+               this.errors.push("เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 06 หรือ 08 หรือ 09 เท่านั้น");
+               return this.$swal({
+                  title: "เบอร์โทรศัพท์",
+                  text: "เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 06 หรือ 08 หรือ 09 เท่านั้น",
+                  icon: "warning",
+                  timer: 5000,
+                  showConfirmButton: true,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false
+               });
+            }
+         }
+         //Check password
+         if (this.password.length < 8) {
+            this.errors.push("กรุณากรอกรหัสผ่าน 8 - 16 ตัว");
+            return this.$swal({
+               title: "รหัสผ่าน",
+               text: "กรุณากรอกรหัสผ่าน 8 - 16 ตัว",
+               icon: "warning",
+               timer: 5000,
+               showConfirmButton: true,
+               allowOutsideClick: false,
+               allowEscapeKey: false
+            });
+         } else {
+            let msg = [false, false, false];
+            for (let index = 0; index < this.password.length; index++) {
+               if (this.password.charCodeAt(index) >= 48 && this.password.charCodeAt(index) <= 57) {
+                  msg[0] = true;
+               } else if (this.password.charCodeAt(index) >= 65 && this.password.charCodeAt(index) <= 90) {
+                  msg[1] = true;
+               } else if (this.password.charCodeAt(index) >= 97 && this.password.charCodeAt(index) <= 122) {
+                  msg[2] = true;
+               }
+            }
+            if (msg[0] && msg[1] && msg[2]) {
+               console.log("1");
+            } else {
+               this.errors.push("กรุณากรอกรหัสผ่านที่มีพิมพ์เล็กพิมพ์ใหญ่และตัวเลขผสมกัน");
+               return this.$swal({
+                  title: "รหัสผ่าน",
+                  text: "กรุณากรอกรหัสผ่านที่มีพิมพ์เล็กพิมพ์ใหญ่และตัวเลขผสมกัน",
+                  icon: "warning",
+                  timer: 5000,
+                  showConfirmButton: true,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false
+               });
+            }
+         }
+         this.login();
+      },
+      login: function() {
+         $(".preloader").show();
+         if (this.errors.length === 0) {
+            let payload = {
+               phone_number: this.phonenumber,
+               password: this.password
+            };
+            let token = jwt.sign(payload, this.$keypayload, {
+               expiresIn: "5s"
+            });
+            this.$axios
+               .post("/login", {token: token})
+               .then(response => {
+                  if (response.data.msg != "USER_NOT_FOUND") {
+                     this.$session.set("isLogin", true);
+                     this.$session.set("token", response.data);
+                     this.storeLogin(response.data);
+                     $(".preloader").hide();
+                     this.$router.push("/");
+                  } else {
+                     $(".preloader").hide();
+                     this.$swal({
+                        title: "เกิดข้อผิดพลาด",
+                        text: "เบอร์โทรศัพท์หรือรหัสผ่านผิด",
+                        icon: "error",
+                        timer: 5000,
+                        showConfirmButton: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                     });
+                  }
+               })
+               .catch(function(error) {
+                  $(".preloader").hide();
+                  console.log(error);
+               });
+         }
       }
    }
 };
