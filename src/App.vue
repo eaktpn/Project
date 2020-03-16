@@ -1,5 +1,14 @@
 <template>
    <div id="app">
+      <div class="preloader">
+         <div class="container container--100 d-flex flex-column justify-content-between">
+            <div id="loader" class="justify-content-center" style="margin-left:-175px; margin-top:170px;"></div>
+            <div class style="border-radius: 50%; margin-left: auto; margin-right: auto;">
+               <img src="/images/logo/joker24h.png" alt="..." class style="border-radius:20%; width:270px; margin-top:-380px; margin-right:0px;" />
+            </div>
+            <div class="row justify-content-center"></div>
+         </div>
+      </div>
       <router-view name="header" />
       <router-view name="default" />
       <router-view name="footer" />
@@ -8,18 +17,43 @@
 
 <script>
 import firebase from "firebase";
+import {mapGetters} from "vuex";
+import $ from "jquery";
 const firebaseConfig = {
    databaseURL: "https://joker24h.firebaseio.com/"
 };
 firebase.initializeApp(firebaseConfig);
 export default {
-   
-}
+   name: "app",
+   data() {
+      return {};
+   },
+   created() {
+      $(".preloader").show();
+      setTimeout(() => {
+         $(".preloader").hide();
+      }, 2000);
+   },
+   methods: {
+      ...mapGetters({
+         isLogin: "isLogin"
+      })
+   },
+   mounted() {
+      // if (location.protocol != "https:") {
+      //   location.href =
+      //     "https:" +
+      //     window.location.href.substring(window.location.protocol.length);
+      // }
+   }
+};
 </script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Mitr:200,300,400,500,600,700&display=swap&subset=latin-ext,thai,vietnamese");
 @import url("./assets/index.css");
+@import url("./assets/ring.css");
+@import url("./assets/loading.css");
 
 #app,
 html,

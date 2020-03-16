@@ -1,0 +1,203 @@
+@keyframes zoominoutsinglefeatured {
+   /* 0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.3, 1.3);
+  }
+  100% {
+    transform: scale(1, 1);
+  } */
+   0% {
+      box-shadow: 0 0 0 0px rgba(255, 205, 104, 1);
+   }
+   150% {
+      box-shadow: 0 0 0 10px rgb(255, 255, 255);
+   }
+   0% {
+      box-shadow: 0 0 0 21px rgba(255, 205, 104, 1);
+   }
+   100% {
+      box-shadow: 0 0 0 31px rgb(255, 255, 255);
+   }
+}
+/* @keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(253, 40, 225, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+  }
+} */
+.lds-ring {
+   position: fixed;
+   z-index: 999;
+   height: 2em;
+   width: 2em;
+   overflow: visible;
+   margin: auto;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+}
+.lds-ring-action {
+   position: relative;
+   width: 251px;
+   height: 251px;
+   border: 10px solid white;
+   z-index: 9999;
+   left: 0px;
+   top: 0px;
+   border-radius: 50%;
+   /* animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; */
+   animation: animateCircle 2s linear infinite;
+   border-color: #cc00ff transparent transparent transparent;
+}
+.lds-ring-action2 {
+   position: relative;
+   width: 281px;
+   height: 281px;
+   border: 10px solid #ffde30;
+   z-index: 9999;
+   left: 0px;
+   top: 0px;
+   border-radius: 50%;
+   animation: animate 2s linear infinite;
+   border-color: #ffde30 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+   animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+   animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+   animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}
+@keyframes lds-ring2 {
+   0% {
+      transform: rotate(360deg);
+   }
+   100% {
+      transform: rotate(0deg);
+   }
+}
+@keyframes lds-ringstop {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(0deg);
+   }
+}
+.logoLoadinghubslot {
+   /* animation: zoominoutsinglefeatured 3s infinite; */
+}
+.preloader {
+   position: fixed;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 99999;
+   background: white;
+   background-repeat: no-repeat;
+   background-size: 100%;
+   opacity: 0.9;
+   /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+}
+.logoLoading {
+   margin-bottom: 0%;
+   margin-left: 25%;
+   animation: zoominoutsinglefeatured 1s infinite;
+   /* animation: shadow-pulse 1s infinite; */
+}
+/* .ring {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 250px;
+   height: 250px;
+   background: transparent;
+   background-image: url("/images/logo.png");
+   background-repeat: no-repeat;
+   background-size: 100%;
+   border: 3px solid #a67c00;
+   border-radius: 50%;
+   text-align: center;
+   line-height: 150px;
+   font-family: "Mitr", sans-serif;
+   font-size: 12px;
+   color: #ffbf00;
+   letter-spacing: 4px;
+   text-transform: uppercase;
+   text-shadow: 0 0 10px #ffcf40;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+} */
+/* .ring background-image {
+   position: absolute;
+   z-index: -1000;
+} */
+.ring:before {
+   content: "";
+   position: absolute;
+   top: -3px;
+   left: -3px;
+   width: 100%;
+   height: 100%;
+   border: 3px solid transparent;
+   border-top: 3px solid #ffbf00;
+   border-right: 3px solid #ffdc73;
+   border-radius: 50%;
+   animation: animateCircle 2s linear infinite;
+}
+.ring span {
+   display: block;
+   position: absolute;
+   top: calc(50% - 2px);
+   left: 50%;
+   width: 50%;
+   height: 4px;
+   background: transparent;
+   transform-origin: left;
+   animation: animate 2s linear infinite;
+}
+.ring span:before {
+   content: "";
+   position: absolute;
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   background-color: #ffcf40;
+   top: -6px;
+   right: -8px;
+   box-shadow: 0 0 20px #ffdc73;
+}
+
+@keyframes animateCircle {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}
+@keyframes animate {
+   0% {
+      transform: rotate(400deg);
+   }
+   100% {
+      transform: rotate(40deg);
+   }
+}
