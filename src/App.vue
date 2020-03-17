@@ -20,7 +20,7 @@ import firebase from "firebase";
 import {mapGetters} from "vuex";
 import $ from "jquery";
 const firebaseConfig = {
-   databaseURL: "https://joker24h.firebaseio.com/"
+   databaseURL: "https://topup-joker24h.firebaseio.com/"
 };
 firebase.initializeApp(firebaseConfig);
 export default {

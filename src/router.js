@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 const Login = () => import("./components/Login.vue");
+const Logout = () => import("./components/Logout.vue");
 const Register = () => import("./components/Register.vue");
 const Header = () => import("./components/Header.vue");
 const Main = () => import("./components/Main.vue");
@@ -29,7 +30,12 @@ export default new Router({
       {
          path: "/Login",
          name: "Login",
-         components: {default: Login}
+         components: {header: Header, default: Login}
+      },
+      {
+         path: "/Logout",
+         name: "Logout",
+         components: {default: Logout}
       },
       {
          path: "/Register",

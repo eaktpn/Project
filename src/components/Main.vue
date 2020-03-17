@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div class="container" v-if="isLogin">
       <div class="row justify-content-center mt-3">
          <div class="col-xl-9 col-md-9 col-12 text-center">
             <carousel :per-page="1" v-bind:autoplay="true" v-bind:loop="true" :mouse-drag="false">
@@ -30,7 +30,7 @@
          </div>
       </div>
       <div class="row justify-content-center px-3">
-         <div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
+         <div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
       </div>
       <div class="row justify-content-center p-2 mt-2">
          <div class="col-xl-9 col-md-9 col-12">
@@ -62,41 +62,347 @@
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <div class="BG-gray-radius-main" style="cursor: pointer;">
                      <img src="/images/icon/wall-clock.png" width="60px;" class="p-1" />
-                     <div class="color_white font16" style="font-weight:400;">โบนัสพิเศษ</div>
+                     <div class="color_white font16" style="font-weight:400;">ประวัติทำรายการ</div>
                   </div>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <div class="BG-gray-radius-main" style="cursor: pointer;">
                      <img src="/images/icon/chat.png" width="60px;" class="p-1" />
-                     <div class="color_white font16" style="font-weight:400;">โบนัสพิเศษ</div>
+                     <div class="color_white font16" style="font-weight:400;">ติดต่อพนักงาน</div>
                   </div>
                </div>
             </div>
          </div>
       </div>
+      <div>
+         <b-modal id="modalOTP" hide-footer centered title="ยืนยัน OTP" no-close-on-esc no-close-on-backdrop hide-header-close v-model="checkOTP">
+            <div>
+               <p class="text-white" style="margin-top:5px;">หมายเลขโทรศัพท์ {{ user.phone_number }}</p>
+               <b-form-input type="text" v-model="confirm_phonenumber" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="margin-top:-10px;"></b-form-input>
+            </div>
+            <div v-if="counting === true">
+               <p class="text-white" style="margin-top:15px;">หมายเลข OTP</p>
+               <b-form-input type="text" v-model="confirm_OTP" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="margin-top:-10px;"></b-form-input>
+            </div>
+            <p class="text-white" style="margin-top:20px;">
+               กรณีไม่ได้รับรหัส
+               <b>OTP</b> ให้ติดต่อแอดมินทาง
+               <a href="http://line.me/ti/p/@winbetth" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
+                  <b>LINE CLICK</b>
+               </a>
+            </p>
+            <div class="text-right" style="margin-top:20px; margin-bottom:3px;">
+               <b-button size="xl" variant="warning" @click="OTP()" class="text-white" :disabled="counting">
+                  <countdown v-if="counting" :time="90000" :leading-zero="false" @countdownend="countdownend()">
+                     <template slot-scope="props">{{ props.totalSeconds }} วินาที</template> </countdown
+                  >ขอรหัส OTP
+               </b-button>
+               <b-button type="button" :disabled="btnsubmit" :class="btnsubmit === false ? 'btn btn-infobtn' : 'disabled btn btn-info'" @click="phonenumber()">ยืนยันเบอร์โทรศัพท์</b-button>
+            </div>
+         </b-modal>
+      </div>
    </div>
 </template>
 
 <script>
-// const jwt = require("jsonwebtoken");
-// import momentjs from "moment";
+const jwt = require("jsonwebtoken");
+//import momentjs from "moment";
+import {mapActions, mapGetters} from "vuex";
 import {Carousel, Slide} from "vue-carousel";
 import {} from "mdbvue";
-// import $ from "jquery";
+import $ from "jquery";
 import firebase from "firebase";
 var bannerRef = firebase.database().ref("banner");
 export default {
    name: "Mian",
    data() {
       return {
-         bannerimg: ""
+         btnsubmit: true,
+         active: false,
+         bannerimg: "",
+         showDialog: true,
+         confirm_phonenumber: null,
+         confirm_OTP: "",
+         counting: null,
+         settingSwitch: "",
+         showsetting: false
       };
    },
    components: {
       Carousel,
       Slide
    },
+   methods: {
+      ...mapActions({
+         storeLogin: "login",
+         storeLoout: "logout"
+      }),
+      currencyFormat(n) {
+         n = parseFloat(n);
+         return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+      },
+      linkGame() {
+         var formPlaygame = document.createElement("form");
+         formPlaygame.setAttribute("method", "post");
+         formPlaygame.setAttribute("action", "https://live88th.com");
+         formPlaygame.setAttribute("target", "_blank");
+         var i = document.createElement("input");
+         i.setAttribute("type", "hidden");
+         i.setAttribute("name", "username");
+         i.setAttribute("value", this.user.username);
+         formPlaygame.appendChild(i);
+         var j = document.createElement("input");
+         j.setAttribute("type", "hidden");
+         j.setAttribute("name", "password");
+         j.setAttribute("value", this.user.password);
+         formPlaygame.appendChild(j);
+         document.body.appendChild(formPlaygame);
+         formPlaygame.submit();
+      },
+      OTP() {
+         // Check phonenumber
+         if (this.confirm_phonenumber === "") {
+            this.$swal({
+               icon: "error",
+               title: "เกิดข้อผิดพลาด",
+               text: "กรุณากรอกเบอโทรศัพท์",
+               timer: 5000,
+               showConfirmButton: true,
+               allowOutsideClick: false,
+               allowEscapeKey: false
+            });
+         } else if (this.confirm_phonenumber.length !== 10) {
+            this.$swal({
+               title: "เบอร์โทรศัพท์",
+               text: "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง",
+               icon: "warning", //error warning success
+               timer: 5000,
+               showConfirmButton: true,
+               allowOutsideClick: false,
+               allowEscapeKey: false
+            });
+         } else if (this.confirm_phonenumber[0] !== "0") {
+            this.$swal({
+               title: "เบอร์โทรศัพท์",
+               text: "เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 0 เท่านั้น",
+               icon: "warning",
+               timer: 5000,
+               showConfirmButton: true,
+               allowOutsideClick: false,
+               allowEscapeKey: false
+            });
+         } else if (this.confirm_phonenumber.length === 10) {
+            let payload = {
+               phone_number: this.confirm_phonenumber
+            };
+            let token = jwt.sign(payload, this.$keypayload, {
+               expiresIn: "5s"
+            });
+            $(".preloader").show();
+            this.$axios.post("/otp", {token: token}, this.token).then(response => {
+               $(".preloader").hide();
+               if (response.data.code === "ERROR") {
+                  this.$swal({
+                     icon: "warning",
+                     title: "เกิดข้อผิดพลาด",
+                     text: response.data.msg,
+                     timer: 5000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
+                  });
+               } else {
+                  this.$swal({
+                     icon: "success",
+                     title: "สำเร็จ",
+                     html: "ระบบได้ส่งรหัส OTP ไปยัง <br> หมายเลข " + this.confirm_phonenumber + " เรียบร้อยแล้ว<br>กรุณากรอกรหัส OTP ที่ได้รับ",
+                     timer: 5000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
+                  });
+                  this.counting = true;
+                  this.btnsubmit = false;
+               }
+            });
+         }
+      },
+      countdownend: function() {
+         this.counting = false;
+         this.btnsubmit = true;
+      },
+      phonenumber() {
+         let payload = {
+            phone_number: this.confirm_phonenumber,
+            otp: this.confirm_OTP
+         };
+         if (this.confirm_phonenumber === "" || this.confirm_OTP === "") {
+            this.$swal({
+               icon: "error",
+               title: "เกิดข้อผิดพลาด",
+               text: "หมายเลข OTP ผิดพลาด",
+               timer: 5000,
+               showConfirmButton: true,
+               allowOutsideClick: false,
+               allowEscapeKey: false
+            });
+         } else {
+            let token = jwt.sign(payload, this.$keypayload, {
+               expiresIn: "5s"
+            });
+            $(".preloader").show();
+            this.$axios.post("/otp_verify", {token: token}, this.token).then(response => {
+               $(".preloader").hide();
+               if (response.data.code === "SUCCESS") {
+                  this.$swal({
+                     icon: "success",
+                     title: "ยืนยันสำเร็จ",
+                     timer: 5000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
+                  }).then(result => {
+                     if (result.value) {
+                        $("#modalOTP").hide();
+                        $("#modalOTP___BV_modal_backdrop_").hide();
+                     }
+                  });
+                  this.$router.push("/");
+               }
+               if (response.data.code === "ERROR") {
+                  $(".preloader").hide();
+                  this.$swal({
+                     icon: "error",
+                     title: "เกิดข้อผิดพลาด",
+                     text: "รหัส OTP ไม่ถูกต้อง",
+                     timer: 5000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
+                  });
+               }
+            });
+         }
+      },
+      OTPcheck() {
+         this.counting = true;
+         this.btnsubmit = false;
+         console.log(this.counting);
+      },
+      onChange() {
+         let payload = {
+            bonus_status: this.settingSwitch ? 1 : 0
+         };
+         let token = jwt.sign(payload, this.$keypayload, {
+            expiresIn: "5s"
+         });
+         $(".preloader").show();
+         this.$axios
+            .post("/is_bonus", {token: token}, this.token)
+            .then(response => {
+               $(".preloader").hide();
+               if (response.data.code != "SUCCESS") {
+                  this.$swal({
+                     title: "เกิดข้อผิดพลาด",
+                     text: "ไม่สามารเปิด-ปิดโบนัสได้",
+                     icon: "error",
+                     timer: 5000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
+                  });
+               }
+               $(".preloader").hide();
+               this.$axios
+                  .get("/is_login", this.token)
+                  .then(response => {
+                     $(".preloader").hide();
+                     if (response.data.msg != "LOGOUT") {
+                        this.$session.set("isLogin", true);
+                        this.$session.set("token", response.data);
+                        this.storeLogin(response.data);
+                        this.$router.push("/");
+                     } else {
+                        this.$swal({
+                           title: "เกิดข้อผิดพลาด",
+                           text: "มีการเข้าสู่ระบบจากที่อื่น",
+                           icon: "error",
+                           timer: 5000,
+                           showConfirmButton: true,
+                           allowOutsideClick: false,
+                           allowEscapeKey: false
+                        });
+                        $(".preloader").hide();
+                        this.$router.push("/");
+                     }
+                  })
+                  .catch(function(error) {
+                     console.log(error);
+                  });
+            })
+            .catch(function(error) {
+               console.log(error);
+            });
+      },
+      showModalcheck() {
+         if (this.user.is_bonus === 1) {
+            this.settingSwitch = true;
+         } else {
+            this.settingSwitch = false;
+         }
+         this.showsetting = true;
+      }
+   },
+   computed: {
+      ...mapGetters({
+         isLogin: "isLogin",
+         user: "user",
+         amount: "amount",
+         token: "token"
+      }),
+      checkOTP: function() {
+         if (this.user.active === 0) {
+            return true;
+         } else {
+            return false;
+         }
+      }
+   },
    mounted() {
+      // console.log('token : ' + this.token)
+      if (this.$session.get("isLogin")) {
+         this.$session.set("page", "/");
+         if (this.token) {
+            this.$axios
+               .get("/is_login", this.token)
+               .then(response => {
+                  if (response.data.msg != "LOGOUT") {
+                     this.$session.set("isLogin", true);
+                     this.$session.set("token", response.data);
+                     this.storeLogin(response.data);
+                     this.confirm_phonenumber = this.user.phone_number;
+                     this.$router.push("/");
+                  } else {
+                     this.$swal({
+                        title: "เกิดข้อผิดพลาด",
+                        text: "มีการเข้าสู่ระบบจากที่อื่น",
+                        icon: "error",
+                        timer: 5000,
+                        showConfirmButton: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                     });
+                     this.$router.push("/Logout");
+                  }
+               })
+               .catch(function(error) {
+                  console.log(error);
+               });
+         }
+      } else {
+         this.checkLogin = 0;
+         this.$router.push("/Logout");
+      }
       bannerRef.orderByKey().on("value", snap => {
          this.bannerimg = snap.val();
       });
@@ -126,5 +432,8 @@ export default {
 .padding-main {
    padding-right: 6px !important;
    padding-left: 6px !important;
+}
+.modal-title {
+   color: #eaa33b;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-   <div class="header">
+   <div class="header" v-if="isLogin">
       <div class="BG-Header">
          <div class="container ">
             <div class="row justify-content-center p-3">
@@ -31,7 +31,8 @@
                   <mdb-side-nav-item icon="thumbs-up" href="#">โปรโมชั่น</mdb-side-nav-item>
                   <mdb-side-nav-item icon="history" href="#">ประวัติการใช้งาน</mdb-side-nav-item>
                   <mdb-side-nav-item icon="download" href="#">ดาวน์โหลด</mdb-side-nav-item>
-                  <mdb-side-nav-item icon="sign-out-alt" href="#">ออกจากระบบ</mdb-side-nav-item>
+
+                  <mdb-side-nav-item icon="sign-out-alt" href="Logout">ออกจากระบบ</mdb-side-nav-item>
                </mdb-side-nav-nav>
             </li>
          </ul>
@@ -40,22 +41,139 @@
 </template>
 
 <script>
-import {} from "mdbvue";
+const jwt = require("jsonwebtoken");
+import {mapActions, mapGetters} from "vuex";
+import $ from "jquery";
 export default {
    name: "SideNavPage",
    components: {},
    data() {
       return {
-         toggleA: false
+         toggleA: false,
+         show_menu: false,
+         settingSwitch: "",
+         showsetting: false
       };
    },
+   computed: {
+      ...mapGetters({
+         isLogin: "isLogin",
+         user: "user",
+         amount: "amount",
+         token: "token"
+      })
+   },
    methods: {
+      ...mapActions({
+         storeLogin: "login",
+         storeLogout: "logout"
+      }),
       toggleLeftSideNav() {
          this.toggleA = !this.toggleA;
+      },
+      currencyFormat(n) {
+         n = parseFloat(n);
+         return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+      },
+      onChange() {
+         let payload = {
+            bonus_status: this.settingSwitch ? 1 : 0
+         };
+         let token = jwt.sign(payload, this.$keypayload, {
+            expiresIn: "5s"
+         });
+         $(".preloader").show();
+         this.$axios
+            .post("/is_bonus", {token: token}, this.token)
+            .then(response => {
+               $(".preloader").hide();
+               if (response.data.code != "SUCCESS") {
+                  this.$swal({
+                     title: "เกิดข้อผิดพลาด",
+                     text: "ไม่สามารเปิด-ปิดโบนัสได้",
+                     icon: "error",
+                     timer: 3000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
+                  });
+               }
+               $(".preloader").hide();
+               this.$axios
+                  .get("/is_login", this.token)
+                  .then(response => {
+                     if (response.data.msg != "LOGOUT") {
+                        this.$session.set("isLogin", true);
+                        this.$session.set("token", response.data);
+                        this.storeLogin(response.data);
+                        this.$router.push("/");
+                        // $(".preloader").hide();
+                     } else {
+                        this.$swal({
+                           title: "เกิดข้อผิดพลาด",
+                           text: "มีการเข้าสู่ระบบจากที่อื่น",
+                           icon: "error",
+                           timer: 3000,
+                           showConfirmButton: true,
+                           allowOutsideClick: false,
+                           allowEscapeKey: false
+                        });
+                        // $(".preloader").hide();
+                        this.$router.push("/");
+                     }
+                  })
+                  .catch(function(error) {
+                     console.log(error);
+                  });
+            })
+            .catch(function(error) {
+               console.log(error);
+            });
+      },
+      showModalcheck() {
+         if (this.user.is_bonus === 1) {
+            this.settingSwitch = true;
+         } else {
+            this.settingSwitch = false;
+         }
+         this.showsetting = true;
+      }
+   },
+   mounted() {
+      this.$session.start();
+      if (this.$session.get("isLogin")) {
+         let tokenSession = this.$session.get("token");
+         let user = jwt.decode(tokenSession);
+         let payload = {
+            password: user.results[0].password,
+            phone_number: user.results[0].phone_number
+         };
+         let token = jwt.sign(payload, this.$keypayload, {
+            expiresIn: "5s"
+         });
+
+         this.$axios
+            .post("/login", {token: token})
+            .then(response => {
+               // console.log(response.data);
+               if (response.data.msg != "USER_NOT_FOUND") {
+                  this.$session.set("isLogin", true);
+                  this.$session.set("token", response.data);
+                  this.storeLogin(response.data);
+                  this.$router.push(this.$session.get("page")); //เก็บ session page เวลา push ให้อยู่หน้าเดิม
+               } else {
+                  this.$router.push("/Logout");
+                  this.$session.set("isLogin", false);
+               }
+            })
+            .catch(function(error) {
+               console.log(error);
+            });
       }
    }
 };
 </script>
+
 <style lang="scss">
 .BG-Header {
    background: #181818;
@@ -76,6 +194,9 @@ export default {
       //height: 2px;
       width: 100%;
       border-bottom: 1px solid #000000;
+   }
+   .side-nav {
+      background: #181818;
    }
    .side-nav .logo-wrapper {
       height: auto !important;
