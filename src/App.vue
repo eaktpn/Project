@@ -32,7 +32,7 @@ export default {
       $(".preloader").show();
       setTimeout(() => {
          $(".preloader").hide();
-      }, 2000);
+      }, 1000);
    },
    methods: {
       ...mapGetters({

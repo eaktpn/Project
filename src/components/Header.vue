@@ -27,12 +27,13 @@
                      </div>
                   </div>
                   <hr class="my-hr mt-4" />
-                  <mdb-side-nav-item icon="home" href="#">หน้าหลัก</mdb-side-nav-item>
+                  <mdb-side-nav-item icon="home" href="/">หน้าหลัก</mdb-side-nav-item>
+                  <mdb-side-nav-item icon="address-card" href="/Profile">ข้อมูลบัญชี</mdb-side-nav-item>
+                  <mdb-side-nav-item icon="toggle-on" href="#">ตั้งค่าโบนัส</mdb-side-nav-item>
                   <mdb-side-nav-item icon="thumbs-up" href="#">โปรโมชั่น</mdb-side-nav-item>
                   <mdb-side-nav-item icon="history" href="#">ประวัติการใช้งาน</mdb-side-nav-item>
                   <mdb-side-nav-item icon="download" href="#">ดาวน์โหลด</mdb-side-nav-item>
-
-                  <mdb-side-nav-item icon="sign-out-alt" href="Logout">ออกจากระบบ</mdb-side-nav-item>
+                  <mdb-side-nav-item icon="sign-out-alt" href="/Logout">ออกจากระบบ</mdb-side-nav-item>
                </mdb-side-nav-nav>
             </li>
          </ul>
@@ -98,6 +99,7 @@ export default {
                      allowEscapeKey: false
                   });
                }
+
                $(".preloader").hide();
                this.$axios
                   .get("/is_login", this.token)
@@ -145,8 +147,8 @@ export default {
          let tokenSession = this.$session.get("token");
          let user = jwt.decode(tokenSession);
          let payload = {
-            password: user.results[0].password,
-            phone_number: user.results[0].phone_number
+            phone_number: user.results[0].phone_number,
+            password: user.results[0].password
          };
          let token = jwt.sign(payload, this.$keypayload, {
             expiresIn: "5s"
@@ -160,7 +162,7 @@ export default {
                   this.$session.set("isLogin", true);
                   this.$session.set("token", response.data);
                   this.storeLogin(response.data);
-                  this.$router.push(this.$session.get("page")); //เก็บ session page เวลา push ให้อยู่หน้าเดิม
+                  // this.$router.push(this.$session.get("page")); //เก็บ session page เวลา push ให้อยู่หน้าเดิม
                } else {
                   this.$router.push("/Logout");
                   this.$session.set("isLogin", false);

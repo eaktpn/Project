@@ -1,7 +1,12 @@
 <template>
    <div class="container">
       <div class="row justify-content-center">
-         <div class="col-xl-9 col-md-9 col-12 font26" style="font-weight:400;">ฝากเงิน</div>
+         <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
+            <div class="row justify-content-center">
+               <div class="col-6 font26">ฝากเงิน</div>
+               <div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
+            </div>
+         </div>
       </div>
       <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 BG-gray">

@@ -17,14 +17,18 @@
                <div><img src="/images/icon/dollar-coin.png" class="mx-3" width="100%;" style="max-width:65px; margin-top:-2px;" /></div>
                <div class="align-self-center">
                   <div class="font16">ยอดเงิน</div>
-                  <div class="color_blue font26" style="font-weight:400;">3,156.00</div>
+                  <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
                </div>
             </div>
             <div class="line-main my-3"></div>
             <div class="row justify-content-center">
                <div class="col font16 mb-3">
-                  <div class="text-center">ยูสเซอร์เนม : <span style="color:#5E72E4;">Apitsada132</span></div>
-                  <div class="text-center mt-2">รหัสผ่าน : <span style="color:#5E72E4;">Aa112233</span></div>
+                  <div class="text-center">
+                     ยูสเซอร์เนม : <span style="color:#5E72E4;">{{ user.username }}</span>
+                  </div>
+                  <div class="text-center mt-2">
+                     รหัสผ่าน : <span style="color:#5E72E4;">{{ user.password }}</span>
+                  </div>
                </div>
             </div>
          </div>
@@ -36,16 +40,20 @@
          <div class="col-xl-9 col-md-9 col-12">
             <div class="row text-center">
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <div class="BG-gray-radius-main" style="cursor: pointer;">
-                     <img src="/images/icon/wallet.png" width="60px;" />
-                     <div class="color_white font16" style="font-weight:400;">ฝากเงิน</div>
-                  </div>
+                  <router-link to="/Deposit">
+                     <div class="BG-gray-radius-main" style="cursor: pointer;">
+                        <img src="/images/icon/wallet.png" width="60px;" />
+                        <div class="color_white font16" style="font-weight:400;">ฝากเงิน</div>
+                     </div></router-link
+                  >
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <div class="BG-gray-radius-main" style="cursor: pointer;">
-                     <img src="/images/icon/cash.png" width="60px;" class="p-1" />
-                     <div class="color_white font16" style="font-weight:400;">ถอนเงิน</div>
-                  </div>
+                  <router-link to="/Withdraw">
+                     <div class="BG-gray-radius-main" style="cursor: pointer;">
+                        <img src="/images/icon/cash.png" width="60px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">ถอนเงิน</div>
+                     </div></router-link
+                  >
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <div class="BG-gray-radius-main" style="cursor: pointer;">
@@ -370,6 +378,7 @@ export default {
    },
    mounted() {
       // console.log('token : ' + this.token)
+
       if (this.$session.get("isLogin")) {
          this.$session.set("page", "/");
          if (this.token) {
@@ -380,8 +389,7 @@ export default {
                      this.$session.set("isLogin", true);
                      this.$session.set("token", response.data);
                      this.storeLogin(response.data);
-                     this.confirm_phonenumber = this.user.phone_number;
-                     this.$router.push("/");
+                     this.confirm_phonenumber = this.user.phone_number; // คืนค่าเบอร์โทรศัพท์ไปช่อง input
                   } else {
                      this.$swal({
                         title: "เกิดข้อผิดพลาด",

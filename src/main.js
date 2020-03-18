@@ -25,6 +25,9 @@ import VueSweetalert2 from "vue-sweetalert2"; //sweetalert
 import "sweetalert2/dist/sweetalert2.min.css";
 Vue.use(VueSweetalert2);
 
+const VueInputMask = require("vue-inputmask").default; //formate v-mask
+Vue.use(VueInputMask);
+
 import VueCountdown from "@xkeshi/vue-countdown"; //นับเวลาถอยหลัง otp
 Vue.component(VueCountdown.name, VueCountdown);
 
