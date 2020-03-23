@@ -31,29 +31,52 @@ a.close {
    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
+.form-control:disabled,
+.form-control[readonly] {
+   background-color: #a9a9a9 !important;
+   opacity: 1;
+}
 .BG-gray {
    background: #232323;
    border-radius: 1px;
    padding: 20px;
+}
+.BG-gray2 {
+   background: #303030;
+   border-radius: 10px;
+   padding: 10px;
 }
 .BG-gray-radius {
    background: #232323;
    border-radius: 13px;
    padding: 15px;
 }
+.hr-line {
+   border: 0.5px solid #ffffff;
+   margin-right: -15px;
+   margin-left: -15px;
+}
+
 /*---------BG Modal----------*/
+.modal-header .close {
+   color: #ffffff !important;
+}
+.modal-open .modal {
+    background: #ffffff50 !important;
+}
 .modal-content {
    background-color: #181818 !important;
    padding: 10px !important;
    border-radius: 10px !important;
 }
-.modal-title a {
+.modal-title {
    color: #ffffff !important;
 }
 .modal[data-v-38054772] {
    background-color: rgba(0, 0, 0, 0.9);
 }
 
+/*---------Color----------*/
 .color_orange {
    color: #eaa33b !important;
 }
@@ -78,7 +101,11 @@ a.close {
 .color_red {
    color: #f44336 !important;
 }
+.color_pink {
+   color: #FF3366 !important;
+}
 
+/*---------Font----------*/
 .font28 {
    font-size: 28px !important;
 }

@@ -8,10 +8,10 @@ const Main = () => import("./components/Main.vue");
 const Profile = () => import("./components/Profile.vue");
 const Affiliate = () => import("./components/Affiliate.vue");
 const History = () => import("./components/History.vue");
-const Bonus = () => import("./components/Bonus.vue");
+const Bonusspecial = () => import("./components/Bonusspecial.vue");
 const Deposit = () => import("./components/Deposit.vue");
 const Withdraw = () => import("./components/Withdraw.vue");
-
+const ModalCheck = () => import("./components/ModalCheck.vue");
 Vue.use(Router);
 
 export default new Router({
@@ -73,9 +73,9 @@ export default new Router({
          components: {header: Header, default: History}
       },
       {
-         path: "/Bonus",
-         name: "Bonus",
-         components: {header: Header, default: Bonus}
+         path: "/Bonusspecial",
+         name: "Bonusspecial",
+         components: {header: Header, default: Bonusspecial}
       },
       {
          path: "/Deposit",
@@ -86,6 +86,11 @@ export default new Router({
          path: "/Withdraw",
          name: "Withdraw",
          components: {header: Header, default: Withdraw}
+      },
+      {
+         path: "/ModalCheck",
+         name: "ModalCheck",
+         components: {header: Header, default: ModalCheck}
       }
    ]
 });

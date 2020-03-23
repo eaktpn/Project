@@ -6,7 +6,9 @@
                <div class="col-xl-9 col-md-9 col-12">
                   <div class="row justify-content-center">
                      <div class="col-6 align-self-center"><mdb-icon icon="bars" @click.native="toggleLeftSideNav" class="icon-menu fas2 fab2" /></div>
-                     <div class="col-6 text-right"><img src="/images/logo/joker24h.png" width="40%;" style="max-width:80px;" /></div>
+                     <div class="col-6 text-right">
+                        <router-link to="/"><img src="/images/logo/joker24h.png" width="40%;" style="max-width:80px;"/></router-link>
+                     </div>
                   </div>
                </div>
             </div>
@@ -14,29 +16,37 @@
       </div>
       <div class="mb-4"></div>
       <mdb-side-nav :OpenedFromOutside.sync="toggleA" hidden waves>
-         <ul>
-            <li>
-               <mdb-side-nav-nav>
-                  <div class="container mt-4">
-                     <div class="row justify-content-center">
-                        <div class="col-4"><img src="/images/icon/user.png" width="110%;" class="ml-2 mt-1" style="max-width:55px;" /></div>
-                        <div class="col-8 text-left">
-                           Apitsada132 <br />
-                           <mdb-btn block class="font14 color_back btn-profile mt-1">ดูข้อมูลผู้ใช้</mdb-btn>
-                        </div>
-                     </div>
+         <mdb-side-nav-nav>
+            <div class="container mt-4">
+               <div class="row justify-content-center">
+                  <div class="col-4"><img src="/images/icon/user.png" width="110%;" class="ml-2 mt-1" style="max-width:55px;" /></div>
+                  <div class="col-8">
+                     Apitsada132 <br />
+                     <router-link to="/Profile">
+                        <mdb-btn block class="font14 color_back btn-profile mt-1">ดูข้อมูลผู้ใช้</mdb-btn>
+                     </router-link>
                   </div>
-                  <hr class="my-hr mt-4" />
-                  <mdb-side-nav-item icon="home" href="/">หน้าหลัก</mdb-side-nav-item>
-                  <mdb-side-nav-item icon="address-card" href="/Profile">ข้อมูลบัญชี</mdb-side-nav-item>
-                  <mdb-side-nav-item icon="toggle-on" href="#">ตั้งค่าโบนัส</mdb-side-nav-item>
-                  <mdb-side-nav-item icon="thumbs-up" href="#">โปรโมชั่น</mdb-side-nav-item>
-                  <mdb-side-nav-item icon="history" href="#">ประวัติการใช้งาน</mdb-side-nav-item>
-                  <mdb-side-nav-item icon="download" href="#">ดาวน์โหลด</mdb-side-nav-item>
-                  <mdb-side-nav-item icon="sign-out-alt" href="/Logout">ออกจากระบบ</mdb-side-nav-item>
-               </mdb-side-nav-nav>
-            </li>
-         </ul>
+               </div>
+            </div>
+            <hr class="my-hr mt-4" />
+            <div class="row justify-content-center mx-2">
+               <div class="col">
+                  <router-link to="/"
+                     ><div class="font16"><i class="fas fa-home"></i>หน้าหลัก</div></router-link
+                  >
+                  <router-link to="/Profile"
+                     ><div class="font16"><i class="fas fa-address-card"></i>ข้อมูลบัญชี</div></router-link
+                  >
+                  <div><i class="my-2 fas fa-toggle-on"></i><span class="font16">ตั้งค่าโบนัส</span></div>
+                  <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
+                  <div><i class="my-2 fas fa-history"></i><span class="font16">ประวัติการใช้งาน</span></div>
+                  <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div>
+                  <div>
+                     <router-link to="/Logout" class="font16"><i class="my-2 fas fa-sign-out-alt"></i>ออกจากระบบ</router-link>
+                  </div>
+               </div>
+            </div>
+         </mdb-side-nav-nav>
       </mdb-side-nav>
    </div>
 </template>
@@ -200,28 +210,8 @@ export default {
    .side-nav {
       background: #181818;
    }
-   .side-nav .logo-wrapper {
-      height: auto !important;
-   }
-   .side-nav .logo-wrapper a {
-      height: auto !important;
-   }
-   .side-nav .collapsible a {
-      height: 36px;
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 36px;
-      color: #fff;
-   }
-   .icon-div {
-      width: 49%;
-      display: inline-block;
-   }
-   .icon-div .fa {
-      cursor: pointer;
-   }
-   .main_width {
-      max-width: 576px;
+   .side-nav a {
+      display: contents;
    }
    .icon-menu {
       color: #ffde30;
@@ -230,7 +220,6 @@ export default {
    }
    .btn-profile {
       background: #fcff68 !important;
-      box-shadow: 0px 4px 6px rgba(50, 50, 93, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
       border-radius: 4px;
       padding: 5px 15px 6px 15px;
    }
