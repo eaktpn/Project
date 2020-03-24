@@ -31,15 +31,14 @@
             <hr class="my-hr mt-4" />
             <div class="row justify-content-center mx-2">
                <div class="col">
-                  <router-link to="/"
-                     ><div class="font16"><i class="fas fa-home"></i>หน้าหลัก</div></router-link
+                  <router-link to="/">
+                     <div class="font16"><i class="fas fa-home"></i>หน้าหลัก</div></router-link
                   >
-                  <router-link to="/Profile"
-                     ><div class="font16"><i class="fas fa-address-card"></i>ข้อมูลบัญชี</div></router-link
+                  <router-link to="/Profile">
+                     <div class="font16"><i class="fas fa-address-card"></i>ข้อมูลบัญชี</div></router-link
                   >
-                  <div><i class="my-2 fas fa-toggle-on"></i><span class="font16">ตั้งค่าโบนัส</span></div>
+                  <div @click="showModalcheck()" style="cursor:pointer;"><i class="my-2 fas fa-toggle-on"></i><span class="font16">ตั้งค่าโบนัส</span></div>
                   <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
-                  <div><i class="my-2 fas fa-history"></i><span class="font16">ประวัติการใช้งาน</span></div>
                   <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div>
                   <div>
                      <router-link to="/Logout" class="font16"><i class="my-2 fas fa-sign-out-alt"></i>ออกจากระบบ</router-link>
@@ -48,6 +47,23 @@
             </div>
          </mdb-side-nav-nav>
       </mdb-side-nav>
+      <mdb-modal id="modalbonus" :show="showsetting" @close="showsetting = false" hide-header hide-footer centered no-close-on-esc hide-header-close v-model="settingSwitch" @change="onChange()">
+         <div class="row" style="padding:25px;">
+            <div class="col-12">
+               <label class="font24">เลือกรับ / ไม่รับโบนัส</label>
+            </div>
+            <div class="col-3 mt-2">
+               <label class="switch">
+                  <input type="checkbox" v-model="settingSwitch" @change="onChange()" />
+                  <span class="slider round"></span>
+               </label>
+            </div>
+            <div class="col-9 mt-2">
+               <label class="color_yellow">เลือกเปิดเพื่อรับโบนัส !!</label>
+               <label class="color_yellow">ระบบจะเลือกโบนัสที่ดีที่สุดให้คุณ</label>
+            </div>
+         </div>
+      </mdb-modal>
    </div>
 </template>
 
@@ -110,16 +126,15 @@ export default {
                   });
                }
 
-               $(".preloader").hide();
+               $(".preloader").show();
                this.$axios
                   .get("/is_login", this.token)
                   .then(response => {
+                     $(".preloader").hide();
                      if (response.data.msg != "LOGOUT") {
                         this.$session.set("isLogin", true);
                         this.$session.set("token", response.data);
                         this.storeLogin(response.data);
-                        this.$router.push("/");
-                        // $(".preloader").hide();
                      } else {
                         this.$swal({
                            title: "เกิดข้อผิดพลาด",
@@ -130,8 +145,7 @@ export default {
                            allowOutsideClick: false,
                            allowEscapeKey: false
                         });
-                        // $(".preloader").hide();
-                        this.$router.push("/");
+                        this.$router.push("/Logout");
                      }
                   })
                   .catch(function(error) {
@@ -223,5 +237,56 @@ export default {
       border-radius: 4px;
       padding: 5px 15px 6px 15px;
    }
+}
+/*----------Switch-----------*/
+.switch {
+   position: relative;
+   display: inline-block;
+   width: 60px;
+   height: 34px;
+}
+.switch input {
+   opacity: 0;
+   width: 0;
+   height: 0;
+}
+.slider {
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #ccc;
+   -webkit-transition: 0.4s;
+   transition: 0.4s;
+}
+.slider:before {
+   position: absolute;
+   content: "";
+   height: 26px;
+   width: 26px;
+   left: 4px;
+   bottom: 4px;
+   background-color: #212529;
+   -webkit-transition: 0.4s;
+   transition: 0.4s;
+}
+input:checked + .slider {
+   background-color: #fac549;
+}
+input:focus + .slider {
+   box-shadow: 0 0 1px #2196f3;
+}
+input:checked + .slider:before {
+   -webkit-transform: translateX(26px);
+   -ms-transform: translateX(26px);
+   transform: translateX(26px);
+}
+.slider.round {
+   border-radius: 34px;
+}
+.slider.round:before {
+   border-radius: 50%;
 }
 </style>

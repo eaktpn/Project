@@ -3,12 +3,12 @@
       <b-modal id="modalOTP" title="ระบบยืนยันตัวตน" v-model="checkOTP" no-close-on-esc no-close-on-backdrop hide-header-close hide-footer centered v-if="confirmuser === null">
          <div class="row justify-content-center mt-2">
             <div class="col-6 text-center mt-2" @click="confirmuser = 'phone_confirm'">
-               <i class="fas fa-mobile-alt fa-8x blue-text"></i>
-               <div class="color_white font14 p-2">ยืนยันตัวตนผ่านโทรศัพท์</div>
+               <i class="fas fa-mobile-alt fa-8x blue-text" style="cursor:pointer;"></i>
+               <div class="color_white font14 p-2" style="cursor:pointer;">ยืนยันตัวตนผ่านโทรศัพท์</div>
             </div>
             <div class="col-6 text-center">
-               <i class="fab fa-line fa-9x text-success"></i>
-               <div class="color_white font14">ยืนยันตัวตนผ่าน Line</div>
+               <i class="fab fa-line fa-9x text-success" style="cursor:pointer;"></i>
+               <div class="color_white font14" style="cursor:pointer;">ยืนยันตัวตนผ่าน Line</div>
             </div>
          </div>
          <div class="row justify-content-center">
@@ -25,7 +25,7 @@
             <template v-slot:modal-header="{close}">
                <!-- Emulate built in modal header close button action -->
                <div class="color_white font20">ยืนยันตัวตนผ่านเบอร์โทรศัพท์</div>
-               <i class="text-white fas fa-arrow-alt-circle-left fa-2x" style="cursor: pointer;" @click="confirmuser = null"></i>
+               <i class="text-white fas fa-arrow-alt-circle-left fa-2x" style="cursor:pointer;" @click="confirmuser = null"></i>
             </template>
 
             <div>

@@ -343,7 +343,6 @@ export default {
                         this.$session.set("isLogin", true);
                         this.$session.set("token", response.data);
                         this.storeLogin(response.data);
-                        this.$router.push("/");
                      } else {
                         this.$swal({
                            title: "เกิดข้อผิดพลาด",
@@ -355,7 +354,7 @@ export default {
                            allowEscapeKey: false
                         });
                         $(".preloader").hide();
-                        this.$router.push("/");
+                        this.$router.push("/Logout");
                      }
                   })
                   .catch(function(error) {

@@ -48,7 +48,7 @@ const keypayload = "ABAsecretKey*"; //ตัวแปรคงที่ไม่
 Vue.prototype.$keypayload = keypayload;
 
 import axios from "axios";
-axios.defaults.baseURL = "//slotimlive22.abatopup.com/api";
+axios.defaults.baseURL = "//joker24h.abatopup.com/api";
 Vue.prototype.$axios = axios;
 
 window.$ = require("jquery"); //ติตตั้งเรียกใช้ jquery
