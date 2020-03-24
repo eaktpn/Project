@@ -42,7 +42,7 @@
       <div class="row justify-content-center mt-2">
          <div class="col-xl-9 col-md-9 col-12 font16">
             <section class="preview">
-               <mdb-input basic :value="'http://slotimlive22.abatopup.com/systemaff?join=' + codesuggest" disabled>
+               <mdb-input basic :value="'http://joker24h.abatopup.com/systemaff?join=' + codesuggest" disabled>
                   <mdb-btn class="color_white font12" color="elegant" size="md" group slot="append" @click="coppyText()">คัดลอก</mdb-btn>
                </mdb-input>
             </section>
@@ -53,7 +53,7 @@
       </div>
       <div class="row justify-content-center mt-2">
          <div class="col-xl-10 col-md-10 col-12">
-            <social-sharing :url="'http://slotimlive22.abatopup.com/systemaff?join=' + codesuggest" title="ลิ้งสมัคร " discription="ชวนเพื่อนมาเล่น" quote="ชวนเพื่อนมาเล่นสล๊อต" hashtags="ชวนเพื่อนมาเล่นสลอต" v-cloak inline-template class="row">
+            <social-sharing :url="'http://joker24h.abatopup.com/systemaff?join=' + codesuggest" title="ลิ้งสมัคร " discription="ชวนเพื่อนมาเล่น" quote="ชวนเพื่อนมาเล่นสล๊อต" hashtags="ชวนเพื่อนมาเล่นสลอต" v-cloak inline-template class="row">
                <div class="row justify-content-center text-center">
                   <div class="col-xl-2 col-md-2 col-2 bg-aff-share p-3 m-1">
                      <network network="facebook">
@@ -212,7 +212,7 @@ export default {
    },
    methods: {
       coppyText() {
-         this.$copyText("http://slotimlive22.abatopup.com/systemaff?join=" + this.codesuggest);
+         this.$copyText("http://joker24h.abatopup.com/systemaff?join=" + this.codesuggest);
          this.$swal("คัดลอกสำเร็จ", "", "success");
       },
       currencyFormat(n) {

@@ -43,6 +43,13 @@
                   <div>
                      <router-link to="/Logout" class="font16"><i class="my-2 fas fa-sign-out-alt"></i>ออกจากระบบ</router-link>
                   </div>
+                  <hr class="my-hr mt-3" />
+                  <a href="https://m.facebook.com/Joker24h-107816474080548/?ref=bookmarks" target="_blank">
+                     <div><i class="my-1 fab fa-facebook-square text-primary"></i><span class="font16 text-primary"><b>Facebook</b></span></div>
+                  </a>
+                  <a href="https://lin.ee/4loZnaa" target="_blank">
+                     <div><i class="fab fa-line text-success"></i><span class="font16 text-success"><b>Line</b></span></div>
+                  </a>
                </div>
             </div>
          </mdb-side-nav-nav>
@@ -219,7 +226,7 @@ export default {
    .my-hr {
       //height: 2px;
       width: 100%;
-      border-bottom: 1px solid #000000;
+      border-bottom: 1px solid #747474;
    }
    .side-nav {
       background: #181818;

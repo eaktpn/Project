@@ -27,9 +27,7 @@
       <div class="row justify-content-center px-3">
          <div class="col-xl-9 col-md-9 col-12 BG-yellow color_red font18 p-4" style="font-weight:400;">
             <div class="text-center">กติกาการถอนเงิน</div>
-            <div class="font16 mt-2" style="color:#747474;">
-               1. กรณี ไม่รับโบนัส จะต้องมีรายการเล่นอย่างน้อย 1 ครั้ง <br />2. กรณีมีการทุจริต การตัดสินใจของแอดมินถือเป็นที่สุด
-            </div>
+            <div class="font16 mt-2" style="color:#747474;">1. กรณี ไม่รับโบนัส จะต้องมีรายการเล่นอย่างน้อย 1 ครั้ง <br />2. กรณีมีการทุจริต การตัดสินใจของแอดมินถือเป็นที่สุด</div>
          </div>
       </div>
       <div class="row justify-content-center p-3">
@@ -55,7 +53,13 @@
             <div class="text-center text-white font16" style="margin-top:15px;">ยกเลิการถอน</div>
          </router-link>
       </div>
-      <div class="mt-4"></div>
+      <div class="col-12 text-center mt-2">
+         <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
+            <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
+         </a>
+         <div class="color_gray font14 mt-2">**หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
+         <div class="mt-4"></div>
+      </div>
    </div>
 </template>
 

@@ -10,6 +10,7 @@ const Affiliate = () => import("./components/Affiliate.vue");
 const History = () => import("./components/History.vue");
 const Bonusspecial = () => import("./components/Bonusspecial.vue");
 const Deposit = () => import("./components/Deposit.vue");
+const Deposittrue = () => import("./components/Deposittrue.vue");
 const Depositauto = () => import("./components/Depositauto.vue");
 const Withdraw = () => import("./components/Withdraw.vue");
 const ModalCheck = () => import("./components/ModalCheck.vue");
@@ -82,6 +83,11 @@ export default new Router({
          path: "/Deposit",
          name: "Deposit",
          components: {header: Header, default: Deposit}
+      },
+      {
+         path: "/Deposittrue",
+         name: "Deposittrue",
+         components: {header: Header, default: Deposittrue}
       },
       {
          path: "/Depositauto",

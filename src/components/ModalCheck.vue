@@ -3,12 +3,16 @@
       <b-modal id="modalOTP" title="ระบบยืนยันตัวตน" v-model="checkOTP" no-close-on-esc no-close-on-backdrop hide-header-close hide-footer centered v-if="confirmuser === null">
          <div class="row justify-content-center mt-2">
             <div class="col-6 text-center mt-2" @click="confirmuser = 'phone_confirm'">
-               <i class="fas fa-mobile-alt fa-8x blue-text" style="cursor:pointer;"></i>
+               <!-- <i class="fas fa-mobile-alt fa-8x blue-text" style="cursor:pointer;"></i> -->
+               <img src="/images/icon/mobile.png" class="mx-3" width="100%;" style="max-width:130px; cursor:pointer;" />
                <div class="color_white font14 p-2" style="cursor:pointer;">ยืนยันตัวตนผ่านโทรศัพท์</div>
             </div>
-            <div class="col-6 text-center">
-               <i class="fab fa-line fa-9x text-success" style="cursor:pointer;"></i>
-               <div class="color_white font14" style="cursor:pointer;">ยืนยันตัวตนผ่าน Line</div>
+            <div class="col-6 text-center mt-2">
+               <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
+                  <!-- <i class="fab fa-line fa-9x text-success" style="cursor:pointer;"></i> -->
+                  <img src="/images/icon/line2.png" class="mx-3" width="100%;" style="max-width:130px; cursor:pointer;" />
+                  <div class="color_white font14 p-2" style="cursor:pointer;">ยืนยันตัวตนผ่าน Line</div>
+               </a>
             </div>
          </div>
          <div class="row justify-content-center">
@@ -16,7 +20,7 @@
                <mdb-btn class="btn-confirm font16" @click="checkLinesub()" block>ตรวจสอบการยืนยัน</mdb-btn>
             </div>
             <div class="col-12 text-center color_white font14 mt-3">
-               หากเกิดปัญหา ให้ติดต่อแอดมินทาง <span class="color_green"> <b>LINE คลิ๊ก</b></span>
+               หากเกิดปัญหา ให้ติดต่อแอดมินทาง <span class="color_green"> <a href="https://lin.ee/4loZnaa" target="_blank"><b>LINE คลิ๊ก</b></a></span>
             </div>
          </div>
       </b-modal>

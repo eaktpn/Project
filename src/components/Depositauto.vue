@@ -4,7 +4,7 @@
          <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
             <div class="row justify-content-center">
                <div class="col-6 font26">ฝากเงิน</div>
-               <div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/Deposit" class="color_yellow"> ย้อนกลับ</router-link></div>
+               <div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
             </div>
          </div>
       </div>
@@ -22,13 +22,13 @@
       <div class="row justify-content-center px-3">
          <div class="col-xl-9 col-md-9 col-12 BG-yellow color_red text-center font18 p-4" style="font-weight:400;">
             แจ้งเตือนก่อนฝาก
-            <div class="font16 mt-2" style="color:#747474;">ลูกค้าทุกท่านต้องมียอดไม่ต่ำกว่า 10 บาท<br />มิเช่นนั้น ยอดเทิร์นจะถูกคิดรวมกับของเก่า</div>
+            <div class="font14 mt-2" style="color:#747474;">ลูกค้าทุกท่านต้องมียอดไม่ต่ำกว่า 10 บาท<br />มิเช่นนั้น ยอดเทิร์นจะถูกคิดรวมกับของเก่า</div>
          </div>
       </div>
       <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 BG-pink color_back font18 p-4" style="font-weight:400;">
             <div class="text-center">คำเตือน</div>
-            <div class="font16 mt-2" style="color:#606060;">ต้องใช้บัญชีที่สมัครฝากเงินเข้ามาเท่านั้น และต้องโอนเงินผ่านช้องทางแอพพลิเคชั่นของธนาคารบานมือถือเท่านั้น มิเช่นนั้นจะไม่สามารถยืนยันรายการฝากได้<br />ถ้าเกิดข้อผิดพลาดของระบบให้แจ้งกับพนักงานทันที กรณีที่ไม่แจ้งเราขอสงวนสิทธิ์การถอนเงินทุกกรณี</div>
+            <div class="font14 mt-2" style="color:#606060;">ต้องใช้บัญชีที่สมัครฝากเงินเข้ามาเท่านั้น และต้องโอนเงินผ่านช้องทางแอพพลิเคชั่นของธนาคารบานมือถือเท่านั้น มิเช่นนั้นจะไม่สามารถยืนยันรายการฝากได้<br />ถ้าเกิดข้อผิดพลาดของระบบให้แจ้งกับพนักงานทันที กรณีที่ไม่แจ้งเราขอสงวนสิทธิ์การถอนเงินทุกกรณี</div>
          </div>
       </div>
       <div class="row justify-content-center px-3">
@@ -45,7 +45,7 @@
                   คุณได้โบนัส <label class="color_blue">“{{ bonus.title }}”</label>
                </div>
             </div>
-            <a href="" target="_blank">
+            <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
                <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
             </a>
             <div class="font14 mt-2">*กดเพิ่มเพื่อนเพื่อรับบริการแจ้งเตือนยอดฝาก</div>
