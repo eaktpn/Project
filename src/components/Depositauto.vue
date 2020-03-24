@@ -95,7 +95,7 @@ export default {
       }
    },
    mounted() {
-      this.$session.set("page", "/Depositauto");
+      // this.$session.set("page", "/Depositauto");
       if (this.isLogin) {
          $(".preloader").show();
          this.$axios.get("/is_login", this.token).then(response => {
@@ -125,7 +125,8 @@ export default {
             }
          });
       } else {
-         this.$router.push("/");
+         console.log("Reload Depositauto");
+         // this.$router.push("/");
       }
    }
 };

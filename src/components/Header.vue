@@ -34,9 +34,9 @@
                   <router-link to="/">
                      <div class="font16"><i class="fas fa-home"></i>หน้าหลัก</div></router-link
                   >
-                  <router-link to="/Profile">
-                     <div class="font16"><i class="fas fa-address-card"></i>ข้อมูลบัญชี</div></router-link
-                  >
+                  <!-- <router-link to="/Profile">
+                     <div class="font16"><i class="fas fa-address-card"></i>ข้อมูลบัญชี</div>
+                  </router-link> -->
                   <div @click="showModalcheck()" style="cursor:pointer;"><i class="my-2 fas fa-toggle-on"></i><span class="font16">ตั้งค่าโบนัส</span></div>
                   <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
                   <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div>
@@ -45,10 +45,14 @@
                   </div>
                   <hr class="my-hr mt-3" />
                   <a href="https://m.facebook.com/Joker24h-107816474080548/?ref=bookmarks" target="_blank">
-                     <div><i class="my-1 fab fa-facebook-square text-primary"></i><span class="font16 text-primary"><b>Facebook</b></span></div>
+                     <div>
+                        <i class="my-1 fab fa-facebook-square text-primary"></i><span class="font16 text-primary"><b>Facebook</b></span>
+                     </div>
                   </a>
                   <a href="https://lin.ee/4loZnaa" target="_blank">
-                     <div><i class="fab fa-line text-success"></i><span class="font16 text-success"><b>Line</b></span></div>
+                     <div>
+                        <i class="fab fa-line text-success"></i><span class="font16 text-success"><b>Line</b></span>
+                     </div>
                   </a>
                </div>
             </div>
@@ -193,7 +197,7 @@ export default {
                   this.$session.set("isLogin", true);
                   this.$session.set("token", response.data);
                   this.storeLogin(response.data);
-                  // this.$router.push(this.$session.get("page")); //เก็บ session page เวลา push ให้อยู่หน้าเดิม
+                  // this.$session.get("page"); //เก็บ session page เวลา push ให้อยู่หน้าเดิม
                } else {
                   this.$router.push("/Logout");
                   this.$session.set("isLogin", false);

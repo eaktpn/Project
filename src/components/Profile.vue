@@ -42,7 +42,10 @@
                   <div class="text-center mt-4">
                      บัญชีธนาคาร :
                      <img :src="'/images/bank/' + user.bank_code + '.png'" style="width:20px;" alt />
-                     <div class="font14 mt-2" style="color:#FFDE30;">{{ user.bank_number }}<br> {{ user.full_name }}</div>
+                     <div class="font14 mt-2" style="color:#FFDE30;">
+                        {{ user.bank_number }}<br />
+                        {{ user.full_name }}
+                     </div>
                   </div>
                </div>
             </div>
@@ -55,7 +58,7 @@
 // const jwt = require("jsonwebtoken");
 // import moment from "moment";
 import {mapActions, mapGetters} from "vuex";
-// import $ from "jquery";
+import $ from "jquery";
 export default {
    name: "Profile",
    data() {
@@ -88,16 +91,17 @@ export default {
       // }
    },
    mounted() {
-      if (this.$session.get("isLogin")) {
+      if (this.isLogin) {
+         $(".preloader").show();
          this.$axios
             .get("/is_login", this.token)
             .then(response => {
-               // console.log(response.data);
+               $(".preloader").hide();
                if (response.data.msg != "LOGOUT") {
                   this.$session.set("isLogin", true);
                   this.$session.set("token", response.data);
                   this.storeLogin(response.data);
-                  this.$session.set("page", "/Profile"); //เก็บ session page เวลา refresh ให้อยู่หน้าเดิม
+                  //this.$session.set("page", "/Profile"); //เก็บ session page เวลา refresh ให้อยู่หน้าเดิม
                } else {
                   this.$swal({
                      title: "เกิดข้อผิดพลาด",
@@ -115,7 +119,7 @@ export default {
                console.log(error);
             });
       } else {
-         this.$router.push("/Logout");
+         console.log("Reload Profile");
       }
    }
 };

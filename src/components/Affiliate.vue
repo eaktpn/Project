@@ -19,7 +19,7 @@
       <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 BG-gray color_blue font22" style="font-weight:400;">
             <div class="row justify-content-center">
-               <div class="col align-self-center pl-4">
+               <div class="col-xl-5 col-md-5 col-6 align-self-center pl-4">
                   {{ currencyFormat(walletSum) }}
                   <span>
                      <a @click="depositWallet()">
@@ -27,7 +27,7 @@
                      </a>
                   </span>
                </div>
-               <div class="col text-right">
+               <div class="col-xl-5 col-md-5 col-6 text-right">
                   <mdb-btn size="sm" :disabled="btn_confirm" :class="btn_confirm ? 'btn-gray-aff font14' : 'btn-yellow-aff font14'" @click="withdraw()">รับรายได้</mdb-btn>
                </div>
             </div>
@@ -141,7 +141,7 @@
          </div>
       </div>
       <div class="row justify-content-center p-3" style="margin-top:-10px;">
-         <div class="col-xl-9 col-md-9 col-12 border-note text-center font14">หมายเหตุ ระบบจะทำการคำนวณยอดเงิน<br>เวลา 23:00 - 00:00 ของทุกวัน</div>
+         <div class="col-xl-9 col-md-9 col-12 border-note text-center font14">หมายเหตุ ระบบจะทำการคำนวณยอดเงิน<br />เวลา 23:00 - 00:00 ของทุกวัน</div>
       </div>
    </div>
 </template>
@@ -406,7 +406,7 @@ export default {
       }
    },
    mounted() {
-      this.$session.set("page", "/Affiliate");
+      // this.$session.set("page", "/Affiliate");
       this.dateselect = moment(new Date()).format("YYYY-MM-") + (moment(new Date()).format("DD") - 1);
       popup_aff.child("affiliate").on("value", snap => {
          //Popup affiliate
@@ -482,7 +482,8 @@ export default {
             });
          $(".preloader").hide();
       } else {
-         this.$router.push("/");
+         console.log("Reload Affiliate");
+         // this.$router.push("/");
       }
       this.$axios.get("/wallet", this.token).then(response => {
          this.history = response.data.payload;

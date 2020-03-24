@@ -273,7 +273,8 @@ export default {
                console.log(err);
             });
       } else {
-         this.$router.push("/");
+console.log("Reload Withdraw");
+         // this.$router.push("/");
       }
    }
 };

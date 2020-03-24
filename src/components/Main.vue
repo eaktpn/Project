@@ -392,11 +392,9 @@ export default {
       }
    },
    mounted() {
-      // console.log('token : ' + this.token)
-
-      if (this.$session.get("isLogin")) {
-         this.$session.set("page", "/");
-         if (this.token) {
+      if (this.isLogin) {
+         // this.$session.set("page", "/");
+         
             this.$axios
                .get("/is_login", this.token)
                .then(response => {
@@ -421,11 +419,11 @@ export default {
                .catch(function(error) {
                   console.log(error);
                });
-         }
+         
          this.checkLogin = 1;
       } else {
          this.checkLogin = 0;
-         this.$router.push("/Logout");
+         console.log("Reload Main");
       }
       bannerRef.orderByKey().on("value", snap => {
          this.bannerimg = snap.val();
