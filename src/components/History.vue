@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div class="container" v-if="isLogin">
       <div class="row justify-content-center">
          <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
             <div class="row justify-content-center">
@@ -107,7 +107,7 @@
 // const jwt = require("jsonwebtoken");
 // import moment from "moment";
 import {mapGetters} from "vuex";
-// import $ from "jquery";
+import $ from "jquery";
 export default {
    name: "History",
    data() {
@@ -147,20 +147,37 @@ export default {
       }
    },
    mounted() {
-      this.$session.set("page", "/History");
       if (this.isLogin) {
-         this.$axios.get("/History", this.token).then(response => {
-            this.deposit = response.data.data.dataDepo;
-            this.depositlength = response.data.data.dataDepo.length;
-            this.withdraw = response.data.data.dataWith;
-            this.withdrawlength = response.data.data.dataWith.length;
-            this.Bonus = response.data.data.dataBonus;
-            this.Bonuslength = response.data.data.dataBonus.length;
-            this.Bonusfree = response.data.data.dataBonusfree;
-            this.Bonusfreelength = response.data.data.dataBonusfree.length;
+         $(".preloader").show();
+         this.$axios.get("/is_login", this.token).then(response => {
+            $(".preloader").hide();
+            if (response.data.msg === "LOGOUT") {
+               this.$swal({
+                  title: "เกิดข้อผิดพลาด",
+                  text: "มีการเข้าสู่ระบบจากที่อื่น",
+                  tpye: "error",
+                  timer: 3000,
+                  showConfirmButton: true,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false
+               });
+               this.$router.push("/Logout");
+            } else {
+               this.$axios.get("/History", this.token).then(response => {
+                  this.deposit = response.data.data.dataDepo;
+                  this.depositlength = response.data.data.dataDepo.length;
+                  this.withdraw = response.data.data.dataWith;
+                  this.withdrawlength = response.data.data.dataWith.length;
+                  this.Bonus = response.data.data.dataBonus;
+                  this.Bonuslength = response.data.data.dataBonus.length;
+                  this.Bonusfree = response.data.data.dataBonusfree;
+                  this.Bonusfreelength = response.data.data.dataBonusfree.length;
+               });
+            }
          });
       } else {
-         this.$router.push("/");
+         console.log("Reload History");
+         // this.$router.push("/");
       }
    }
 };

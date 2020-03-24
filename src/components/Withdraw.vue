@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div class="container" v-if="isLogin">
       <div class="row justify-content-center">
          <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
             <div class="row justify-content-center">
