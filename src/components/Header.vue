@@ -20,8 +20,8 @@
             <div class="container mt-4">
                <div class="row justify-content-center">
                   <div class="col-4"><img src="/images/icon/user.png" width="110%;" class="ml-2 mt-1" style="max-width:55px;" /></div>
-                  <div class="col-8">
-                     Apitsada132 <br />
+                  <div class="col-8 font14 color_blue">
+                     USER: {{ user.username }} <br />
                      <router-link to="/Profile">
                         <mdb-btn block class="font14 color_back btn-profile mt-1">ดูข้อมูลผู้ใช้</mdb-btn>
                      </router-link>

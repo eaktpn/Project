@@ -65,7 +65,8 @@
 </template>
 
 <script>
-const jwt = require("jsonwebtoken"); //ใช้ในการเข้ารหัส
+import axios from "axios";
+const jwt = require("jsonwebtoken"); //ใช้ในการเข้ารหัส 2420260295
 import moment from "moment"; //ใช้กับเวลา
 import {mapActions} from "vuex";
 import $ from "jquery";
@@ -337,7 +338,8 @@ export default {
       login: function() {
          let payload = {
             phone_number: this.phonenumber,
-            password: this.password
+            password: this.password,
+            ip: this.ipuser //ส่ง ip user
          };
          let token = jwt.sign(payload, this.$keypayload, {
             expiresIn: "5s"
@@ -359,6 +361,39 @@ export default {
                console.log(error);
             });
       }
+   },
+   mounted() {
+      this.join = this.$route.query.ref;
+      if (this.join != undefined) {
+         let payload = {
+            join: this.join
+         };
+         let token = jwt.sign(payload, this.$keypayload, {
+            expiresIn: "5s"
+         });
+         this.$axios
+            .post("/AffrefDE", {token: token})
+            .then(response => {
+               this.join = response.data.payload.token;
+               // console.log(this.join);
+            })
+            .catch(function(error) {
+               console.log(error);
+            });
+      }
+
+      $(".preloader").show();
+      let apiGetIp = "https://api.ipify.org";
+      axios
+         .get(apiGetIp)
+         .then(response => {
+            $(".preloader").hide();
+            this.ipuser = "" + response.data;
+         })
+         .catch(error => {
+            $(".preloader").hide();
+            console.log(error);
+         });
    }
 };
 </script>

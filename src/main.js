@@ -37,9 +37,9 @@ Vue.use(moment);
 import VueClipboard from "vue-clipboard2"; // ใช้ copyText
 Vue.use(VueClipboard);
 
-import DatePicker from "vue2-datepicker"; //ปฏิทิน
+// import DatePicker from "vue2-datepicker"; //ปฏิทิน
 import "vue2-datepicker/index.css";
-Vue.use(DatePicker);
+// Vue.use(DatePicker);
 
 var SocialSharing = require("vue-social-sharing"); //social sharing
 Vue.use(SocialSharing);

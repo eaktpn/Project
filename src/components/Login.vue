@@ -53,8 +53,9 @@
 </template>
 
 <script>
+import axios from "axios";
 const jwt = require("jsonwebtoken");
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import $ from "jquery";
 export default {
    name: "Login",
@@ -66,6 +67,14 @@ export default {
          showModal: false,
          errors: []
       };
+   },
+   computed: {
+      ...mapGetters({
+         isLogin: "isLogin",
+         user: "user",
+         amount: "amount",
+         token: "token"
+      })
    },
    methods: {
       ...mapActions({
@@ -177,7 +186,8 @@ export default {
          if (this.errors.length === 0) {
             let payload = {
                phone_number: this.phonenumber,
-               password: this.password
+               password: this.password,
+               ip: this.ipuser //ส่ง ip user
             };
             let token = jwt.sign(payload, this.$keypayload, {
                expiresIn: "5s"
@@ -210,6 +220,20 @@ export default {
                });
          }
       }
+   },
+   mounted() {
+      $(".preloader").show();
+      let apiGetIp = "https://api.ipify.org";
+      axios
+         .get(apiGetIp)
+         .then(response => {
+            $(".preloader").hide();
+            this.ipuser = "" + response.data;
+         })
+         .catch(error => {
+            $(".preloader").hide();
+            console.log(error);
+         });
    }
 };
 </script>

@@ -153,6 +153,7 @@ import momentjs from "moment";
 import moment from "moment"; //ใช้กับเวลา
 import {mapGetters} from "vuex";
 import $ from "jquery";
+import DatePicker from "vue2-datepicker"; //ปฏิทิน
 // import {mdbContainer, mdbRow, mdbCol, mdbInput, mdbBtn} from "mdbvue";
 var popup_aff = firebase.database().ref("popup");
 export default {
@@ -405,93 +406,98 @@ export default {
          }
       }
    },
+components: {
+      DatePicker
+   },
    mounted() {
-      // this.$session.set("page", "/Affiliate");
-      this.dateselect = moment(new Date()).format("YYYY-MM-") + (moment(new Date()).format("DD") - 1);
-      popup_aff.child("affiliate").on("value", snap => {
-         //Popup affiliate
-         var leng = snap.val();
-         var show_popup_aff = [];
-         console.log(snap.val());
-         for (var i = 0; i < leng.length; i++) {
-            if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
-               show_popup_aff.push({
-                  title: snap.val()[i].title,
-                  html: snap.val()[i].text,
-                  icon: snap.val()[i].type,
-                  showConfirmButton: snap.val()[i].showConfirmButton
-               });
-            }
-            this.$swal.queue(show_popup_aff);
-         }
-      });
-      if (this.isLogin) {
-         $(".preloader").show();
-         this.$axios
-            .get("/affiliateToken", this.token)
-            .then(response => {
-               if (response.data.payload === undefined) {
-                  this.codesuggestcode = response.data.payload;
-                  console.log(this.codesuggestcode);
-                  this.codesuggest = "ไม่มีรหัสผู้แนะนำ";
-                  this.tableaff = 0;
-                  this.wallet = 0;
-               } else {
-                  this.codesuggest = response.data.payload.token;
-                  this.tableaff = response.data.payload;
-                  if (response.data.payload.join === "undefined") {
-                     this.codejoin = "ไม่มีรหัสผู้แนะนำ";
-                  } else {
-                     this.codejoin = response.data.payload.join;
-                  }
-                  this.$axios
-                     .get("/affiliateWallet", this.token)
-                     .then(response => {
-                        this.wallet = response.data.payload;
-                     })
-                     .catch(function(error) {
-                        console.log(error);
+      if (this.$session.get("isLogin")) {
+         if (this.isLogin) {
+            // this.$session.set("page", "/Affiliate");
+            this.dateselect = moment(new Date()).format("YYYY-MM-") + (moment(new Date()).format("DD") - 1);
+            popup_aff.child("affiliate").on("value", snap => {
+               //Popup affiliate
+               var leng = snap.val();
+               var show_popup_aff = [];
+               console.log(snap.val());
+               for (var i = 0; i < leng.length; i++) {
+                  if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
+                     show_popup_aff.push({
+                        title: snap.val()[i].title,
+                        html: snap.val()[i].text,
+                        icon: snap.val()[i].type,
+                        showConfirmButton: snap.val()[i].showConfirmButton
                      });
+                  }
+                  this.$swal.queue(show_popup_aff);
                }
-            })
-            .catch(function(error) {
-               console.log(error);
             });
-         var dateto = new Date();
-         let payload = {
-            date: new Date().toISOString().slice(0, 8) + (dateto.getDate() - 1)
-         };
-         let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
-         });
-         this.$axios
-            .post("/affiliateLog", {token: token}, this.token)
-            .then(response => {
-               if (response.data.payload.length > 0) {
-                  this.afflog = JSON.parse(response.data.payload[0].stat);
-                  this.logdividend = response.data.payload[0].dividend;
+
+            $(".preloader").show();
+            this.$axios
+               .get("/affiliateToken", this.token)
+               .then(response => {
                   $(".preloader").hide();
-               } else {
-                  this.afflog = response.data.payload;
-                  this.logdividend = 0;
-                  $(".preloader").hide();
+                  if (response.data.payload === undefined) {
+                     this.codesuggestcode = response.data.payload;
+                     console.log(this.codesuggestcode);
+                     this.codesuggest = "ไม่มีรหัสผู้แนะนำ";
+                     this.tableaff = 0;
+                     this.wallet = 0;
+                  } else {
+                     this.codesuggest = response.data.payload.token;
+                     this.tableaff = response.data.payload;
+                     if (response.data.payload.join === "undefined") {
+                        this.codejoin = "ไม่มีรหัสผู้แนะนำ";
+                     } else {
+                        this.codejoin = response.data.payload.join;
+                     }
+                     this.$axios
+                        .get("/affiliateWallet", this.token)
+                        .then(response => {
+                           this.wallet = response.data.payload;
+                        })
+                        .catch(function(error) {
+                           console.log(error);
+                        });
+                  }
+               })
+               .catch(function(error) {
+                  console.log(error);
+               });
+            var dateto = new Date();
+            let payload = {
+               date: new Date().toISOString().slice(0, 8) + (dateto.getDate() - 1)
+            };
+            let token = jwt.sign(payload, this.$keypayload, {
+               expiresIn: "5s"
+            });
+            this.$axios
+               .post("/affiliateLog", {token: token}, this.token)
+               .then(response => {
+                  if (response.data.payload.length > 0) {
+                     this.afflog = JSON.parse(response.data.payload[0].stat);
+                     this.logdividend = response.data.payload[0].dividend;
+                     $(".preloader").hide();
+                  } else {
+                     this.afflog = response.data.payload;
+                     this.logdividend = 0;
+                     $(".preloader").hide();
+                  }
+               })
+               .catch(function(error) {
+                  console.log(error);
+               });
+            this.$axios.get("/wallet", this.token).then(response => {
+               this.history = response.data.payload;
+               this.walletSum = response.data.walletSum;
+               if (this.walletSum >= 100) {
+                  this.btn_confirm = false;
                }
-            })
-            .catch(function(error) {
-               console.log(error);
             });
-         $(".preloader").hide();
-      } else {
-         console.log("Reload Affiliate");
-         // this.$router.push("/");
-      }
-      this.$axios.get("/wallet", this.token).then(response => {
-         this.history = response.data.payload;
-         this.walletSum = response.data.walletSum;
-         if (this.walletSum >= 100) {
-            this.btn_confirm = false;
          }
-      });
+      } else {
+         this.$router.push("/Logout");
+      }
    }
 };
 </script>

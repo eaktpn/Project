@@ -23,7 +23,6 @@ export default {
       storeLogout: "logout"
     })
   },
-  components: {},
   mounted() {
     this.$session.destroy();
     this.storeLogout();

@@ -91,35 +91,37 @@ export default {
       // }
    },
    mounted() {
-      if (this.isLogin) {
-         $(".preloader").show();
-         this.$axios
-            .get("/is_login", this.token)
-            .then(response => {
-               $(".preloader").hide();
-               if (response.data.msg != "LOGOUT") {
-                  this.$session.set("isLogin", true);
-                  this.$session.set("token", response.data);
-                  this.storeLogin(response.data);
-                  //this.$session.set("page", "/Profile"); //เก็บ session page เวลา refresh ให้อยู่หน้าเดิม
-               } else {
-                  this.$swal({
-                     title: "เกิดข้อผิดพลาด",
-                     text: "มีการเข้าสู่ระบบจากที่อื่น",
-                     icon: "error",
-                     timer: 5000,
-                     showConfirmButton: true,
-                     allowOutsideClick: false,
-                     allowEscapeKey: false
-                  });
-                  this.$router.push("/Logout");
-               }
-            })
-            .catch(function(error) {
-               console.log(error);
-            });
+      if (this.$session.get("isLogin")) {
+         if (this.isLogin) {
+            $(".preloader").show();
+            this.$axios
+               .get("/is_login", this.token)
+               .then(response => {
+                  $(".preloader").hide();
+                  if (response.data.msg != "LOGOUT") {
+                     this.$session.set("isLogin", true);
+                     this.$session.set("token", response.data);
+                     this.storeLogin(response.data);
+                  } else {
+                     this.$swal({
+                        title: "เกิดข้อผิดพลาด",
+                        text: "มีการเข้าสู่ระบบจากที่อื่น",
+                        icon: "error",
+                        timer: 5000,
+                        showConfirmButton: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                     });
+                     this.$router.push("/Logout");
+                  }
+               })
+               .catch(function(error) {
+                  console.log(error);
+               });
+         }
       } else {
-         console.log("Reload Profile");
+         console.log("Logout Profile");
+         this.$router.push("/Logout");
       }
    }
 };

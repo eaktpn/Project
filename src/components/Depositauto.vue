@@ -96,37 +96,39 @@ export default {
    },
    mounted() {
       // this.$session.set("page", "/Depositauto");
-      if (this.isLogin) {
-         $(".preloader").show();
-         this.$axios.get("/is_login", this.token).then(response => {
-            $(".preloader").hide();
-            if (response.data.msg === "LOGOUT") {
-               this.$swal({
-                  title: "เกิดข้อผิดพลาด",
-                  text: "มีการเข้าสู่ระบบจากที่อื่น",
-                  tpye: "error",
-                  timer: 3000,
-                  showConfirmButton: true,
-                  allowOutsideClick: false,
-                  allowEscapeKey: false
-               });
-               this.$router.push("/Logout");
-            } else {
-               this.$axios
-                  // .get("/showBank?bank=TRUEWALLET", this.token)
-                  .get("/showBank", this.token)
-                  .then(response => {
-                     console.log(response.data);
-                     this.bank = response.data.payload;
+      if (this.$session.get("isLogin")) {
+         if (this.isLogin) {
+            $(".preloader").show();
+            this.$axios.get("/is_login", this.token).then(response => {
+               $(".preloader").hide();
+               if (response.data.msg === "LOGOUT") {
+                  this.$swal({
+                     title: "เกิดข้อผิดพลาด",
+                     text: "มีการเข้าสู่ระบบจากที่อื่น",
+                     tpye: "error",
+                     timer: 3000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
                   });
-               this.$axios.get("/bonus", this.token).then(response => {
-                  this.bonus = response.data.payload;
-               });
-            }
-         });
+                  this.$router.push("/Logout");
+               } else {
+                  this.$axios
+                     // .get("/showBank?bank=TRUEWALLET", this.token)
+                     .get("/showBank", this.token)
+                     .then(response => {
+                        console.log(response.data);
+                        this.bank = response.data.payload;
+                     });
+                  this.$axios.get("/bonus", this.token).then(response => {
+                     this.bonus = response.data.payload;
+                  });
+               }
+            });
+         }
       } else {
-         console.log("Reload Depositauto");
-         // this.$router.push("/");
+         console.log("Logout Depositauto");
+         this.$router.push("/Logout");
       }
    }
 };

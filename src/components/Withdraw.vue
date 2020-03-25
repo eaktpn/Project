@@ -31,7 +31,7 @@
          </div>
       </div>
       <div class="row justify-content-center p-3">
-         <div class="col-xl-9 col-md-9 col-12 border-with text-center font18 p-3"><img src="/images/icon/warning.png" class="mx-3" width="100%;" style="max-width:45px;" />ถอนขั้นต่ำ 100 บาท</div>
+         <div class="col-xl-9 col-md-9 col-12 border-with text-center font18 p-3"><img src="/images/icon/warning.png" class="mx-3" width="100%;" style="max-width:45px;" />ถอนขั้นต่ำ 300 บาท</div>
       </div>
       <div class="row justify-content-center">
          <div class="col-xl-5 col-md-6 col-11">
@@ -40,7 +40,7 @@
       </div>
       <div class="row justify-content-center" style="margin-top:-16px;">
          <div class="col-xl-5 col-md-6 col-11 text-rigth">
-            <input :disabled="amount < 100" type="text" style="width:100%;" id="withdraw_amount" class="form-control text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @change="check_amount()" />
+            <input :disabled="amount < 300" type="text" style="width:100%;" id="withdraw_amount" class="form-control text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @change="check_amount()" />
          </div>
       </div>
       <div class="row justify-content-center">
@@ -109,7 +109,7 @@ export default {
       },
       check_amount() {
          this.withdraw_amount = $("#withdraw_amount").val();
-         if (parseFloat(this.withdraw_amount) < 100) {
+         if (parseFloat(this.withdraw_amount) < 300) {
             this.btn_confirm = true;
          } else if (parseFloat(this.amount) < parseFloat(this.withdraw_amount)) {
             this.btn_confirm = true;
@@ -177,104 +177,104 @@ export default {
    },
 
    mounted() {
-      this.$session.set("page", "/Withdraw");
-      if (this.isLogin) {
-         $(".preloader").show();
-         this.$axios
-            .get("/is_login", this.token)
-            .then(response => {
-               $(".preloader").hide();
-               if (response.data.msg === "LOGOUT") {
-                  // จะคืนค่า LOGOUT มา ก็ต่อเมื่อมีการ Login จากที่อื่น
-                  this.$swal({
-                     icon: "error",
-                     title: "เกิดข้อผิดพลาด",
-                     text: "มีการเข้าสู่ระบบจากที่อื่น",
-                     timer: 5000,
-                     showConfirmButton: true,
-                     allowOutsideClick: false,
-                     allowEscapeKey: false
-                  });
-                  this.$router.push("/Logout");
-               } else {
-                  this.$axios.get("/wdfix", this.token).then(response => {
-                     this.withdraw_fix = response.data.payload;
-                     if (this.withdraw_fix > this.amount) {
-                        this.withdraw_fix_show = true;
-                        // this.$swal({
-                        //   title: "ไม่สามารถทำการถอนได้",
-                        //   text:
-                        //     "คุณต้องมียอดเงินมากกว่าหรือเท่ากับ " +
-                        //     this.withdraw_fix +
-                        //     " บาท จึงจะสามารถถอนได้",
-                        //   icon: "error",
-                        //   showConfirmButton: true,
-                        //   allowOutsideClick: false,
-                        //   allowEscapeKey: false
-                        // }).then(result => {
-                        //   if (result.value) {
-                        //     this.withdraw_hide = false;
-                        //     this.$router.push("/");
-                        //   }
-                        // });
-                     } else if (this.amount < 100) {
-                        this.withdraw_amount_show = true;
-                        // this.$swal({
-                        //   title: "ไม่สามารถทำการถอนได้",
-                        //   text: "คุณมียอดเงินคงเหลือน้อยกว่า 100 บาท",
-                        //   icon: "error",
-                        //   showConfirmButton: true,
-                        //   allowOutsideClick: false,
-                        //   allowEscapeKey: false
-                        // }).then(result => {
-                        //   if (result.value) {
-                        //     this.withdraw_hide = false;
-                        //     this.$router.push("/");
-                        //   }
-                        // });
-                     } else if (this.amount >= 100 && this.amount >= this.withdraw_fix) {
-                        this.withdraw_with_show = true;
-                        // this.$swal({
-                        //   title: "ไม่สามารถทำการถอนได้",
-                        //   text: "คุณมียอดเงินคงเหลือน้อยกว่า 100 บาท",
-                        //   icon: "error",
-                        //   showConfirmButton: true,
-                        //   allowOutsideClick: false,
-                        //   allowEscapeKey: false
-                        // }).then(result => {
-                        //   if (result.value) {
-                        //     this.withdraw_hide = false;
-                        //     this.$router.push("/");
-                        //   }
-                        // });
-                     } else {
-                        this.$axios.get("/hisWD", this.token).then(response => {
-                           if (response.data.count !== 0) {
-                              this.$swal({
-                                 title: "ไม่สามารถทำรายการถอนได้",
-                                 icon: "warning",
-                                 html: "เนื่องจากมีรายการถอนอยู่",
-                                 showConfirmButton: true,
-                                 allowOutsideClick: false,
-                                 allowEscapeKey: false
-                              }).then(result => {
-                                 if (result.value) {
-                                    this.withdraw_hide = false;
-                                    this.$router.push("/");
-                                 }
-                              });
-                           }
-                        });
-                     }
-                  });
-               }
-            })
-            .catch(err => {
-               console.log(err);
-            });
+      if (this.$session.get("isLogin")) {
+         if (this.isLogin) {
+            $(".preloader").show();
+            this.$axios
+               .get("/is_login", this.token)
+               .then(response => {
+                  $(".preloader").hide();
+                  if (response.data.msg === "LOGOUT") {
+                     this.$swal({
+                        icon: "error",
+                        title: "เกิดข้อผิดพลาด",
+                        text: "มีการเข้าสู่ระบบจากที่อื่น",
+                        timer: 5000,
+                        showConfirmButton: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                     });
+                     this.$router.push("/Logout");
+                  } else {
+                     this.$axios.get("/wdfix", this.token).then(response => {
+                        this.withdraw_fix = response.data.payload;
+                        if (this.withdraw_fix > this.amount) {
+                           this.withdraw_fix_show = true;
+                           // this.$swal({
+                           //   title: "ไม่สามารถทำการถอนได้",
+                           //   text:
+                           //     "คุณต้องมียอดเงินมากกว่าหรือเท่ากับ " +
+                           //     this.withdraw_fix +
+                           //     " บาท จึงจะสามารถถอนได้",
+                           //   icon: "error",
+                           //   showConfirmButton: true,
+                           //   allowOutsideClick: false,
+                           //   allowEscapeKey: false
+                           // }).then(result => {
+                           //   if (result.value) {
+                           //     this.withdraw_hide = false;
+                           //     this.$router.push("/");
+                           //   }
+                           // });
+                        } else if (this.amount < 300) {
+                           this.withdraw_amount_show = true;
+                           // this.$swal({
+                           //   title: "ไม่สามารถทำการถอนได้",
+                           //   text: "คุณมียอดเงินคงเหลือน้อยกว่า 100 บาท",
+                           //   icon: "error",
+                           //   showConfirmButton: true,
+                           //   allowOutsideClick: false,
+                           //   allowEscapeKey: false
+                           // }).then(result => {
+                           //   if (result.value) {
+                           //     this.withdraw_hide = false;
+                           //     this.$router.push("/");
+                           //   }
+                           // });
+                        } else if (this.amount >= 300 && this.amount >= this.withdraw_fix) {
+                           this.withdraw_with_show = true;
+                           // this.$swal({
+                           //   title: "ไม่สามารถทำการถอนได้",
+                           //   text: "คุณมียอดเงินคงเหลือน้อยกว่า 100 บาท",
+                           //   icon: "error",
+                           //   showConfirmButton: true,
+                           //   allowOutsideClick: false,
+                           //   allowEscapeKey: false
+                           // }).then(result => {
+                           //   if (result.value) {
+                           //     this.withdraw_hide = false;
+                           //     this.$router.push("/");
+                           //   }
+                           // });
+                        } else {
+                           this.$axios.get("/hisWD", this.token).then(response => {
+                              if (response.data.count !== 0) {
+                                 this.$swal({
+                                    title: "ไม่สามารถทำรายการถอนได้",
+                                    icon: "warning",
+                                    html: "เนื่องจากมีรายการถอนอยู่",
+                                    showConfirmButton: true,
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false
+                                 }).then(result => {
+                                    if (result.value) {
+                                       this.withdraw_hide = false;
+                                       this.$router.push("/");
+                                    }
+                                 });
+                              }
+                           });
+                        }
+                     });
+                  }
+               })
+               .catch(err => {
+                  console.log(err);
+               });
+         }
       } else {
-console.log("Reload Withdraw");
-         // this.$router.push("/");
+         console.log("Logout Withdraw");
+         this.$router.push("/Logout");
       }
    }
 };

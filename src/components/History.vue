@@ -147,37 +147,39 @@ export default {
       }
    },
    mounted() {
-      if (this.isLogin) {
-         $(".preloader").show();
-         this.$axios.get("/is_login", this.token).then(response => {
-            $(".preloader").hide();
-            if (response.data.msg === "LOGOUT") {
-               this.$swal({
-                  title: "เกิดข้อผิดพลาด",
-                  text: "มีการเข้าสู่ระบบจากที่อื่น",
-                  tpye: "error",
-                  timer: 3000,
-                  showConfirmButton: true,
-                  allowOutsideClick: false,
-                  allowEscapeKey: false
-               });
-               this.$router.push("/Logout");
-            } else {
-               this.$axios.get("/History", this.token).then(response => {
-                  this.deposit = response.data.data.dataDepo;
-                  this.depositlength = response.data.data.dataDepo.length;
-                  this.withdraw = response.data.data.dataWith;
-                  this.withdrawlength = response.data.data.dataWith.length;
-                  this.Bonus = response.data.data.dataBonus;
-                  this.Bonuslength = response.data.data.dataBonus.length;
-                  this.Bonusfree = response.data.data.dataBonusfree;
-                  this.Bonusfreelength = response.data.data.dataBonusfree.length;
-               });
-            }
-         });
+      if (this.$session.get("isLogin")) {
+         if (this.isLogin) {
+            $(".preloader").show();
+            this.$axios.get("/is_login", this.token).then(response => {
+               $(".preloader").hide();
+               if (response.data.msg === "LOGOUT") {
+                  this.$swal({
+                     title: "เกิดข้อผิดพลาด",
+                     text: "มีการเข้าสู่ระบบจากที่อื่น",
+                     tpye: "error",
+                     timer: 3000,
+                     showConfirmButton: true,
+                     allowOutsideClick: false,
+                     allowEscapeKey: false
+                  });
+                  this.$router.push("/Logout");
+               } else {
+                  this.$axios.get("/History", this.token).then(response => {
+                     this.deposit = response.data.data.dataDepo;
+                     this.depositlength = response.data.data.dataDepo.length;
+                     this.withdraw = response.data.data.dataWith;
+                     this.withdrawlength = response.data.data.dataWith.length;
+                     this.Bonus = response.data.data.dataBonus;
+                     this.Bonuslength = response.data.data.dataBonus.length;
+                     this.Bonusfree = response.data.data.dataBonusfree;
+                     this.Bonusfreelength = response.data.data.dataBonusfree.length;
+                  });
+               }
+            });
+         }
       } else {
-         console.log("Reload History");
-         // this.$router.push("/");
+         console.log("Logout History");
+         this.$router.push("/Logout");
       }
    }
 };

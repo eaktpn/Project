@@ -102,7 +102,8 @@ export default {
       }
    },
    mounted() {
-      this.$session.set("page", "/Bonus");
+      // this.$session.set("page", "/Bonus");
+if (this.$session.get("isLogin")) {
       if (this.isLogin) {
          $(".preloader").show();
          this.$axios
@@ -148,8 +149,10 @@ export default {
             .catch(err => {
                         console.log(err);
                      });
+      }
       } else {
-         this.$router.push("/");
+         console.log("Logout Bonusspecial");
+         this.$router.push("/Logout");
       }
    }
 };

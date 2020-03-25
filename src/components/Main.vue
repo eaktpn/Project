@@ -85,12 +85,12 @@
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-<a href="https://lin.ee/4loZnaa" target="_blank">
-                  <div class="BG-gray-radius-main" style="cursor: pointer;">
-                     <img src="/images/icon/chat.png" width="60px;" class="p-1" />
-                     <div class="color_white font16" style="font-weight:400;">ติดต่อพนักงาน</div>
-                  </div>
-</a>
+                  <a href="https://lin.ee/4loZnaa" target="_blank">
+                     <div class="BG-gray-radius-main" style="cursor: pointer;">
+                        <img src="/images/icon/chat.png" width="60px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">ติดต่อพนักงาน</div>
+                     </div>
+                  </a>
                </div>
             </div>
          </div>
@@ -392,17 +392,26 @@ export default {
       }
    },
    mounted() {
-      if (this.isLogin) {
-         // this.$session.set("page", "/");
-         
+      if (this.$session.get("isLogin")) {
+         if (this.isLogin) {
+            // this.$session.set("page", "/");
             this.$axios
                .get("/is_login", this.token)
                .then(response => {
                   if (response.data.msg != "LOGOUT") {
+                     this.$axios
+                        .get("/affiliateUpdate", this.token) // Update affiliate
+                        .then(response => {
+                           console.log("affiliateUpdate " + response.data.msg);
+                        })
+                        .catch(function(error) {
+                           $(".preloader").hide();
+                           console.log(error);
+                        });
                      this.$session.set("isLogin", true);
                      this.$session.set("token", response.data);
                      this.storeLogin(response.data);
-                     this.confirm_phonenumber = this.user.phone_number; // คืนค่าเบอร์โทรศัพท์ไปช่อง input
+                     //this.confirm_phonenumber = this.user.phone_number; // คืนค่าเบอร์โทรศัพท์ไปช่อง input
                   } else {
                      this.$swal({
                         title: "เกิดข้อผิดพลาด",
@@ -419,11 +428,13 @@ export default {
                .catch(function(error) {
                   console.log(error);
                });
-         
-         this.checkLogin = 1;
+
+            this.checkLogin = 1;
+         }
       } else {
          this.checkLogin = 0;
-         console.log("Reload Main");
+         console.log("Logout main");
+         this.$router.push("/Logout");
       }
       bannerRef.orderByKey().on("value", snap => {
          this.bannerimg = snap.val();
