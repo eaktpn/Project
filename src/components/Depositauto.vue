@@ -38,7 +38,7 @@
                <div class="mt-3">ชื่อบัญชี : {{ bank[0].name }}</div>
                <div>ธนาคาร : {{ bank[0].bank_name }}</div>
                <div>เลขบัญชี : {{ bank[0].number }}</div>
-               <mdb-btn color="warning" class="color_back font16 px-3 py-1 mt-2" @click="copy_numberbank(bank[0].bank, bank[0].number)">คัดลอก</mdb-btn>
+               <mdb-btn color="warning" class="color_back font16 px-3 py-1 mt-2" @click="copy_numberbank(bank[0].bank_name, bank[0].number)">คัดลอก</mdb-btn>
 
                <div class="hr-deposit my-3"></div>
                <div>
@@ -58,17 +58,20 @@
 
 <script>
 // const jwt = require("jsonwebtoken");
-// import moment from "moment";
+import momentjs from "moment";
 import {mapActions, mapGetters} from "vuex";
 import $ from "jquery";
 // import {mdbContainer, mdbRow, mdbCol, mdbInput, mdbBtn} from "mdbvue";
-// import firebase from "firebase";
+import firebase from "firebase";
+var popup_deposit = firebase.database().ref("popup");
 export default {
    name: "Deposit",
    data() {
       return {
          bank: "",
-         bonus: ""
+         bonus: "",
+// number:null,
+// bankcop:null
       };
    },
    computed: {
@@ -89,12 +92,29 @@ export default {
          n = parseFloat(n);
          return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       },
-      copy_numberbank(number, bank) {
+      copy_numberbank(bank, number) {
          this.$copyText(number);
          this.$swal("คัดลอกสำเร็จ", bank + " " + number, "success");
       }
    },
    mounted() {
+      popup_deposit.child("deposit").on("value", snap => {
+         //Popup affiliate
+         var leng = snap.val();
+         var show_popup_deposit = [];
+         console.log(snap.val());
+         for (var i = 0; i < leng.length; i++) {
+            if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
+               show_popup_deposit.push({
+                  title: snap.val()[i].title,
+                  html: snap.val()[i].text,
+                  icon: snap.val()[i].type,
+                  showConfirmButton: snap.val()[i].showConfirmButton
+               });
+            }
+            this.$swal.queue(show_popup_deposit);
+         }
+      });
       // this.$session.set("page", "/Depositauto");
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {

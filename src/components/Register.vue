@@ -3,7 +3,7 @@
       <div class="container">
          <div class="row justify-content-center mt-4">
             <div class="col-xl-7 col-md-9 col-11 font14">
-               <router-link to="/Login"> <img src="/images/icon/back.png" width="100%;" style="max-width:10px;" /> <span style="color:#FFDE30;"> ย้อนกลับ </span></router-link>
+               <div class="color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/Login" class="color_yellow"> ย้อนกลับ</router-link></div>
             </div>
          </div>
       </div>
@@ -79,6 +79,7 @@ export default {
          againpassword: "",
          bankcode: null,
          banknumber: "",
+         join: null,
          banktype: {
             KBANK: "กสิกรไทย",
             BBL: "กรุงเทพ",
@@ -259,7 +260,8 @@ export default {
                password: this.password,
                bank_type: this.banktype[this.bankcode],
                bank_code: this.bankcode,
-               bank_number: this.banknumber
+               bank_number: this.banknumber,
+               join: this.join
             };
             let token = jwt.sign(payload, this.$keypayload, {
                expiresIn: "5s"
@@ -282,17 +284,18 @@ export default {
                         allowEscapeKey: false
                      });
                   }
-                  if (response.data.msg === "ERROR_NOT_FOUND_TOKEN_ON_METHOD") {
-                     this.$swal({
-                        icon: "error",
-                        title: "เกิดข้อผิดพลาด",
-                        text: "มีปัญชีนี้อยู่ในระบบแล้ว",
-                        timer: 5000,
-                        showConfirmButton: true,
-                        allowOutsideClick: false,
-                        allowEscapeKey: false
-                     });
-                  } else if (response.data.code === "ER_DUP_ENTRY") {
+                  // if (response.data.msg === "ERROR_NOT_FOUND_TOKEN_ON_METHOD") {
+                  //    this.$swal({
+                  //       icon: "error",
+                  //       title: "เกิดข้อผิดพลาด",
+                  //       text: "มีปัญชีนี้อยู่ในระบบแล้ว",
+                  //       timer: 5000,
+                  //       showConfirmButton: true,
+                  //       allowOutsideClick: false,
+                  //       allowEscapeKey: false
+                  //    });
+                  // } else 
+if (response.data.code === "ER_DUP_ENTRY") {
                      this.$swal({
                         icon: "error",
                         title: "เกิดข้อผิดพลาด",

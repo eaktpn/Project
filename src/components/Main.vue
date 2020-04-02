@@ -129,13 +129,14 @@
 <script>
 import ModalCheck from "../components/ModalCheck.vue";
 const jwt = require("jsonwebtoken");
-//import momentjs from "moment";
+import momentjs from "moment";
 import {mapActions, mapGetters} from "vuex";
 import {Carousel, Slide} from "vue-carousel";
 import {} from "mdbvue";
 import $ from "jquery";
 import firebase from "firebase";
 var bannerRef = firebase.database().ref("banner");
+var popup_main = firebase.database().ref("popup");
 export default {
    name: "Mian",
    data() {
@@ -392,6 +393,23 @@ export default {
       }
    },
    mounted() {
+      popup_main.child("main").on("value", snap => {
+         //Popup affiliate
+         var leng = snap.val();
+         var show_popup_main = [];
+         console.log(snap.val());
+         for (var i = 0; i < leng.length; i++) {
+            if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
+               show_popup_main.push({
+                  title: snap.val()[i].title,
+                  html: snap.val()[i].text,
+                  icon: snap.val()[i].type,
+                  showConfirmButton: snap.val()[i].showConfirmButton
+               });
+            }
+            this.$swal.queue(show_popup_main);
+         }
+      });
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {
             // this.$session.set("page", "/");

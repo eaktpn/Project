@@ -31,27 +31,37 @@
          </div>
       </div>
       <div class="row justify-content-center p-3">
-         <div class="col-xl-9 col-md-9 col-12 border-with text-center font18 p-3"><img src="/images/icon/warning.png" class="mx-3" width="100%;" style="max-width:45px;" />ถอนขั้นต่ำ 300 บาท</div>
+         <div class="col-xl-9 col-md-9 col-12 border-with text-center font18 p-3"><img src="/images/icon/warning.png" class="mx-3" width="100%;" style="max-width:45px;" />ถอนขั้นต่ำ 1 บาท</div>
       </div>
       <div class="row justify-content-center">
          <div class="col-xl-5 col-md-6 col-11">
             <div class="text-white">จำนวนเงินที่จะถอน</div>
          </div>
       </div>
-      <div class="row justify-content-center" style="margin-top:-16px;">
-         <div class="col-xl-5 col-md-6 col-11 text-rigth">
-            <input :disabled="amount < 300" type="text" style="width:100%;" id="withdraw_amount" class="form-control text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @change="check_amount()" />
-         </div>
+      <div class="row justify-content-center" v-if="withdraw_amount_show === true">
+         <mdb-alert class="col-xl-8 col-md-8 col-11 mt-2" color="danger">
+            ยอดเงินของคุณน้อยกว่า 1 บาท
+         </mdb-alert>
       </div>
-      <div class="row justify-content-center">
-         <div class="col-xl-5 col-md-6 col-11 mt-2">
-            <mdb-btn block size="sm" :disabled="btn_confirm" :class="btn_confirm ? 'btn-login-gray font16' : 'btn-login-orange font16'" @click="withdraw()" style="font-weight:400;">ยืนยันการถอน</mdb-btn>
-         </div>
+      <div class="row justify-content-center" v-if="withdraw_fix_show === true">
+         <mdb-alert class="col-xl-8 col-md-8 col-11 mt-2" color="danger"> ไม่สามารถทำการถอนได้ คุณต้องมียอดมากกว่าหรือเท่ากับ {{ withdraw_fix }} จึงจะสามารถถอนได้ </mdb-alert>
       </div>
-      <div class="col-12">
-         <router-link to="/">
-            <div class="text-center text-white font16" style="margin-top:15px;">ยกเลิการถอน</div>
-         </router-link>
+      <div v-if="withdraw_with_show === true">
+         <div class="row justify-content-center" style="margin-top:-16px;">
+            <div class="col-xl-5 col-md-6 col-11 text-rigth">
+               <input :disabled="amount < 1" type="text" style="width:100%;" id="withdraw_amount" class="form-control text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @change="check_amount()" />
+            </div>
+         </div>
+         <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-6 col-11 mt-2">
+               <mdb-btn block size="sm" :disabled="btn_confirm" :class="btn_confirm ? 'btn-login-gray font16' : 'btn-login-orange font16'" @click="withdraw()" style="font-weight:400;">ยืนยันการถอน</mdb-btn>
+            </div>
+         </div>
+         <div class="col-12">
+            <router-link to="/">
+               <div class="text-center text-white font16" style="margin-top:15px;">ยกเลิการถอน</div>
+            </router-link>
+         </div>
       </div>
       <div class="col-12 text-center mt-2">
          <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
@@ -65,10 +75,12 @@
 
 <script>
 const jwt = require("jsonwebtoken");
-// import moment from "moment";
+import momentjs from "moment";
 // import {mdbContainer, mdbRow, mdbCol, mdbInput, mdbBtn} from "mdbvue";
 import {mapActions, mapGetters} from "vuex";
 import $ from "jquery";
+import firebase from "firebase";
+var popup_withdraw = firebase.database().ref("popup");
 export default {
    name: "Withdraw",
    data() {
@@ -109,7 +121,7 @@ export default {
       },
       check_amount() {
          this.withdraw_amount = $("#withdraw_amount").val();
-         if (parseFloat(this.withdraw_amount) < 300) {
+         if (parseFloat(this.withdraw_amount) < 1) {
             this.btn_confirm = true;
          } else if (parseFloat(this.amount) < parseFloat(this.withdraw_amount)) {
             this.btn_confirm = true;
@@ -177,6 +189,23 @@ export default {
    },
 
    mounted() {
+      popup_withdraw.child("withdraw").on("value", snap => {
+         //Popup affiliate
+         var leng = snap.val();
+         var show_popup_withdraw = [];
+         console.log(snap.val());
+         for (var i = 0; i < leng.length; i++) {
+            if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
+               show_popup_withdraw.push({
+                  title: snap.val()[i].title,
+                  html: snap.val()[i].text,
+                  icon: snap.val()[i].type,
+                  showConfirmButton: snap.val()[i].showConfirmButton
+               });
+            }
+            this.$swal.queue(show_popup_withdraw);
+         }
+      });
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {
             $(".preloader").show();
@@ -216,7 +245,7 @@ export default {
                            //     this.$router.push("/");
                            //   }
                            // });
-                        } else if (this.amount < 300) {
+                        } else if (this.amount < 1) {
                            this.withdraw_amount_show = true;
                            // this.$swal({
                            //   title: "ไม่สามารถทำการถอนได้",
@@ -231,7 +260,7 @@ export default {
                            //     this.$router.push("/");
                            //   }
                            // });
-                        } else if (this.amount >= 300 && this.amount >= this.withdraw_fix) {
+                        } else if (this.amount >= 1 && this.amount >= this.withdraw_fix) {
                            this.withdraw_with_show = true;
                            // this.$swal({
                            //   title: "ไม่สามารถทำการถอนได้",

@@ -20,7 +20,10 @@
                <mdb-btn class="btn-confirm font16" @click="checkLinesub()" block>ตรวจสอบการยืนยัน</mdb-btn>
             </div>
             <div class="col-12 text-center color_white font14 mt-3">
-               หากเกิดปัญหา ให้ติดต่อแอดมินทาง <span class="color_green"> <a href="https://lin.ee/4loZnaa" target="_blank"><b>LINE คลิ๊ก</b></a></span>
+               หากเกิดปัญหา ให้ติดต่อแอดมินทาง
+               <span class="color_green">
+                  <a href="https://lin.ee/4loZnaa" target="_blank"><b>LINE คลิ๊ก</b></a></span
+               >
             </div>
          </div>
       </b-modal>
@@ -205,17 +208,47 @@ export default {
          }
       },
       checkLinesub() {
-         if (this.user.active === 0) {
-            this.$swal({
-               title: "ยืนยันตัวตน",
-               text: "คุณยังไม่ได้ยืนยันตัวตน !!",
-               icon: "warning",
-               timer: 10000,
-               showConfirmButton: true,
-               allowOutsideClick: false,
-               allowEscapeKey: false
+         $(".preloader").show();
+         this.$axios
+            .get("/is_login", this.token)
+            .then(response => {
+               $(".preloader").hide();
+               if (response.data.msg != "LOGOUT") {
+                  this.$session.set("isLogin", true);
+                  this.$session.set("token", response.data);
+                  this.storeLogin(response.data);
+                  if (this.user.active === 0) {
+                     this.$swal({
+                        title: "เกิดข้อผิดพลาด",
+                        text: "คุณยังไม่ได้ยืนยันตัวตน",
+                        icon: "info",
+                        timer: 3000,
+                        showConfirmButton: true
+                     });
+                  } else {
+                     this.$swal({
+                        title: "สำเร็จ",
+                        text: "คุณยืนยันตัวตนสำเร็จ",
+                        icon: "success",
+                        timer: 3000,
+                        showConfirmButton: true
+                     });
+                  }
+               } else {
+                  this.$swal({
+                     title: "เกิดข้อผิดพลาด",
+                     text: "มีการเข้าสู่ระบบจากที่อื่น",
+                     icon: "error",
+                     timer: 3000,
+                     showConfirmButton: false
+                  });
+                  this.$router.push("/Logout");
+               }
+            })
+            .catch(function(error) {
+               $(".preloader").hide();
+               console.log(error);
             });
-         }
       }
    },
    computed: {
