@@ -11,7 +11,7 @@
       <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 BG-gray">
             <div class="row my-1" style="margin-top:-5px;">
-               <div><img src="/images/icon/dollar-coin.png" class="mx-3" width="100%;" style="max-width:65px; margin-top:-2px;" /></div>
+               <div><img src="/images/icon/coin.png" class="mx-3" width="100%;" style="max-width:65px; margin-top:-2px;" /></div>
                <div class="align-self-center">
                   <div class="font16">ยอดเงิน</div>
                   <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
@@ -31,52 +31,71 @@
             <div class="font14 mt-2" style="color:#606060;">ต้องใช้บัญชีที่สมัครฝากเงินเข้ามาเท่านั้น และต้องโอนเงินผ่านช้องทางแอพพลิเคชั่นของธนาคารบานมือถือเท่านั้น มิเช่นนั้นจะไม่สามารถยืนยันรายการฝากได้<br />ถ้าเกิดข้อผิดพลาดของระบบให้แจ้งกับพนักงานทันที กรณีที่ไม่แจ้งเราขอสงวนสิทธิ์การถอนเงินทุกกรณี</div>
          </div>
       </div>
-<div v-if="banktrue[0]">
-      <div class="row justify-content-center">
-         <div class="col-xl-9 col-md-9 col-12 text-center color_yellow font18" style="font-weight:400;"><img src="/images/icon/TRUEWALLET.png" class="mx-3" width="100%;" style="max-width:100px; margin-top:-2px;" />ฝากผ่าน Truewallet</div>
+      <div v-if="banktrue[0]">
+         <div class="row justify-content-center">
+            <div class="col-xl-9 col-md-9 col-12 text-center color_yellow font18" style="font-weight:400;"><img src="/images/icon/TRUEWALLET.png" class="mx-3" width="100%;" style="max-width:100px; margin-top:-2px;" />ฝากผ่าน Truewallet</div>
+         </div>
+         <div class="row justify-content-center px-3">
+            <div class="col-xl-6 col-md-7 col-12 BG-gray2 text-center">
+               <div class="font20">{{ banktrue[0].number }}</div>
+               <div>{{ banktrue[0].name }}</div>
+            </div>
+         </div>
       </div>
-      <div class="row justify-content-center px-3">
-         <div class="col-xl-6 col-md-7 col-11 BG-gray2 text-center">
-            <div class="font20">{{ banktrue[0].number }}</div>
-            <div>{{ banktrue[0].name }}</div>
-         </div>      
-      </div>
-</div>
-      <div class="row justify-content-center py-3 mt-2">
-         <div class="col-xl-6 col-md-7 col-11">
-            <div><i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์</div>
-            <input v-model="phonenumber" type="text" class="form-control1 text-right" maxlength="10" placeholder="เบอร์โทรศัพท์" @keypress="isNumber($event)" />
+      <div class="row justify-content-center mt-3 p-3">
+         <div class="col-xl-6 col-md-7 col-12 border-deptrue">
+            <div class="row justify-content-center mt-2">
+               <div class="col-12 text-center">
+                  <div class="font18">ยืนยันยอดฝาก</div>
+                  <div class="font14">(กรณีที่ใช้เบอร์อื่นทำรายการเข้ามา)</div>
+               </div>
+            </div>
+            <div class="row justify-content-center py-3 mt-2">
+               <div class="col-11">
+                  <div><i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์</div>
+                  <input v-model="phonenumber" type="text" class="form-control1 text-right" maxlength="10" placeholder="เบอร์โทรศัพท์" @keypress="isNumber($event)" />
 
-            <div class="mt-2"><i class="fab fa-bitcoin"></i> กรอกจำนวนเงิน</div>
-            <input v-model="add_money" type="text" style="width:100%;" class="form-control1 text-right withdraw-input-css" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="10" @blur="onChange_Money()" />
+                  <div class="mt-2"><i class="fab fa-bitcoin"></i> กรอกจำนวนเงิน</div>
+                  <input v-model="add_money" type="text" style="width:100%;" class="form-control1 text-right withdraw-input-css" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="10" @blur="onChange_Money()" />
+               </div>
+            </div>
+            <div class="row justify-content-center">
+               <div class="col-10">
+                  <div class="row justify-content-center">
+                     <div class="col-6">ยอดเงินที่ฝาก</div>
+                     <div class="col-6 text-right">{{ currencyFormat(res_money) }}</div>
+                  </div>
+                  <div class="row justify-content-center">
+                     <div class="col-6">โบนัส</div>
+                     <div class="col-6 text-right">{{ currencyFormat(res_bonus) }}</div>
+                  </div>
+                  <div class="row justify-content-center">
+                     <div class="col-6">ยอดเทิร์น</div>
+                     <div class="col-6 text-right">{{ currencyFormat(res_withdraw_fix) }}</div>
+                  </div>
+                  <div class="row justify-content-center color_yellow">
+                     <div class="col-6" style="font-weight:400;">ยอดฝากรวม</div>
+                     <div class="col-6 text-right" style="font-weight:400;">{{ currencyFormat(parseFloat(res_money) + parseFloat(res_bonus)) }}</div>
+                  </div>
+                  <div class="row color_yellow font18 mt-3" style="font-weight:400;" v-if="res_title !== '' || res_money !== 0">
+                     <div class="col text-center color_green font20">คุณได้รับโบนัส "{{ res_title }}"</div>
+                  </div>
+               </div>
+            </div>
+            <div class="row justify-content-center ">
+               <div class="col-11 mt-3 mb-2">
+                  <mdb-btn @click="deposittrue()" block size="sm" class="btn-login-orange color_back font18" style="font-weight:400;">ยืนยันยอดฝาก</mdb-btn>
+               </div>
+            </div>
          </div>
       </div>
-      <div class="row justify-content-center">
-         <div class="col-xl-6 col-md-7 col-11">
-            <div class="row justify-content-center">
-               <div class="col-6">ยอดเงินที่ฝาก</div>
-               <div class="col-6 text-right">{{ currencyFormat(res_money) }}</div>
-            </div>
-            <div class="row justify-content-center">
-               <div class="col-6">โบนัส</div>
-               <div class="col-6 text-right">{{ currencyFormat(res_bonus) }}</div>
-            </div>
-            <div class="row justify-content-center">
-               <div class="col-6">ยอดเทิร์น</div>
-               <div class="col-6 text-right">{{ currencyFormat(res_withdraw_fix) }}</div>
-            </div>
-            <div class="row justify-content-center color_yellow">
-               <div class="col-6" style="font-weight:400;">ยอดฝากรวม</div>
-               <div class="col-6 text-right" style="font-weight:400;">{{ currencyFormat(parseFloat(res_money) + parseFloat(res_bonus)) }}</div>
-            </div>
-            <div class="row color_yellow font18 mt-3" style="font-weight:400;" v-if="res_title !== '' || res_money !== 0">
-               <div class="col text-center color_green font20">คุณได้รับโบนัส "{{ res_title }}"</div>
-            </div>
-         </div>
-      </div>
-      <div class="row justify-content-center ">
-         <div class="col-xl-6 col-md-7 col-11 my-3">
-            <mdb-btn @click="deposittrue()" block size="sm" class="btn-login-orange color_back font18" style="font-weight:400;">ยืนยันยอดฝาก</mdb-btn>
+<div class="row justify-content-center mb-3 px-3">
+         <div class="col-xl-9 col-md-9 col-12 text-center">
+            <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
+               <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
+            </a>
+            <div class="font14 mt-2">*กดเพิ่มเพื่อนเพื่อรับบริการแจ้งเตือนยอดฝาก</div>
+            <div class="font12 my-2" style="color:#0085FF;">**หลังจากโอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
          </div>
       </div>
    </div>
@@ -335,5 +354,10 @@ export default {
 .BG-pink {
    background: #ffd9c5;
    border-radius: 1px;
+}
+.border-deptrue {
+   border: 3px solid #e0e0e0;
+   border-radius: 10px;
+   padding: 10px;
 }
 </style>

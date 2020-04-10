@@ -36,7 +36,7 @@
                </div>
                <div class="col-xl-4 col-md-5 col-5 col-auto BG-gray-radius text-white font14" style="margin:10px;">
                   <router-link to="/Depositauto">
-                     <img src="/images/icon/wallet.png" width="100px;" />
+                     <img src="/images/icon/coin.png" width="100px;" />
 
                      <div class="color_white">
                         ฝากเงินผ่านระบบ

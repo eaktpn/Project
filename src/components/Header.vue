@@ -5,9 +5,13 @@
             <div class="row justify-content-center p-3">
                <div class="col-xl-9 col-md-9 col-12">
                   <div class="row justify-content-center">
-                     <div class="col-6 align-self-center"><mdb-icon icon="bars" @click.native="toggleLeftSideNav" class="icon-menu fas2 fab2" /></div>
-                     <div class="col-6 text-right">
-                        <router-link to="/"><img src="/images/logo/joker24h.png" width="40%;" style="max-width:80px;"/></router-link>
+                     <div class="col-6 align-self-center">
+                        <img src="/images/logo/siamslotxo.png" type="button" width="40%;" style="max-width:80px;" @click="toggleLeftSideNav" />
+                     </div>
+                     <div class="col-6 align-self-center text-right">
+                        <router-link to="/Logout">
+                        <div class="color_white">ออกจากระบบ</div>
+                        </router-link>
                      </div>
                   </div>
                </div>
@@ -213,8 +217,7 @@ export default {
 
 <style lang="scss">
 .BG-Header {
-   background: #181818;
-   box-shadow: 0px 2px 10px #70f6ff;
+   background: linear-gradient(180deg, #ac9100 20%, #6d5b04 100%);
 }
 .header {
    .fas,
@@ -239,7 +242,7 @@ export default {
       display: contents;
    }
    .icon-menu {
-      color: #ffde30;
+      color: #ffffff;
       cursor: pointer;
       font-size: 22px;
    }

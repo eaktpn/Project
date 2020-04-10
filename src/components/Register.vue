@@ -1,21 +1,25 @@
 <template>
    <div>
-      <div class="container">
-         <div class="row justify-content-center mt-4">
-            <div class="col-xl-7 col-md-9 col-11 font14">
-               <div class="color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/Login" class="color_yellow"> ย้อนกลับ</router-link></div>
-            </div>
+      <div class="header-register">
+         <div class="container">
+            <router-link to="/Index" class="color_white">
+               <div class="row justify-content-center">
+                  <div class="col-xl-7 col-md-9 col-11 font14" style="margin-top:-2px;">
+                     <div class="color_white font16 mt-3"><mdb-icon icon="angle-double-left" /> ย้อนกลับ</div>
+                  </div>
+               </div>
+            </router-link>
          </div>
       </div>
       <div class="Register d-flex flex-column justify-content-center">
          <div class="container">
             <div class="row justify-content-center">
-               <div class="col-xl-7 col-md-9 col-11 font28" style="font-weight:400;">
-                  <img src="/images/logo/joker24h.png" width="100%;" style="max-width:90px;" />
+               <div class="col-xl-7 col-md-9 col-11 text-center font22" style="font-weight:400;">
+                  <div><img src="/images/logo/siamslotxo.png" width="100%;" style="max-width:100px;" /></div>
                   สมัครสมาชิก
                </div>
             </div>
-            <div class="row justify-content-center mt-3">
+            <div class="row justify-content-center color_yellow mt-3">
                <div class="col-xl-7 col-md-9 col-11 ">
                   <i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์
                   <input type="text" v-model="phonenumber" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" maxlength="10" @keypress="isNumber($event)" />
@@ -294,8 +298,8 @@ export default {
                   //       allowOutsideClick: false,
                   //       allowEscapeKey: false
                   //    });
-                  // } else 
-if (response.data.code === "ER_DUP_ENTRY") {
+                  // } else
+                  if (response.data.code === "ER_DUP_ENTRY") {
                      this.$swal({
                         icon: "error",
                         title: "เกิดข้อผิดพลาด",
@@ -403,10 +407,18 @@ if (response.data.code === "ER_DUP_ENTRY") {
 
 <style>
 .Register {
-   height: 93vh;
+   height: 90vh;
+}
+.custom-select::before {
+   background-color: #181818 !important;
+   color: #ff0000 !important;
 }
 .custom-select {
    background-color: #181818 !important;
    color: #ffffff !important;
+}
+.header-register {
+   background: linear-gradient(180deg, #ac9100 20%, #6d5b04 100%);
+   height: 50px;
 }
 </style>

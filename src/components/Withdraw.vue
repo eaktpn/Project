@@ -14,42 +14,43 @@
       <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 BG-gray">
             <div class="row my-1" style="margin-top:-5px;">
-               <div>
-                  <img src="/images/icon/dollar-coin.png" class="mx-3" width="100%;" style="max-width:65px; margin-top:-2px;" />
+               <div class="ml-2">
+                  <img src="/images/icon/coin.png" class="mx-3" width="100%;" style="max-width:70px; margin-top:-2px;" />
                </div>
-               <div class="align-self-center">
-                  <div class="font16">ยอดเงิน</div>
-                  <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
+               <div class="align-self-center ml-2">
+                  <div class="color_blue font16">ยอดเงิน</div>
+                  <div class="font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
                </div>
             </div>
          </div>
       </div>
-      <div class="row justify-content-center px-3">
+      <div class="row justify-content-center px-3 mt-2">
          <div class="col-xl-9 col-md-9 col-12 BG-yellow color_red font18 p-4" style="font-weight:400;">
             <div class="text-center">กติกาการถอนเงิน</div>
-            <div class="font16 mt-2" style="color:#747474;">1. กรณี ไม่รับโบนัส จะต้องมีรายการเล่นอย่างน้อย 1 ครั้ง <br />2. กรณีมีการทุจริต การตัดสินใจของแอดมินถือเป็นที่สุด</div>
+            <div class="font14 mt-2" style="color:#747474;">1. กรณี ไม่รับโบนัส จะต้องมีรายการเล่นอย่างน้อย 1 ครั้ง <br />2. กรณีมีการทุจริต การตัดสินใจของแอดมินถือเป็นที่สุด</div>
          </div>
       </div>
-      <div class="row justify-content-center p-3">
+      <!-- <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 border-with text-center font18 p-3"><img src="/images/icon/warning.png" class="mx-3" width="100%;" style="max-width:45px;" />ถอนขั้นต่ำ 1 บาท</div>
-      </div>
-      <div class="row justify-content-center">
+      </div> -->
+      <div class="row justify-content-center mt-4">
          <div class="col-xl-5 col-md-6 col-11">
             <div class="text-white">จำนวนเงินที่จะถอน</div>
          </div>
       </div>
-      <div class="row justify-content-center" v-if="withdraw_amount_show === true">
+      <!-- <div class="row justify-content-center" v-if="withdraw_amount_show === true">
          <mdb-alert class="col-xl-8 col-md-8 col-11 mt-2" color="danger">
             ยอดเงินของคุณน้อยกว่า 1 บาท
          </mdb-alert>
       </div>
       <div class="row justify-content-center" v-if="withdraw_fix_show === true">
          <mdb-alert class="col-xl-8 col-md-8 col-11 mt-2" color="danger"> ไม่สามารถทำการถอนได้ คุณต้องมียอดมากกว่าหรือเท่ากับ {{ withdraw_fix }} จึงจะสามารถถอนได้ </mdb-alert>
-      </div>
-      <div v-if="withdraw_with_show === true">
-         <div class="row justify-content-center" style="margin-top:-16px;">
+      </div> -->
+      <!-- <div v-if="withdraw_with_show === true"> -->
+      <div>
+         <div class="row justify-content-center">
             <div class="col-xl-5 col-md-6 col-11 text-rigth">
-               <input :disabled="amount < 1" type="text" style="width:100%;" id="withdraw_amount" class="form-control text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @change="check_amount()" />
+               <input :disabled="amount < 1" type="text" style="width:100%;" id="withdraw_amount" class="form-control-withdraw text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @change="check_amount()" />
             </div>
          </div>
          <div class="row justify-content-center">
@@ -67,7 +68,7 @@
          <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
             <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
          </a>
-         <div class="color_gray font14 mt-2">**หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
+         <div class="font14 my-3" style="color:#0085FF;">**หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
          <div class="mt-4"></div>
       </div>
    </div>

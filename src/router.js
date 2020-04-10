@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+const Index = () => import("./components/Index.vue");
 const Login = () => import("./components/Login.vue");
 const Logout = () => import("./components/Logout.vue");
 const Register = () => import("./components/Register.vue");
@@ -29,6 +30,11 @@ export default new Router({
       return {x: 0, y: 0};
    },
    routes: [
+      {
+         path: "/Index",
+         name: "Index",
+         components: {header: Header, default: Index}
+      },
       {
          path: "/Login",
          name: "Login",

@@ -2,16 +2,16 @@
    <div class="BG-Gradient d-flex flex-column justify-content-center">
       <div class="container">
          <div class="row justify-content-center">
-            <div class="col-xl-8 col-md-8 col-11 text-center "><img src="/images/logo/joker24h.png" width="100%;" style="max-width:160px;" /></div>
+            <div class="col-xl-8 col-md-8 col-11 text-center "><img src="/images/logo/siamslotxo.png" width="100%;" style="max-width:180px;" /></div>
          </div>
          <form @submit.prevent="checklogin()">
             <div class="row justify-content-center mt-3">
-               <div class="col-xl-7 col-md-9 col-11 ">
-                  <i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์
-                  <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)" />
+               <div class="col-xl-7 col-md-9 col-11 color_yellow">
+                  <mdb-icon icon="fas fa-mobile-alt" /> กรอกเบอร์โทรศัพท์
+                  <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)"/>
                </div>
-               <div class="col-xl-7 col-md-9 col-11 mt-2">
-                  <i class="fas fa-key"></i> กรอกรหัสผ่าน
+               <div class="col-xl-7 col-md-9 col-11 color_yellow mt-2">
+                  <mdb-icon icon="fas fa-key" /> กรอกรหัสผ่าน
                   <input type="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" v-model="password" maxlength="16" />
                </div>
             </div>
@@ -21,33 +21,10 @@
                </div>
             </div>
          </form>
-         <div class="row justify-content-center color_yellow font16 mt-3">
-            <div class style="cursor: pointer;" @click="showModal = true">ลงทะเบียนใช้งาน</div>
+         <div class="row justify-content-center color_yellow font16 mt-4">
+            <div class="color_white"><mdb-icon icon="angle-double-left" /><router-link to="/Index" class="color_white"> ย้อนกลับ</router-link></div>
          </div>
-         <div style="margin-bottom:50px;"></div>
-
-         <mdb-modal class="color_back" :show="showModal" @close="showModal = false" centered>
-            <mdb-modal-header>
-               <mdb-modal-title class="color_blue" style="font-weight:400;">เงื่อนไขการสมัคร</mdb-modal-title>
-            </mdb-modal-header>
-            <mdb-modal-body class="color_white font14">
-               <div class="row justify-content-center ">
-                  <div class="col-xl-11 col-md-11 col-11">
-                     <p>1. หมายเลขโทรศัพท์ที่ใช้ ต้องสามารถรับข้อความได้ เพราะระบบจำเป็นต้องส่งรหัสยืนยัน ไปยังหมายเลข โทรศัพท์ของท่าน มิเช่นนั้นจะไม่สามารถถอนเงินได้</p>
-                     <p>2. ชื่อ - นามสกุล จะจ้องจรงกับข้อมูลบัญชี มิเช่นนั้นจะไม่สามารถภอนเงินได้</p>
-                     <p>3. ต้องใช้บัญชีที่สมัครฝากเงินเข้ามาเท่านั้น</p>
-                     <p>4. ถ้าเกิดข้อผิดพลาดของระบบ ให้ทำการแจ้งพนักงานทันที กรณีไม่แจ้ง ทางเราขอสงวนสิทธิ์การถอนเงิน ทุกกรณี</p>
-                     <p>5. สมาชิก 1 คน ต่อ 1 ไอดีเท่านั้น กรณีตรวจพบว่ามีการสมัครหลายไอดี ทางเราจะสงวนสิทธิ์ในการถอน ทุกกรณี</p>
-                  </div>
-               </div>
-               <mdb-input class="color_white" type="checkbox" id="check_condition" name="check2" v-model="check_condition" label="ยอมรับเงื่อนไข" />
-            </mdb-modal-body>
-            <div class="row justify-content-center mb-2">
-               <div class="col-xl-11 col-md-11 col-11">
-                  <mdb-btn block :disabled="check_condition === false" size="sm" :class="check_condition === false ? 'btn-login-gray font16' : 'btn-login-orange color_back font16'" style="font-weight:400;" @click="GoRegister()">ตกลง</mdb-btn>
-               </div>
-            </div>
-         </mdb-modal>
+         <div style="margin-bottom:45px;"></div>
       </div>
    </div>
 </template>

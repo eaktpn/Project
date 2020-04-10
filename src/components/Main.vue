@@ -1,5 +1,28 @@
 <template>
-   <div class="container" v-if="isLogin">
+   <div class="container">
+      <div class="row justify-content-center px-3">
+         <div class="col-xl-9 col-md-9 col-12">
+            <div class="row">
+               <div class="pr-2"><img src="/images/icon/coin.png" class="mx-3" width="100%;" style="max-width:75px;" /></div>
+               <div class="align-self-center">
+                  <div class="font16" style="color:#2F80ED;">ยอดเงิน</div>
+                  <div class="font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
+               </div>
+            </div>
+            <!-- <div class="line-main my-3"></div> -->
+            <div class="row justify-content-center BG-gray-radius-main mt-2">
+               <div class="col-8 font16">
+                  <div class="mt-2"><label style="color:#2F80ED;">ยูสเซอร์เนม : </label> {{ user.username }}</div>
+                  <div><label style="color:#2F80ED;">รหัสผ่าน : </label> {{ user.password }}</div>
+               </div>
+               <div class="col-4 align-self-center text-right">
+                  <router-link to="/Profile">
+                     <button type="button" class="btn btn-profile color_yellow font14" style="font-weight:200;">ข้อมูลบัญชี</button>
+                  </router-link>
+               </div>
+            </div>
+         </div>
+      </div>
       <div class="row justify-content-center mt-3">
          <div class="col-xl-9 col-md-9 col-12 text-center">
             <carousel :per-page="1" v-bind:autoplay="true" v-bind:loop="true" :mouse-drag="false">
@@ -11,84 +34,58 @@
             </carousel>
          </div>
       </div>
-      <div class="row justify-content-center p-3" style="margin-top:-5px;">
-         <div class="col-xl-9 col-md-9 col-12 BG-gray-radius">
-            <div class="row justify-content-center mt-2">
-               <div><img src="/images/icon/dollar-coin.png" class="mx-3" width="100%;" style="max-width:65px; margin-top:-2px;" /></div>
-               <div class="align-self-center">
-                  <div class="font16">ยอดเงิน</div>
-                  <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
-               </div>
-            </div>
-            <div class="line-main my-3"></div>
-            <div class="row justify-content-center">
-               <div class="col font16 mb-2">
-                  <div class="text-center">
-                     ยูสเซอร์เนม : <span style="color:#5E72E4;">{{ user.username }}</span>
-                  </div>
-                  <div class="text-center mt-2">
-                     รหัสผ่าน : <span style="color:#5E72E4;">{{ user.password }}</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col text-center">
-               <router-link to="/Profile">
-                  <button type="button" class="btn btn-profile color_yellow font14" style="font-weight:200;">ข้อมูลบัญชี</button>
-               </router-link>
-            </div>
-         </div>
-      </div>
-      <div class="row justify-content-center px-3">
+
+      <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
       </div>
-      <div class="row justify-content-center p-2 mt-2">
+      <div class="row justify-content-center px-2">
          <div class="col-xl-9 col-md-9 col-12">
             <div class="row text-center">
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <router-link to="/Depositauto">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/wallet.png" width="60px;" />
+                  <router-link to="/Deposit">
+                     <div class="BG-gray-radius" style="cursor: pointer;">
+                        <img src="/images/icon/coin.png" width="70px;" />
                         <div class="color_white font16" style="font-weight:400;">ฝากเงิน</div>
                      </div>
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <router-link to="/Withdraw">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/cash.png" width="60px;" class="p-1" />
+                     <div class="BG-gray-radius" style="cursor: pointer;">
+                        <img src="/images/icon/cash2.png" width="70px;" class="p-1" />
                         <div class="color_white font16" style="font-weight:400;">ถอนเงิน</div>
                      </div>
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <router-link to="/Affiliate">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/add-user.png" width="60px;" class="p-1" />
+                     <div class="BG-gray-radius" style="cursor: pointer;">
+                        <img src="/images/icon/add-user2.png" width="70px;" class="p-1" />
                         <div class="color_white font16" style="font-weight:400;">แนะนำเพื่อน</div>
                      </div>
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <router-link to="Bonusspecial">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/gift-box.png" width="60px;" class="p-1" />
-                        <div class="color_white font16" style="font-weight:400;">โบนัสพิเศษ</div>
+                     <div class="BG-gray-radius" style="cursor: pointer;">
+                        <img src="/images/icon/gift-card.png" width="70px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">โบนัสฟรี</div>
                      </div>
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <router-link to="/History">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/wall-clock.png" width="60px;" class="p-1" />
-                        <div class="color_white font16" style="font-weight:400;">ประวัติทำรายการ</div>
+                     <div class="BG-gray-radius" style="cursor: pointer;">
+                        <img src="/images/icon/history.png" width="70px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">ประวัติ</div>
                      </div>
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <a href="https://lin.ee/4loZnaa" target="_blank">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/chat.png" width="60px;" class="p-1" />
-                        <div class="color_white font16" style="font-weight:400;">ติดต่อพนักงาน</div>
+                     <div class="BG-gray-radius" style="cursor: pointer;">
+                        <img src="/images/icon/contact.png" width="70px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">ติดต่อ</div>
                      </div>
                   </a>
                </div>
@@ -96,33 +93,6 @@
          </div>
       </div>
       <ModalCheck></ModalCheck>
-      <!-- <div>
-         <b-modal id="modalOTP" hide-footer centered title="ยืนยัน OTP" no-close-on-esc no-close-on-backdrop hide-header-close v-model="checkOTP">
-            <div>
-               <p class="text-white" style="margin-top:5px;">หมายเลขโทรศัพท์ {{ user.phone_number }}</p>
-               <b-form-input type="text" v-model="confirm_phonenumber" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="margin-top:-10px;"></b-form-input>
-            </div>
-            <div v-if="counting === true">
-               <p class="text-white" style="margin-top:15px;">หมายเลข OTP</p>
-               <b-form-input type="text" v-model="confirm_OTP" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="margin-top:-10px;"></b-form-input>
-            </div>
-            <p class="text-white" style="margin-top:20px;">
-               กรณีไม่ได้รับรหัส
-               <b>OTP</b> ให้ติดต่อแอดมินทาง
-               <a href="http://line.me/ti/p/@winbetth" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
-                  <b>LINE CLICK</b>
-               </a>
-            </p>
-            <div class="text-right" style="margin-top:20px; margin-bottom:3px;">
-               <b-button size="xl" variant="warning" @click="OTP()" class="text-white" :disabled="counting">
-                  <countdown v-if="counting" :time="90000" :leading-zero="false" @countdownend="countdownend()">
-                     <template slot-scope="props">{{ props.totalSeconds }} วินาที</template> </countdown
-                  >ขอรหัส OTP
-               </b-button>
-               <b-button type="button" :disabled="btnsubmit" :class="btnsubmit === false ? 'btn btn-infobtn' : 'disabled btn btn-info'" @click="phonenumber()">ยืนยันเบอร์โทรศัพท์</b-button>
-            </div>
-         </b-modal>
-      </div> -->
    </div>
 </template>
 
@@ -157,6 +127,21 @@ export default {
       Carousel,
       Slide
    },
+   computed: {
+      ...mapGetters({
+         isLogin: "isLogin",
+         user: "user",
+         amount: "amount",
+         token: "token"
+      }),
+      checkOTP: function() {
+         if (this.user.active === 0) {
+            return true;
+         } else {
+            return false;
+         }
+      }
+   },
    methods: {
       ...mapActions({
          storeLogin: "login",
@@ -184,131 +169,6 @@ export default {
          document.body.appendChild(formPlaygame);
          formPlaygame.submit();
       },
-      // OTP() {
-      //    // Check phonenumber
-      //    if (this.confirm_phonenumber === "") {
-      //       this.$swal({
-      //          icon: "error",
-      //          title: "เกิดข้อผิดพลาด",
-      //          text: "กรุณากรอกเบอโทรศัพท์",
-      //          timer: 5000,
-      //          showConfirmButton: true,
-      //          allowOutsideClick: false,
-      //          allowEscapeKey: false
-      //       });
-      //    } else if (this.confirm_phonenumber.length !== 10) {
-      //       this.$swal({
-      //          title: "เบอร์โทรศัพท์",
-      //          text: "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง",
-      //          icon: "warning", //error warning success
-      //          timer: 5000,
-      //          showConfirmButton: true,
-      //          allowOutsideClick: false,
-      //          allowEscapeKey: false
-      //       });
-      //    } else if (this.confirm_phonenumber[0] !== "0") {
-      //       this.$swal({
-      //          title: "เบอร์โทรศัพท์",
-      //          text: "เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 0 เท่านั้น",
-      //          icon: "warning",
-      //          timer: 5000,
-      //          showConfirmButton: true,
-      //          allowOutsideClick: false,
-      //          allowEscapeKey: false
-      //       });
-      //    } else if (this.confirm_phonenumber.length === 10) {
-      //       let payload = {
-      //          phone_number: this.confirm_phonenumber
-      //       };
-      //       let token = jwt.sign(payload, this.$keypayload, {
-      //          expiresIn: "5s"
-      //       });
-      //       $(".preloader").show();
-      //       this.$axios.post("/otp", {token: token}, this.token).then(response => {
-      //          $(".preloader").hide();
-      //          if (response.data.code === "ERROR") {
-      //             this.$swal({
-      //                icon: "warning",
-      //                title: "เกิดข้อผิดพลาด",
-      //                text: response.data.msg,
-      //                timer: 5000,
-      //                showConfirmButton: true,
-      //                allowOutsideClick: false,
-      //                allowEscapeKey: false
-      //             });
-      //          } else {
-      //             this.$swal({
-      //                icon: "success",
-      //                title: "สำเร็จ",
-      //                html: "ระบบได้ส่งรหัส OTP ไปยัง <br> หมายเลข " + this.confirm_phonenumber + " เรียบร้อยแล้ว<br>กรุณากรอกรหัส OTP ที่ได้รับ",
-      //                timer: 5000,
-      //                showConfirmButton: true,
-      //                allowOutsideClick: false,
-      //                allowEscapeKey: false
-      //             });
-      //             this.counting = true;
-      //             this.btnsubmit = false;
-      //          }
-      //       });
-      //    }
-      // },
-      // countdownend: function() {
-      //    this.counting = false;
-      //    this.btnsubmit = true;
-      // },
-      // phonenumber() {
-      //    let payload = {
-      //       phone_number: this.confirm_phonenumber,
-      //       otp: this.confirm_OTP
-      //    };
-      //    if (this.confirm_phonenumber === "" || this.confirm_OTP === "") {
-      //       this.$swal({
-      //          icon: "error",
-      //          title: "เกิดข้อผิดพลาด",
-      //          text: "หมายเลข OTP ผิดพลาด",
-      //          timer: 5000,
-      //          showConfirmButton: true,
-      //          allowOutsideClick: false,
-      //          allowEscapeKey: false
-      //       });
-      //    } else {
-      //       let token = jwt.sign(payload, this.$keypayload, {
-      //          expiresIn: "5s"
-      //       });
-      //       $(".preloader").show();
-      //       this.$axios.post("/otp_verify", {token: token}, this.token).then(response => {
-      //          $(".preloader").hide();
-      //          if (response.data.code === "SUCCESS") {
-      //             this.$swal({
-      //                icon: "success",
-      //                title: "ยืนยันสำเร็จ",
-      //                timer: 5000,
-      //                showConfirmButton: true,
-      //                allowOutsideClick: false,
-      //                allowEscapeKey: false
-      //             }).then(result => {
-      //                if (result.value) {
-      //                   $("#modalOTP").hide();
-      //                   $("#modalOTP___BV_modal_backdrop_").hide();
-      //                }
-      //             });
-      //             this.$router.push("/");
-      //          }
-      //          if (response.data.code === "ERROR") {
-      //             $(".preloader").hide();
-      //             this.$swal({
-      //                icon: "error",
-      //                title: "เกิดข้อผิดพลาด",
-      //                text: "รหัส OTP ไม่ถูกต้อง",
-      //                timer: 5000,
-      //                showConfirmButton: true,
-      //                allowOutsideClick: false,
-      //                allowEscapeKey: false
-      //             });
-      //          }
-      //       });
-      //    }
-      // },
       OTPcheck() {
          this.counting = true;
          this.btnsubmit = false;
@@ -375,21 +235,6 @@ export default {
             this.settingSwitch = false;
          }
          this.showsetting = true;
-      }
-   },
-   computed: {
-      ...mapGetters({
-         isLogin: "isLogin",
-         user: "user",
-         amount: "amount",
-         token: "token"
-      }),
-      checkOTP: function() {
-         if (this.user.active === 0) {
-            return true;
-         } else {
-            return false;
-         }
       }
    },
    mounted() {
@@ -467,18 +312,20 @@ export default {
    margin-bottom: -10px !important;
 }
 .BG-gray-radius-main {
-   background: #232323;
+   background: #202020;
    border-radius: 10px;
-   padding: 15px;
-   border: 1px solid #373737;
+   padding: 10px 5px;
+   border: 1px solid #504b00;
+   margin-right: -13px;
+   margin-left: -13px;
 }
 .line-main {
    border: 0.5px solid #969595;
 }
 .login-game {
-   background: #232323;
+   background: #252525;
    border-radius: 12px;
-   border: 1px solid #36d3f5;
+   /* border: 1px solid #504b00; */
 }
 .padding-main {
    padding-right: 6px !important;

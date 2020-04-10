@@ -11,13 +11,13 @@
       <div class="row justify-content-center px-3 py-1" v-for="val in bonus" :key="val.ID">
          <div class="col-xl-6 col-md-8 col-12 BG-gray">
             <div class="row my-1" style="margin-top:-5px;">
-               <div><img src="/images/icon/dollar-coin.png" class="mx-2" width="100%;" style="max-width:65px; margin-top:-2px;" /></div>
+               <div><img src="/images/icon/coin.png" class="mx-2" width="100%;" style="max-width:65px; margin-top:-2px;" /></div>
                <div class="align-self-center">
                   <div class="font22" style="font-weight:400;">โบนัส {{ val.bonus }} บาท</div>
-                  <div class="color_blue font14">รับโบนัสก่อน {{ val.end_time | moment("YYYY-MM-DD") }}</div>
+                  <div class="color_blue font14">รับก่อนวันที่ {{ val.end_time | moment("DD/MM/YYYY") }}</div>
                </div>
                <div class="col align-self-center text-right" style="margin-right:-10px;">
-                  <mdb-btn color="warning" size="sm" class="color_back font16" @click="getbonus(val.id,val.bonus)">รับโบนัส</mdb-btn>
+                  <mdb-btn color="warning" size="sm" class="color_back px-3 py-1 mt-2 font16" @click="getbonus(val.id,val.bonus)">รับโบนัส</mdb-btn>
                </div>
             </div>
          </div>
@@ -129,7 +129,7 @@ if (this.$session.get("isLogin")) {
                            this.bonus = response.data.payload;
                         } else {
                            this.$swal({
-                              title: "คุณไม่มีโบนัสพิเศษ",
+                              title: "คุณไม่มีโบนัสฟรี",
                               icon: "warning",
                               timer: 3000,
                               showConfirmButton: true,

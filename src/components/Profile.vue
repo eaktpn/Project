@@ -9,41 +9,54 @@
          </div>
       </div>
       <div class="row justify-content-center p-3">
-         <div class="col-xl-9 col-md-9 col-12 BG-gray-radius">
+         <div class="col-xl-9 col-md-9 col-12">
             <div class="row">
-               <div class="col-xl-6 col-md-6 col-12">
+               <div class="col-xl-12 col-md-12 col-12">
                   <div class="row mt-4">
-                     <div class="col-5 text-right" style="margin-top:-5px;"><img src="/images/icon/dollar-coin.png" width="110%;" class="ml-2 mt-1" style="max-width:65px;" /></div>
-                     <div class="col-7">
+                     <div class="col-xl-6 col-md-5 col-5 text-right" style="margin-top:-5px;"><img src="/images/icon/coin.png" width="110%;" class="ml-2 mt-1" style="max-width:65px;" /></div>
+                     <div class="col-xl-6 col-md-7 col-7">
                         <div class=" font18">ยอดเงิน</div>
                         <div class="color_blue font24" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
                      </div>
                   </div>
                </div>
-               <div class="col-xl-6 col-md-6 col-12">
+               <div class="col-xl-12 col-md-12 col-12">
                   <div class="row mt-3">
-                     <div class="col-5 text-right"><img src="/images/icon/insignia.png" width="110%;" class="ml-2 mt-1" style="max-width:65px;" /></div>
-                     <div class="col-7 align-self-center">
+                     <div class="col-xl-6 col-md-5 col-5 text-right"><img src="/images/icon/Insignia.png" width="110%;" class="ml-2 mt-1" style="max-width:60px;" /></div>
+                     <div class="col-xl-6 col-md-7 col-7 align-self-center">
                         <div class=" font18">แต้มสะสม</div>
                         <div class="color_blue font24" style="font-weight:400;">{{ user.point }}</div>
                      </div>
                   </div>
                </div>
+               <div class="col-xl-12 col-md-12 col-12">
+                  <div class="row mt-3">
+                     <div class="col-xl-6 col-md-5 col-5 text-right"><img src="/images/icon/diamond.png" width="110%;" class="ml-2 mt-1" style="max-width:55px;" /></div>
+                     <div class="col-xl-6 col-md-7 col-7 align-self-center">
+                        <div class=" font18">เพชร</div>
+                        <div class="color_blue font24" style="font-weight:400;">{{ user.point }}</div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="row justify-content-center mt-4"><div class="col-xl-11 col-md-11 col-11 line-profile"></div></div>
+            <!-- <div class="row justify-content-center mt-4">
+               <div class="col-xl-11 col-md-11 col-11 line-profile"></div>
+            </div> -->
             <div class="row justify-content-center mt-4">
-               <div class="col font16 mb-4">
+               <div class="col-12 font16 BG-gray-radius mb-4">
                   <div class="text-center">
-                     ยูสเซอร์เนม : <span style="color:#5E72E4;">{{ user.username }}</span>
+                     ยูสเซอร์เนม : <span style="color:#FFDE30;">{{ user.username }}</span>
                   </div>
                   <div class="text-center mt-2">
-                     รหัสผ่าน : <span style="color:#5E72E4;">{{ user.password }}</span>
+                     รหัสผ่าน : <span style="color:#FFDE30;">{{ user.password }}</span>
                   </div>
                   <div class="text-center mt-4">
                      บัญชีธนาคาร :
-                     <img :src="'/images/bank/' + user.bank_code + '.png'" style="width:20px;" alt />
-                     <div class="font14 mt-2" style="color:#FFDE30;">
+                     <img :src="'/images/bank/' + user.bank_code + '.png'" style="width:20px;" alt /> {{ user.bank_type }}
+                     <div class="font14 mt-2">
                         {{ user.bank_number }}<br />
+                     </div>
+                     <div class="font14" style="color:#FFDE30;">
                         {{ user.full_name }}
                      </div>
                   </div>
@@ -69,18 +82,18 @@ export default {
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
-      })
+         token: "token",
+      }),
    },
    methods: {
       ...mapActions({
          storeLogin: "login",
-         storeLoout: "logout"
+         storeLoout: "logout",
       }),
       currencyFormat(n) {
          n = parseFloat(n);
          return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-      }
+      },
       // copy_numberbank() {
       //    this.$copyText(this.user.bank_number);
       //    this.$swal("คัดลอกสำเร็จ", this.user.bank_type + " " + this.user.bank_number, "success");
@@ -96,7 +109,7 @@ export default {
             $(".preloader").show();
             this.$axios
                .get("/is_login", this.token)
-               .then(response => {
+               .then((response) => {
                   $(".preloader").hide();
                   if (response.data.msg != "LOGOUT") {
                      this.$session.set("isLogin", true);
@@ -110,7 +123,7 @@ export default {
                         timer: 5000,
                         showConfirmButton: true,
                         allowOutsideClick: false,
-                        allowEscapeKey: false
+                        allowEscapeKey: false,
                      });
                      this.$router.push("/Logout");
                   }
@@ -123,7 +136,7 @@ export default {
          console.log("Logout Profile");
          this.$router.push("/Logout");
       }
-   }
+   },
 };
 </script>
 

@@ -17,13 +17,13 @@
          <mdb-btn class="btn-aff color_back font14 mt-2" @click="afffriend()">ขอ Link แนะนำเพื่อน</mdb-btn>
       </div>
       <div class="row justify-content-center p-3">
-         <div class="col-xl-9 col-md-9 col-12 BG-gray color_blue font22" style="font-weight:400;">
+         <div class="col-xl-9 col-md-9 col-12 bg-radius-aff font22" style="font-weight:400;">
             <div class="row justify-content-center">
                <div class="col-xl-5 col-md-5 col-6 align-self-center pl-4">
                   {{ currencyFormat(walletSum) }}
                   <span>
                      <a @click="depositWallet()">
-                        <img src="/images/affiliate/refresh.png" alt width="15px" />
+                        <img src="/images/affiliate/refresh2.png" alt width="16px" />
                      </a>
                   </span>
                </div>
@@ -42,7 +42,7 @@
       <div class="row justify-content-center mt-2">
          <div class="col-xl-9 col-md-9 col-12 font16">
             <section class="preview">
-               <mdb-input basic :value="'http://joker24h.abatopup.com/systemaff?join=' + codesuggest" disabled>
+               <mdb-input basic :value="'http://siamslotxo.abatopup.com/systemaff?join=' + codesuggest" disabled>
                   <mdb-btn class="color_white font12" color="elegant" size="md" group slot="append" @click="coppyText()">คัดลอก</mdb-btn>
                </mdb-input>
             </section>
@@ -53,31 +53,31 @@
       </div>
       <div class="row justify-content-center mt-2">
          <div class="col-xl-10 col-md-10 col-12">
-            <social-sharing :url="'http://joker24h.abatopup.com/systemaff?join=' + codesuggest" title="ลิ้งสมัคร " discription="ชวนเพื่อนมาเล่น" quote="ชวนเพื่อนมาเล่นสล๊อต" hashtags="ชวนเพื่อนมาเล่นสลอต" v-cloak inline-template class="row">
+            <social-sharing :url="'http://siamslotxo.abatopup.com/systemaff?join=' + codesuggest" title="ลิ้งสมัคร " discription="ชวนเพื่อนมาเล่น" quote="ชวนเพื่อนมาเล่นสล๊อต" hashtags="ชวนเพื่อนมาเล่นสลอต" v-cloak inline-template class="row">
                <div class="row justify-content-center text-center">
-                  <div class="col-xl-2 col-md-2 col-2 bg-aff-share p-3 m-1">
+                  <div class="col-xl-2 col-md-2 col-2 p-2 m-1">
                      <network network="facebook">
-                        <img src="/images/affiliate/facebook.png" style="width:100%; cursor: pointer; max-width:60px;" />
+                        <img src="/images/affiliate/facebook2.png" style="width:100%; cursor: pointer; max-width:70px;" />
                      </network>
                   </div>
-                  <div class="col-xl-2 col-md-2 col-2 bg-aff-share p-3 m-1">
+                  <div class="col-xl-2 col-md-2 col-2 p-2 m-1">
                      <a :href="'fb-messenger://share/?link=' + url">
-                        <img src="/images/affiliate/messenger.png" style="width:100%; cursor: pointer; max-width:60px;" />
+                        <img src="/images/affiliate/messenger2.png" style="width:100%; cursor: pointer; max-width:70px;" />
                      </a>
                   </div>
-                  <div class="col-xl-2 col-md-2 col-2 bg-aff-share p-3 m-1">
+                  <div class="col-xl-2 col-md-2 col-2 p-2 m-1">
                      <network network="line">
-                        <img src="/images/affiliate/line.png" style="width:100%; cursor: pointer; max-width:60px;" />
+                        <img src="/images/affiliate/line2.png" style="width:100%; cursor: pointer; max-width:70px;" />
                      </network>
                   </div>
-                  <div class="col-xl-2 col-md-2 col-2 bg-aff-share p-3 m-1">
+                  <div class="col-xl-2 col-md-2 col-2 p-2 m-1">
                      <network network="sms">
-                        <img src="/images/affiliate/sms.png" style="width:100%; cursor: pointer; max-width:60px;" />
+                        <img src="/images/affiliate/sms2.png" style="width:100%; cursor: pointer; max-width:70px;" />
                      </network>
                   </div>
-                  <div class="col-xl-2 col-md-2 col-2 bg-aff-share p-3 m-1">
+                  <div class="col-xl-2 col-md-2 col-2 p-2 m-1">
                      <network network="email">
-                        <img src="/images/affiliate/gmail.png" style="width:100%; cursor: pointer; max-width:60px;" />
+                        <img src="/images/affiliate/gmail2.png" style="width:100%; cursor: pointer; max-width:70px;" />
                      </network>
                   </div>
                </div>
@@ -132,6 +132,7 @@
                <span class="col-xl-3 col-md-3 col-3">ยูสเซอร์</span>
                <span class="col-xl-4 col-md-4 col-4">ยอดเสีย 5%</span>
             </div>
+            <div class="line-yellow mt-2"></div>
             <div class="row text-center font14 mt-2" v-for="(logaff, key) in afflog" :key="key">
                <span class="col-xl-1 col-md-1 col-1">{{ key + 1 }}</span>
                <span class="col-xl-4 col-md-4 col-4">{{ logaff | moment("YYYY-MM-DD") }}</span>
@@ -140,7 +141,23 @@
             </div>
          </div>
       </div>
-      <div class="row justify-content-center p-3" style="margin-top:-10px;">
+      <div class="row justify-content-center mt-1">
+         <div class="col-xl-9 col-md-9 col-12">ประวัติการทำรายการ 20 รายการล่าสุด</div>
+      </div>
+      <div class="row justify-content-center p-3">
+         <div class="col-xl-9 col-md-9 col-12 BG-gray">
+            <div class="row text-center color_yellow mt-2">
+               <span class="col-xl-6 col-md-6 col-6">ว/ด/ป เวลา</span>
+               <span class="col-xl-6 col-md-6 col-6">จำนวนเงิน</span>
+            </div>
+            <div class="line-yellow mt-2"></div>
+            <div class="row text-center font14 mt-2" v-for="(his, key) in history" :key="key">
+               <span class="col-xl-6 col-md-6 col-6">{{ his.date | momentjs("YYYY-MM-DD") }}</span>
+               <span class="col-xl-6 col-md-6 col-6">{{ his.amount }}</span>
+            </div>
+         </div>
+      </div>
+      <div class="row justify-content-center p-3 mb-2" style="margin-top:-10px;">
          <div class="col-xl-9 col-md-9 col-12 border-note text-center font14">หมายเหตุ ระบบจะทำการคำนวณยอดเงิน<br />เวลา 23:00 - 00:00 ของทุกวัน</div>
       </div>
    </div>
@@ -178,8 +195,8 @@ export default {
             {
                key: "today",
                highlight: true,
-               dates: new Date()
-            }
+               dates: new Date(),
+            },
          ],
          date: new Date(),
          option: {
@@ -191,16 +208,16 @@ export default {
             color: {
                header: "primary",
                headerText: "white",
-               checkedDay: "primary"
+               checkedDay: "primary",
             },
             placeholder: "2018-04-13",
             buttons: {
                ok: "OK",
                clear: "Clear",
-               today: "Today"
+               today: "Today",
             },
-            overlayOpacity: 0.5
-         }
+            overlayOpacity: 0.5,
+         },
       };
    },
    computed: {
@@ -208,12 +225,12 @@ export default {
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
-      })
+         token: "token",
+      }),
    },
    methods: {
       coppyText() {
-         this.$copyText("http://joker24h.abatopup.com/systemaff?join=" + this.codesuggest);
+         this.$copyText("http://siamslotxo.abatopup.com/systemaff?join=" + this.codesuggest);
          this.$swal("คัดลอกสำเร็จ", "", "success");
       },
       currencyFormat(n) {
@@ -224,19 +241,19 @@ export default {
          if (parseFloat(this.wallet) > 0) {
             $(".preloader").show();
             let payload = {
-               username: this.user.username
+               username: this.user.username,
             };
             let token = jwt.sign(payload, this.$keypayload, {
-               expiresIn: "5s"
+               expiresIn: "5s",
             });
             $(".preloader").show();
-            this.$axios.post("/walletDeposit", {token: token}, this.token).then(response => {
+            this.$axios.post("/walletDeposit", {token: token}, this.token).then((response) => {
                $(".preloader").hide();
                if (response.data.code === "SUCCESS") {
-                  this.$axios.get("/affiliateAddwallet", this.token).then(response => {
+                  this.$axios.get("/affiliateAddwallet", this.token).then((response) => {
                      console.log(response.data);
                   });
-                  this.$axios.get("/wallet", this.token).then(response => {
+                  this.$axios.get("/wallet", this.token).then((response) => {
                      this.history = response.data.payload;
                      this.walletSum = response.data.walletSum;
                   });
@@ -247,7 +264,7 @@ export default {
                      timer: 3000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                   this.$router.push("/Affiliate");
                } else {
@@ -259,7 +276,7 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                }
             });
@@ -271,7 +288,7 @@ export default {
                timer: 3000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          }
       },
@@ -279,15 +296,15 @@ export default {
          this.dateselect = moment(this.dateselect).format("YYYY-MM-DD");
          console.log(this.dateselect);
          let payload = {
-            date: this.dateselect
+            date: this.dateselect,
          };
          let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
+            expiresIn: "5s",
          });
          $(".preloader").show();
          this.$axios
             .post("/affiliateLog", {token: token}, this.token)
-            .then(response => {
+            .then((response) => {
                $(".preloader").hide();
                if (response.data.payload.length > 0) {
                   this.afflog = JSON.parse(response.data.payload[0].stat);
@@ -303,27 +320,27 @@ export default {
       },
       afffriend() {
          let payload = {
-            join: this.codesuggestcode
+            join: this.codesuggestcode,
          };
          let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
+            expiresIn: "5s",
          });
          $(".preloader").show();
          this.$axios
             .post("/affiliateRegister", {token: token}, this.token)
-            .then(response => {
+            .then((response) => {
                this.codesuggestcode = response.data.payload;
                this.codesuggest = response.data.payload.token;
                this.tableaff = response.data.payload;
                let payload = {
-                  date: new Date().toISOString().slice(0, 10)
+                  date: new Date().toISOString().slice(0, 10),
                };
                let token = jwt.sign(payload, this.$keypayload, {
-                  expiresIn: "5s"
+                  expiresIn: "5s",
                });
                this.$axios
                   .post("/affiliateLog", {token: token}, this.token)
-                  .then(response => {
+                  .then((response) => {
                      $(".preloader").hide();
                      if (response.data.payload.length > 0) {
                         this.afflog = response.data.payload;
@@ -352,20 +369,20 @@ export default {
                confirmButtonColor: "#3085d6",
                cancelButtonColor: "#d33",
                confirmButtonText: "ตกลง",
-               cancelButtonText: "ยกเลิก"
-            }).then(result => {
+               cancelButtonText: "ยกเลิก",
+            }).then((result) => {
                if (result.value) {
                   let payload = {
-                     username: this.user.username
+                     username: this.user.username,
                   };
                   let token = jwt.sign(payload, this.$keypayload, {
-                     expiresIn: "5s"
+                     expiresIn: "5s",
                   });
                   $(".preloader").show();
-                  this.$axios.post("/walletWithdraw", {token: token}, this.token).then(response => {
+                  this.$axios.post("/walletWithdraw", {token: token}, this.token).then((response) => {
                      $(".preloader").hide();
                      if (response.data.code === "SUCCESS") {
-                        this.$axios.get("/wallet", this.token).then(response => {
+                        this.$axios.get("/wallet", this.token).then((response) => {
                            this.history = response.data.payload;
                            this.walletSum = response.data.walletSum;
                         });
@@ -376,7 +393,7 @@ export default {
                            timer: 6000,
                            showConfirmButton: true,
                            allowOutsideClick: false,
-                           allowEscapeKey: false
+                           allowEscapeKey: false,
                         });
                         this.$router.push("/");
                      } else {
@@ -387,7 +404,7 @@ export default {
                            timer: 5000,
                            showConfirmButton: true,
                            allowOutsideClick: false,
-                           allowEscapeKey: false
+                           allowEscapeKey: false,
                         });
                      }
                   });
@@ -401,20 +418,20 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          }
-      }
+      },
    },
-components: {
-      DatePicker
+   components: {
+      DatePicker,
    },
    mounted() {
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {
             // this.$session.set("page", "/Affiliate");
             this.dateselect = moment(new Date()).format("YYYY-MM-") + (moment(new Date()).format("DD") - 1);
-            popup_aff.child("affiliate").on("value", snap => {
+            popup_aff.child("affiliate").on("value", (snap) => {
                //Popup affiliate
                var leng = snap.val();
                var show_popup_aff = [];
@@ -425,7 +442,7 @@ components: {
                         title: snap.val()[i].title,
                         html: snap.val()[i].text,
                         icon: snap.val()[i].type,
-                        showConfirmButton: snap.val()[i].showConfirmButton
+                        showConfirmButton: snap.val()[i].showConfirmButton,
                      });
                   }
                   this.$swal.queue(show_popup_aff);
@@ -435,7 +452,7 @@ components: {
             $(".preloader").show();
             this.$axios
                .get("/affiliateToken", this.token)
-               .then(response => {
+               .then((response) => {
                   $(".preloader").hide();
                   if (response.data.payload === undefined) {
                      this.codesuggestcode = response.data.payload;
@@ -453,7 +470,7 @@ components: {
                      }
                      this.$axios
                         .get("/affiliateWallet", this.token)
-                        .then(response => {
+                        .then((response) => {
                            this.wallet = response.data.payload;
                         })
                         .catch(function(error) {
@@ -466,14 +483,14 @@ components: {
                });
             var dateto = new Date();
             let payload = {
-               date: new Date().toISOString().slice(0, 8) + (dateto.getDate() - 1)
+               date: new Date().toISOString().slice(0, 8) + (dateto.getDate() - 1),
             };
             let token = jwt.sign(payload, this.$keypayload, {
-               expiresIn: "5s"
+               expiresIn: "5s",
             });
             this.$axios
                .post("/affiliateLog", {token: token}, this.token)
-               .then(response => {
+               .then((response) => {
                   if (response.data.payload.length > 0) {
                      this.afflog = JSON.parse(response.data.payload[0].stat);
                      this.logdividend = response.data.payload[0].dividend;
@@ -487,7 +504,7 @@ components: {
                .catch(function(error) {
                   console.log(error);
                });
-            this.$axios.get("/wallet", this.token).then(response => {
+            this.$axios.get("/wallet", this.token).then((response) => {
                this.history = response.data.payload;
                this.walletSum = response.data.walletSum;
                if (this.walletSum >= 100) {
@@ -498,11 +515,17 @@ components: {
       } else {
          this.$router.push("/Logout");
       }
-   }
+   },
 };
 </script>
 
 <style>
+.bg-radius-aff {
+   background: linear-gradient(180deg, #ac9100 0%, #4f4202 100%);
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   border-radius: 4px;
+   padding: 10px;
+}
 .bg-aff-share {
    background: #2c2c2c;
    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -512,7 +535,7 @@ components: {
    border: 0.7px solid #ffde30;
 }
 .btn-aff {
-   background: #fcff68 !important;
+   background: #ffde30 !important;
    border-radius: 4px;
    padding: 5px 15px 6px 15px;
 }
