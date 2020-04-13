@@ -74,13 +74,13 @@ export default {
          btnsubmit: true,
          confirm_phonenumber: null,
          confirm_OTP: "",
-         counting: null
+         counting: null,
       };
    },
    methods: {
       ...mapActions({
          storeLogin: "login",
-         storeLoout: "logout"
+         storeLoout: "logout",
       }),
       OTP() {
          // Check phonenumber
@@ -92,7 +92,7 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          } else if (this.confirm_phonenumber.length !== 10) {
             this.$swal({
@@ -102,7 +102,7 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          } else if (this.confirm_phonenumber[0] !== "0") {
             this.$swal({
@@ -112,17 +112,17 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          } else if (this.confirm_phonenumber.length === 10) {
             let payload = {
-               phone_number: this.confirm_phonenumber
+               phone_number: this.confirm_phonenumber,
             };
             let token = jwt.sign(payload, this.$keypayload, {
-               expiresIn: "5s"
+               expiresIn: "5s",
             });
             $(".preloader").show();
-            this.$axios.post("/otp", {token: token}, this.token).then(response => {
+            this.$axios.post("/otp", {token: token}, this.token).then((response) => {
                $(".preloader").hide();
                if (response.data.code === "ERROR") {
                   this.$swal({
@@ -132,7 +132,7 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                } else {
                   this.$swal({
@@ -142,7 +142,7 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                   this.counting = true;
                   this.btnsubmit = false;
@@ -157,7 +157,7 @@ export default {
       phonenumber() {
          let payload = {
             phone_number: this.confirm_phonenumber,
-            otp: this.confirm_OTP
+            otp: this.confirm_OTP,
          };
          if (this.confirm_phonenumber === "" || this.confirm_OTP === "") {
             this.$swal({
@@ -167,14 +167,14 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          } else {
             let token = jwt.sign(payload, this.$keypayload, {
-               expiresIn: "5s"
+               expiresIn: "5s",
             });
             $(".preloader").show();
-            this.$axios.post("/otp_verify", {token: token}, this.token).then(response => {
+            this.$axios.post("/otp_verify", {token: token}, this.token).then((response) => {
                $(".preloader").hide();
                if (response.data.code === "SUCCESS") {
                   this.$swal({
@@ -183,9 +183,17 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
-                  }).then(result => {
+                     allowEscapeKey: false,
+                  }).then((result) => {
                      if (result.value) {
+                        this.$axios.get("/is_login", this.token).then((response) => {
+                           // console.log(response.data);
+                           if (response.data.msg != "LOGOUT") {
+                              this.$session.set("isLogin", true);
+                              this.$session.set("token", response.data);
+                              this.storeLogin(response.data);
+                           }
+                        });
                         $("#modalOTP").hide();
                         $("#modalOTP___BV_modal_backdrop_").hide();
                      }
@@ -201,7 +209,7 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                }
             });
@@ -211,7 +219,7 @@ export default {
          $(".preloader").show();
          this.$axios
             .get("/is_login", this.token)
-            .then(response => {
+            .then((response) => {
                $(".preloader").hide();
                if (response.data.msg != "LOGOUT") {
                   this.$session.set("isLogin", true);
@@ -223,7 +231,7 @@ export default {
                         text: "คุณยังไม่ได้ยืนยันตัวตน",
                         icon: "info",
                         timer: 3000,
-                        showConfirmButton: true
+                        showConfirmButton: true,
                      });
                   } else {
                      this.$swal({
@@ -231,7 +239,7 @@ export default {
                         text: "คุณยืนยันตัวตนสำเร็จ",
                         icon: "success",
                         timer: 3000,
-                        showConfirmButton: true
+                        showConfirmButton: true,
                      });
                   }
                } else {
@@ -240,7 +248,7 @@ export default {
                      text: "มีการเข้าสู่ระบบจากที่อื่น",
                      icon: "error",
                      timer: 3000,
-                     showConfirmButton: false
+                     showConfirmButton: false,
                   });
                   this.$router.push("/Logout");
                }
@@ -249,14 +257,14 @@ export default {
                $(".preloader").hide();
                console.log(error);
             });
-      }
+      },
    },
    computed: {
       ...mapGetters({
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
+         token: "token",
       }),
       checkOTP: function() {
          if (this.user.active === 0) {
@@ -264,7 +272,7 @@ export default {
          } else {
             return false;
          }
-      }
+      },
    },
    mounted() {
       // console.log('token : ' + this.token)
@@ -274,7 +282,7 @@ export default {
          if (this.token) {
             this.$axios
                .get("/is_login", this.token)
-               .then(response => {
+               .then((response) => {
                   if (response.data.msg != "LOGOUT") {
                      this.$session.set("isLogin", true);
                      this.$session.set("token", response.data);
@@ -288,7 +296,7 @@ export default {
                         timer: 5000,
                         showConfirmButton: true,
                         allowOutsideClick: false,
-                        allowEscapeKey: false
+                        allowEscapeKey: false,
                      });
                      this.$router.push("/Logout");
                   }
@@ -302,7 +310,7 @@ export default {
          this.checkLogin = 0;
          this.$router.push("/Logout");
       }
-   }
+   },
 };
 </script>
 

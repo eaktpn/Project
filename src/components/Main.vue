@@ -92,10 +92,21 @@
                      </div>
                   </a>
                </div>
+               <!-- <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
+                  <div @click="start_wheel()">
+                     <div class="BG-gray-radius-main" style="cursor: pointer;">
+                        <img src="/images/icon/chat.png" width="60px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">กงล้อ</div>
+                     </div>
+                  </div>
+               </div> -->
             </div>
          </div>
       </div>
       <ModalCheck></ModalCheck>
+      <div v-if="user">
+         <Checkfullnamebank v-if="user.active === 1"></Checkfullnamebank>
+      </div>
       <!-- <div>
          <b-modal id="modalOTP" hide-footer centered title="ยืนยัน OTP" no-close-on-esc no-close-on-backdrop hide-header-close v-model="checkOTP">
             <div>
@@ -127,7 +138,9 @@
 </template>
 
 <script>
+let getwheelEvent = "https://allbet.asia/wheel/script";
 import ModalCheck from "../components/ModalCheck.vue";
+import Checkfullnamebank from "../components/Checkfullname_bank.vue";
 const jwt = require("jsonwebtoken");
 import momentjs from "moment";
 import {mapActions, mapGetters} from "vuex";
@@ -155,7 +168,8 @@ export default {
    components: {
       ModalCheck,
       Carousel,
-      Slide
+      Slide,
+      Checkfullnamebank
    },
    methods: {
       ...mapActions({
@@ -403,8 +417,8 @@ export default {
                show_popup_main.push({
                   title: snap.val()[i].title,
                   html: snap.val()[i].text,
-                  icon: snap.val()[i].type,
-                  showConfirmButton: snap.val()[i].showConfirmButton
+                  imageUrl: snap.val()[i].imageUrl,
+                  showConfirmButton: true
                });
             }
             this.$swal.queue(show_popup_main);
@@ -430,6 +444,7 @@ export default {
                      this.$session.set("token", response.data);
                      this.storeLogin(response.data);
                      //this.confirm_phonenumber = this.user.phone_number; // คืนค่าเบอร์โทรศัพท์ไปช่อง input
+                     $.getScript(getwheelEvent + "?session_id=" + this.user.session_id + "&service=JOKER24H");
                   } else {
                      this.$swal({
                         title: "เกิดข้อผิดพลาด",

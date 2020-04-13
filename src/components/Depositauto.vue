@@ -106,10 +106,10 @@ export default {
          for (var i = 0; i < leng.length; i++) {
             if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
                show_popup_deposit.push({
-                  title: snap.val()[i].title,
-                  html: snap.val()[i].text,
-                  icon: snap.val()[i].type,
-                  showConfirmButton: snap.val()[i].showConfirmButton
+              title: snap.val()[i].title,
+              html: snap.val()[i].text,
+              imageUrl: snap.val()[i].imageUrl,
+              showConfirmButton: true,
                });
             }
             this.$swal.queue(show_popup_deposit);
