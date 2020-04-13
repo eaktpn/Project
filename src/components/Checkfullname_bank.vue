@@ -151,7 +151,7 @@ export default {
             this.$swal({
                title: "เกิดข้อผิดพลาด",
                text: "กรุณากรอกชื่อ",
-               type: "error",
+               icon: "error",
                timer: 3000,
                showConfirmButton: true
             });
@@ -159,7 +159,7 @@ export default {
             this.$swal({
                title: "เกิดข้อผิดพลาด",
                text: "กรุณากรอกนามสกุล",
-               type: "error",
+               icon: "error",
                timer: 3000,
                showConfirmButton: true
             });
@@ -183,7 +183,7 @@ export default {
                this.$swal({
                   title: "สำเร็จ",
                   html: response.data.msg.toUpperCase(),
-                  type: "success",
+                  icon: "success",
                   timer: false,
                   showConfirmButton: true
                });
@@ -200,7 +200,7 @@ export default {
                         this.$swal({
                            title: "เกิดข้อผิดพลาด",
                            text: "มีการเข้าสู่ระบบจากที่อื่น",
-                           type: "error",
+                           icon: "error",
                            timer: 3000,
                            showConfirmButton: false
                         });
@@ -214,7 +214,7 @@ export default {
                this.$swal({
                   title: "เกิดข้อผิดพลาด",
                   text: response.data.msg,
-                  type: "error",
+                  icon: "error",
                   timer: false,
                   showConfirmButton: false
                });
