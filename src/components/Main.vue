@@ -93,11 +93,15 @@
          </div>
       </div>
       <ModalCheck></ModalCheck>
+      <div v-if="user">
+         <Checkfullnamebank v-if="user.active === 1"></Checkfullnamebank>
+      </div>
    </div>
 </template>
 
 <script>
 import ModalCheck from "../components/ModalCheck.vue";
+import Checkfullnamebank from "../components/Checkfullname_bank.vue";
 const jwt = require("jsonwebtoken");
 import momentjs from "moment";
 import {mapActions, mapGetters} from "vuex";
@@ -125,7 +129,8 @@ export default {
    components: {
       ModalCheck,
       Carousel,
-      Slide
+      Slide,
+      Checkfullnamebank
    },
    computed: {
       ...mapGetters({

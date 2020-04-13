@@ -89,7 +89,7 @@
             </div>
          </div>
       </div>
-<div class="row justify-content-center mb-3 px-3">
+      <div class="row justify-content-center mb-3 px-3">
          <div class="col-xl-9 col-md-9 col-12 text-center">
             <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
                <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>

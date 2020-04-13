@@ -53,7 +53,7 @@
             </div>
          </div>
       </div>
-      <div class="row justify-content-center px-3">
+      <div class="row justify-content-center mb-3 px-3">
          <div class="col-xl-9 col-md-9 col-12 text-center">
             <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
                <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
@@ -62,6 +62,11 @@
             <div class="font12 my-2" style="color:#0085FF;">**หลังจากโอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
          </div>
       </div>
+      <!-- <div class="row justify-content-center">
+         <div class="col-xl-9 col-md-9 col-12 text-center">
+            <a href="#" class="rainbow-button" alt="รับแจ้งเตือนผ่านไลน์" icon="fab fa-line"></a>
+         </div>
+      </div> -->
       <div class="mt-3"></div>
    </div>
 </template>
@@ -79,7 +84,7 @@ export default {
    data() {
       return {
          bank: "",
-         bonus: "",
+         bonus: ""
          // number:null,
          // bankcop:null
       };
@@ -90,13 +95,13 @@ export default {
          user: "user",
          amount: "amount",
          server: "server",
-         token: "token",
-      }),
+         token: "token"
+      })
    },
    methods: {
       ...mapActions({
          storeLogin: "login",
-         storeLogout: "logout",
+         storeLogout: "logout"
       }),
       currencyFormat(n) {
          n = parseFloat(n);
@@ -105,10 +110,10 @@ export default {
       copy_numberbank(bank, number) {
          this.$copyText(number);
          this.$swal("คัดลอกสำเร็จ", bank + " " + number, "success");
-      },
+      }
    },
    mounted() {
-      popup_deposit.child("deposit").on("value", (snap) => {
+      popup_deposit.child("deposit").on("value", snap => {
          //Popup affiliate
          var leng = snap.val();
          var show_popup_deposit = [];
@@ -119,7 +124,7 @@ export default {
                   title: snap.val()[i].title,
                   html: snap.val()[i].text,
                   icon: snap.val()[i].type,
-                  showConfirmButton: snap.val()[i].showConfirmButton,
+                  showConfirmButton: snap.val()[i].showConfirmButton
                });
             }
             this.$swal.queue(show_popup_deposit);
@@ -129,28 +134,28 @@ export default {
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {
             $(".preloader").show();
-            this.$axios.get("/is_login", this.token).then((response) => {
+            this.$axios.get("/is_login", this.token).then(response => {
                $(".preloader").hide();
                if (response.data.msg === "LOGOUT") {
                   this.$swal({
                      title: "เกิดข้อผิดพลาด",
                      text: "มีการเข้าสู่ระบบจากที่อื่น",
-                     tpye: "error",
+                     icon: "error",
                      timer: 3000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false,
+                     allowEscapeKey: false
                   });
                   this.$router.push("/Logout");
                } else {
                   this.$axios
                      // .get("/showBank?bank=TRUEWALLET", this.token)
                      .get("/showBank", this.token)
-                     .then((response) => {
+                     .then(response => {
                         console.log(response.data);
                         this.bank = response.data.payload;
                      });
-                  this.$axios.get("/bonus", this.token).then((response) => {
+                  this.$axios.get("/bonus", this.token).then(response => {
                      this.bonus = response.data.payload;
                   });
                }
@@ -160,7 +165,7 @@ export default {
          console.log("Logout Depositauto");
          this.$router.push("/Logout");
       }
-   },
+   }
 };
 </script>
 
@@ -175,5 +180,39 @@ export default {
 }
 .hr-deposit {
    border: 0.6px solid #ffffff;
+}
+
+/*----------- Animation Button -----------*/
+
+a {
+   text-decoration: none;
+   color: #65ce40;
+}
+.rainbow-button {
+   width: calc(50vw + 6px);
+   height: calc(8vw + 6px);
+   background-image: linear-gradient(90deg, #00c0ff 0%, #ffcf00 49%, #fc4f4f 80%, #00c0ff 100%);
+   border-radius: 5px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-transform: uppercase;
+}
+.rainbow-button:after {
+   content: attr(alt);
+   width: 50vw;
+   height: 8vw;
+   background-color: #191919;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.rainbow-button {
+   animation: slidebg 3s linear infinite;
+}
+@keyframes slidebg {
+   to {
+      background-position: 20vw;
+   }
 }
 </style>
