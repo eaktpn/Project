@@ -5,8 +5,8 @@ a.close {
    width: auto;
    padding: 10px !important;
 }
-.btn-default{
-background-color: rgba(255, 255, 255, 0) !important;
+.btn-default {
+   background-color: rgba(255, 255, 255, 0) !important;
 }
 .btn-login-orange {
    background: #ffde30 !important;
@@ -18,11 +18,35 @@ background-color: rgba(255, 255, 255, 0) !important;
    box-shadow: inset 0px 8px 8px rgba(63, 63, 62, 0.54) !important;
    border-radius: 30px !important;
 }
-.btn-line-dep {
-   background-color: #65ce40 !important;
-   border-radius: 10px;
-   padding: 10px;
+
+/*----------- Animation Button -----------*/
+.animation-Button {
+   background: linear-gradient(to bottom, #89c403 5%, #77a809 100%) !important;
+   border-radius: 10px !important;
+   cursor: pointer !important;
+   color: #ffffff !important;
+   font-size: 15px !important;
+   padding: 9px 40px 8px 40px !important;
 }
+.animation-Button:hover {
+   background-color: #65ce40;
+}
+.animation-Button:active {
+   position: relative !important;
+   top: 1px !important;
+}
+.animation-border {
+   border: 4px #77a809 solid !important;
+   animation: blink 0.5s !important;
+   animation-iteration-count: infinite !important;
+}
+@keyframes blink {
+   50% {
+      border-color: white;
+   }
+}
+/*--------------------------------------------------*/
+
 .form-control1 {
    display: block;
    width: 100%;
@@ -34,7 +58,7 @@ background-color: rgba(255, 255, 255, 0) !important;
    color: #ffffff;
    background-color: #97535300;
    background-clip: padding-box;
-   border: 1px solid #FFDE30;
+   border: 1px solid #ffde30;
    border-radius: 30px;
    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -42,22 +66,22 @@ background-color: rgba(255, 255, 255, 0) !important;
    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
 .form-control-withdraw {
-    display: block;
-    width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 22px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #FFF;
-    background-color: #181818;
-    background-clip: padding-box;
-    border: 1px solid #FFD600;
-    border-radius: 25px;
-    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+   display: block;
+   width: 100%;
+   height: calc(1.5em + 0.75rem + 2px);
+   padding: 22px;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: #fff;
+   background-color: #181818;
+   background-clip: padding-box;
+   border: 1px solid #ffd600;
+   border-radius: 25px;
+   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
 .form-control:disabled,
 .form-control[readonly] {
@@ -66,7 +90,7 @@ background-color: rgba(255, 255, 255, 0) !important;
 }
 select.browser-default {
    display: block !important;
-   border: 1px solid #FFDE30 !important;
+   border: 1px solid #ffde30 !important;
    border-radius: 30px !important;
 }
 .BG-gray {
@@ -95,7 +119,7 @@ select.browser-default {
    color: #ffffff !important;
 }
 .modal-open .modal {
-    background: #ffffff50 !important;
+   background: #ffffff50 !important;
 }
 .modal-content {
    background-color: #181818 !important;
@@ -110,8 +134,8 @@ select.browser-default {
 }
 
 /*---------Color----------*/
-.color_brown{
-color: #AC9100 !important;
+.color_brown {
+   color: #ac9100 !important;
 }
 .color_orange {
    color: #eaa33b !important;
@@ -138,7 +162,7 @@ color: #AC9100 !important;
    color: #f44336 !important;
 }
 .color_pink {
-   color: #FF3366 !important;
+   color: #ff3366 !important;
 }
 
 /*---------Font----------*/

@@ -55,18 +55,13 @@
       </div>
       <div class="row justify-content-center mb-3 px-3">
          <div class="col-xl-9 col-md-9 col-12 text-center">
-            <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
-               <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
+            <a href="https://line.me/R/ti/p/@596zqntk" target="_blank">
+               <mdb-btn size="md" class="animation-Button animation-border color_white font16"> <img src="/images/icon/lineback.png" width="25" /> รับแจ้งเตือนผ่านไลน์</mdb-btn>
             </a>
             <div class="font14 mt-2">*กดเพิ่มเพื่อนเพื่อรับบริการแจ้งเตือนยอดฝาก</div>
             <div class="font12 my-2" style="color:#0085FF;">**หลังจากโอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
          </div>
       </div>
-      <!-- <div class="row justify-content-center">
-         <div class="col-xl-9 col-md-9 col-12 text-center">
-            <a href="#" class="rainbow-button" alt="รับแจ้งเตือนผ่านไลน์" icon="fab fa-line"></a>
-         </div>
-      </div> -->
       <div class="mt-3"></div>
    </div>
 </template>
@@ -180,39 +175,5 @@ export default {
 }
 .hr-deposit {
    border: 0.6px solid #ffffff;
-}
-
-/*----------- Animation Button -----------*/
-
-a {
-   text-decoration: none;
-   color: #65ce40;
-}
-.rainbow-button {
-   width: calc(50vw + 6px);
-   height: calc(8vw + 6px);
-   background-image: linear-gradient(90deg, #00c0ff 0%, #ffcf00 49%, #fc4f4f 80%, #00c0ff 100%);
-   border-radius: 5px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   text-transform: uppercase;
-}
-.rainbow-button:after {
-   content: attr(alt);
-   width: 50vw;
-   height: 8vw;
-   background-color: #191919;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
-.rainbow-button {
-   animation: slidebg 3s linear infinite;
-}
-@keyframes slidebg {
-   to {
-      background-position: 20vw;
-   }
 }
 </style>

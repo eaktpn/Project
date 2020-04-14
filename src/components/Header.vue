@@ -2,7 +2,7 @@
    <div class="header" v-if="isLogin">
       <div class="BG-Header">
          <div class="container ">
-            <div class="row justify-content-center p-3">
+            <!-- <div class="row justify-content-center p-3">
                <div class="col-xl-9 col-md-9 col-12">
                   <div class="row justify-content-center">
                      <div class="col-6 align-self-center">
@@ -10,8 +10,18 @@
                      </div>
                      <div class="col-6 align-self-center text-right">
                         <router-link to="/Logout">
-                        <div class="color_white">ออกจากระบบ</div>
+                           <div class="color_white">ออกจากระบบ</div>
                         </router-link>
+                     </div>
+                  </div>
+               </div>
+            </div> -->
+            <div class="row justify-content-center p-3">
+               <div class="col-xl-9 col-md-9 col-12">
+                  <div class="row justify-content-center">
+                     <div class="col-6 align-self-center"><mdb-icon icon="bars" @click.native="toggleLeftSideNav" class="icon-menu fas2 fab2" /></div>
+                     <div class="col-6 text-right">
+                        <router-link to="/"><img src="/images/logo/siamslotxo.png" width="40%;" style="max-width:80px;"/></router-link>
                      </div>
                   </div>
                </div>
@@ -42,18 +52,18 @@
                      <div class="font16"><i class="fas fa-address-card"></i>ข้อมูลบัญชี</div>
                   </router-link> -->
                   <div @click="showModalcheck()" style="cursor:pointer;"><i class="my-2 fas fa-toggle-on"></i><span class="font16">ตั้งค่าโบนัส</span></div>
-                  <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
-                  <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div>
+                  <!-- <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
+                  <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div> -->
                   <div>
                      <router-link to="/Logout" class="font16"><i class="my-2 fas fa-sign-out-alt"></i>ออกจากระบบ</router-link>
                   </div>
                   <hr class="my-hr mt-3" />
-                  <a href="https://facebook.com/Joker24h-107816474080548/?ref=bookmarks" target="_blank">
+                  <a href="https://www.facebook.com/SIAM-SLOT-XO-104782557863072/" target="_blank">
                      <div>
                         <i class="my-1 fab fa-facebook-square text-primary"></i><span class="font16 text-primary"><b>Facebook</b></span>
                      </div>
                   </a>
-                  <a href="https://lin.ee/4loZnaa" target="_blank">
+                  <a href="" target="_blank">
                      <div>
                         <i class="fab fa-line text-success"></i><span class="font16 text-success"><b>Line</b></span>
                      </div>

@@ -65,8 +65,8 @@
          </div>
       </div>
       <div class="col-12 text-center mt-2">
-         <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
-            <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
+         <a href="https://line.me/R/ti/p/@596zqntk" target="_blank">
+            <mdb-btn size="md" class="animation-Button animation-border color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
          </a>
          <div class="font14 my-3" style="color:#0085FF;">**หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
          <div class="mt-4"></div>

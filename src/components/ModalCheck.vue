@@ -8,7 +8,7 @@
                <div class="color_white font14 p-2" style="cursor:pointer;">ยืนยันตัวตนผ่านโทรศัพท์</div>
             </div>
             <div class="col-6 text-center mt-2">
-               <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
+               <a href="https://line.me/R/ti/p/@596zqntk" target="_blank">
                   <!-- <i class="fab fa-line fa-9x text-success" style="cursor:pointer;"></i> -->
                   <img src="/images/icon/line2.png" class="mx-3" width="100%;" style="max-width:130px; cursor:pointer;" />
                   <div class="color_white font14 p-2" style="cursor:pointer;">ยืนยันตัวตนผ่าน Line</div>
@@ -16,7 +16,7 @@
             </div>
          </div>
          <div class="row justify-content-center">
-            <div class="col-12 text-center mt-2">
+            <div class="col-11 text-center mt-2">
                <mdb-btn class="btn-confirm font16" @click="checkLinesub()" block>ตรวจสอบการยืนยัน</mdb-btn>
             </div>
             <div class="col-12 text-center color_white font14 mt-3">
@@ -56,7 +56,7 @@
                      <template slot-scope="props">{{ props.totalSeconds }} วินาที</template> </countdown
                   >ขอรหัส OTP
                </b-button>
-               <b-button type="button" :disabled="btnsubmit" :class="btnsubmit === false ? 'btn btn-infobtn' : 'disabled btn btn-info'" @click="phonenumber()">ยืนยันเบอร์โทรศัพท์</b-button>
+               <b-button type="button" :disabled="btnsubmit" :class="btnsubmit === false ? 'btn btn-info' : 'disabled btn btn-info'" @click="phonenumber()">ยืนยันเบอร์โทรศัพท์</b-button>
             </div>
          </b-modal>
       </div>
@@ -320,5 +320,10 @@ export default {
    padding: 5px 15px 6px 15px;
    border: 1px solid #ffde30;
    color: #ffde30;
+}
+.btn-info {
+    color: #fff !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
 }
 </style>

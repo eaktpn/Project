@@ -42,7 +42,7 @@
          <div class="col-xl-9 col-md-9 col-12">
             <div class="row text-center">
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <router-link to="/Deposit">
+                  <router-link to="/Depositauto">
                      <div class="BG-gray-radius" style="cursor: pointer;">
                         <img src="/images/icon/coin.png" width="70px;" />
                         <div class="color_white font16" style="font-weight:400;">ฝากเงิน</div>
@@ -82,7 +82,7 @@
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <a href="https://lin.ee/4loZnaa" target="_blank">
+                  <a href="https://line.me/R/ti/p/@596zqntk" target="_blank">
                      <div class="BG-gray-radius" style="cursor: pointer;">
                         <img src="/images/icon/contact.png" width="70px;" class="p-1" />
                         <div class="color_white font16" style="font-weight:400;">ติดต่อ</div>
@@ -159,7 +159,7 @@ export default {
       linkGame() {
          var formPlaygame = document.createElement("form");
          formPlaygame.setAttribute("method", "post");
-         formPlaygame.setAttribute("action", "https://joker.slot789th.com");
+         formPlaygame.setAttribute("action", "https://slotxo.slot789th.com");
          formPlaygame.setAttribute("target", "_blank");
          var i = document.createElement("input");
          i.setAttribute("type", "hidden");
@@ -328,7 +328,7 @@ export default {
    border: 0.5px solid #969595;
 }
 .login-game {
-   background: #252525;
+   background: linear-gradient(180deg, #ac9100 20%, #6d5b04 100%);
    border-radius: 12px;
    /* border: 1px solid #504b00; */
 }

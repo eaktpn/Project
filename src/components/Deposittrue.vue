@@ -91,8 +91,8 @@
       </div>
       <div class="row justify-content-center mb-3 px-3">
          <div class="col-xl-9 col-md-9 col-12 text-center">
-            <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
-               <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
+            <a href="https://line.me/R/ti/p/@596zqntk" target="_blank">
+               <mdb-btn size="md" class="animation-Button animation-border  color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
             </a>
             <div class="font14 mt-2">*กดเพิ่มเพื่อนเพื่อรับบริการแจ้งเตือนยอดฝาก</div>
             <div class="font12 my-2" style="color:#0085FF;">**หลังจากโอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
