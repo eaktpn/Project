@@ -38,8 +38,8 @@
                      <div class="font16"><i class="fas fa-address-card"></i>ข้อมูลบัญชี</div>
                   </router-link> -->
                   <div @click="showModalcheck()" style="cursor:pointer;"><i class="my-2 fas fa-toggle-on"></i><span class="font16">ตั้งค่าโบนัส</span></div>
-                  <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
-                  <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div>
+                  <!-- <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
+                  <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div> -->
                   <div>
                      <router-link to="/Logout" class="font16"><i class="my-2 fas fa-sign-out-alt"></i>ออกจากระบบ</router-link>
                   </div>
