@@ -26,12 +26,15 @@
                </div>
                <div class="col-xl-7 col-md-9 col-11 mt-2">
                   <i class="fas fa-key"></i> กรอกรหัสผ่าน
-                  <input type="password" v-model="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" maxlength="16" />
+                  <input type="password" v-model="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" maxlength="16" id="password-field" />
+                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" @click="show_hide()"></span>
                </div>
                <div class="col-xl-7 col-md-9 col-11 mt-2">
                   <i class="fas fa-key"></i> ยืนยันรหัสผ่าน
-                  <input type="password" v-model="againpassword" class="form-control1 mt-1" placeholder="กรอกรหัสผ่านอีกครั้ง" maxlength="16" />
+                  <input type="password" v-model="againpassword" class="form-control1 mt-1" placeholder="กรอกรหัสผ่านอีกครั้ง" maxlength="16" id="password-field2" />
+                  <span toggle="#password-field2" class="fa fa-fw fa-eye field-icon toggle-password2" @click="show_hide2()"></span>
                </div>
+
                <div class="col-xl-7 col-md-9 col-11 mt-2">
                   <i class="fas fa-address-book"></i> เลือกธนาคาร
                   <select class="browser-default custom-select" v-model="bankcode">
@@ -122,6 +125,24 @@ export default {
       ...mapActions({
          storeLogin: "login"
       }),
+      show_hide: function() {
+         $(".toggle-password").toggleClass("fa-eye fa-eye-slash");
+         var input = $($(".toggle-password").attr("toggle"));
+         if (input.attr("type") == "password") {
+            input.attr("type", "text");
+         } else {
+            input.attr("type", "password");
+         }
+      },
+      show_hide2: function() {
+         $(".toggle-password2").toggleClass("fa-eye fa-eye-slash");
+         var input = $($(".toggle-password2").attr("toggle"));
+         if (input.attr("type") == "password") {
+            input.attr("type", "text");
+         } else {
+            input.attr("type", "password");
+         }
+      },
       isNumber: function(evt) {
          evt = evt ? evt : window.event;
          var charCode = evt.which ? evt.which : evt.keyCode;
@@ -420,5 +441,15 @@ export default {
 .header-register {
    background: linear-gradient(180deg, #ac9100 20%, #6d5b04 100%);
    height: 50px;
+}
+
+/*------- Show-Hide Pass -------*/
+.field-icon {
+   float: right;
+   margin-left: -15px;
+   margin-right: 10px;
+   margin-top: -27px;
+   position: relative;
+   z-index: 2;
 }
 </style>

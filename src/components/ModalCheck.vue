@@ -22,7 +22,7 @@
             <div class="col-12 text-center color_white font14 mt-3">
                หากเกิดปัญหา ให้ติดต่อแอดมินทาง
                <span class="color_green">
-                  <a href="https://lin.ee/4loZnaa" target="_blank"><b>LINE คลิ๊ก</b></a></span
+                  <a href="https://line.me/R/ti/p/@596zqntk" target="_blank"><b>LINE คลิ๊ก</b></a></span
                >
             </div>
          </div>
