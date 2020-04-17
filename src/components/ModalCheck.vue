@@ -56,7 +56,7 @@
                      <template slot-scope="props">{{ props.totalSeconds }} วินาที</template> </countdown
                   >ขอรหัส OTP
                </b-button>
-               <b-button type="button" :disabled="btnsubmit" :class="btnsubmit === false ? 'btn btn-infobtn' : 'disabled btn btn-info'" @click="phonenumber()">ยืนยันเบอร์โทรศัพท์</b-button>
+               <b-button type="button" :disabled="btnsubmit" :class="btnsubmit === false ? 'btn btn-confirm-phone' : 'disabled btn-confirm-phone'" @click="phonenumber()">ยืนยันเบอร์โทรศัพท์</b-button>
             </div>
          </b-modal>
       </div>
@@ -328,5 +328,10 @@ export default {
    padding: 5px 15px 6px 15px;
    border: 1px solid #ffde30;
    color: #ffde30;
+}
+.btn-confirm-phone {
+    color: #fff !important;
+    background-color: #EB4384 !important;
+    border-color: #EB4384 !important;
 }
 </style>

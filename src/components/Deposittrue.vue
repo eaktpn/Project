@@ -31,17 +31,17 @@
             <div class="font14 mt-2" style="color:#606060;">ต้องใช้บัญชีที่สมัครฝากเงินเข้ามาเท่านั้น และต้องโอนเงินผ่านช้องทางแอพพลิเคชั่นของธนาคารบานมือถือเท่านั้น มิเช่นนั้นจะไม่สามารถยืนยันรายการฝากได้<br />ถ้าเกิดข้อผิดพลาดของระบบให้แจ้งกับพนักงานทันที กรณีที่ไม่แจ้งเราขอสงวนสิทธิ์การถอนเงินทุกกรณี</div>
          </div>
       </div>
-<div v-if="banktrue[0]">
-      <div class="row justify-content-center">
-         <div class="col-xl-9 col-md-9 col-12 text-center color_yellow font18" style="font-weight:400;"><img src="/images/icon/TRUEWALLET.png" class="mx-3" width="100%;" style="max-width:100px; margin-top:-2px;" />ฝากผ่าน Truewallet</div>
+      <div v-if="banktrue[0]">
+         <div class="row justify-content-center">
+            <div class="col-xl-9 col-md-9 col-12 text-center color_yellow font18" style="font-weight:400;"><img src="/images/icon/TRUEWALLET.png" class="mx-3" width="100%;" style="max-width:100px; margin-top:-2px;" />ฝากผ่าน Truewallet</div>
+         </div>
+         <div class="row justify-content-center px-3">
+            <div class="col-xl-6 col-md-7 col-11 BG-gray2 text-center">
+               <div class="font20">{{ banktrue[0].number }}</div>
+               <div>{{ banktrue[0].name }}</div>
+            </div>
+         </div>
       </div>
-      <div class="row justify-content-center px-3">
-         <div class="col-xl-6 col-md-7 col-11 BG-gray2 text-center">
-            <div class="font20">{{ banktrue[0].number }}</div>
-            <div>{{ banktrue[0].name }}</div>
-         </div>      
-      </div>
-</div>
       <div class="row justify-content-center py-3 mt-2">
          <div class="col-xl-6 col-md-7 col-11">
             <div><i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์</div>

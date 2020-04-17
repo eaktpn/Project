@@ -26,7 +26,7 @@ export default {
   mounted() {
     this.$session.destroy();
     this.storeLogout();
-    this.$router.push("/Login");
+    this.$router.push("/Index");
   }
 };
 </script>

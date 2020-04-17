@@ -5,13 +5,15 @@ a.close {
    width: auto;
    padding: 10px !important;
 }
-.btn-login-orange {
-   background: #ffde30 !important;
-   box-shadow: inset 0px 8px 8px rgba(242, 160, 0, 0.54) !important;
+.btn-Purple_Pink {
+   background: linear-gradient(97.95deg, #522b7e 1.16%, #be2b61 100%) !important;
+   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+   border-radius: 10px !important;
+   border: 0.1px solid #522b7e !important;
 }
 .btn-login-gray {
    background: #424242 !important;
-   box-shadow: inset 0px 8px 8px rgba(63, 63, 62, 0.54);
+   border-radius: 10px !important;
 }
 .form-control1 {
    display: block;
@@ -31,6 +33,9 @@ a.close {
    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
+/* ::placeholder {
+  color: #ffde30;
+} */
 .form-control:disabled,
 .form-control[readonly] {
    background-color: #a9a9a9 !important;
@@ -62,7 +67,7 @@ a.close {
    color: #ffffff !important;
 }
 .modal-open .modal {
-    background: #ffffff50 !important;
+   background: #ffffff50 !important;
 }
 .modal-content {
    background-color: #181818 !important;
@@ -75,6 +80,34 @@ a.close {
 .modal[data-v-38054772] {
    background-color: rgba(0, 0, 0, 0.9);
 }
+
+/*----------- Animation Button -----------*/
+.animation-Button {
+   background: linear-gradient(to bottom, #89c403 5%, #77a809 100%) !important;
+   border-radius: 10px !important;
+   cursor: pointer !important;
+   color: #ffffff !important;
+   font-size: 15px !important;
+   padding: 9px 40px 8px 40px !important;
+}
+.animation-Button:hover {
+   background-color: #65ce40;
+}
+.animation-Button:active {
+   position: relative !important;
+   top: 1px !important;
+}
+.animation-border {
+   border: 4px #77a809 solid !important;
+   animation: blink 0.5s !important;
+   animation-iteration-count: infinite !important;
+}
+@keyframes blink {
+   50% {
+      border-color: white;
+   }
+}
+/*--------------------------------------------------*/
 
 /*---------Color----------*/
 .color_orange {
@@ -102,7 +135,7 @@ a.close {
    color: #f44336 !important;
 }
 .color_pink {
-   color: #FF3366 !important;
+   color: #eb4384 !important;
 }
 
 /*---------Font----------*/

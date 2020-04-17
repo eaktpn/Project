@@ -4,7 +4,7 @@
          <div class="container container--100 d-flex flex-column justify-content-between">
             <div id="loader" class="justify-content-center" style="margin-left:-175px; margin-top:170px;"></div>
             <div class style="border-radius: 50%; margin-left: auto; margin-right: auto;">
-               <img src="/images/logo/joker24h.png" alt="..." class style="border-radius:20%; width:270px; margin-top:-380px; margin-right:0px;" />
+               <img src="/images/logo/sexy222.png" alt="..." class style="border-radius:20%; width:270px; margin-top:-380px; margin-right:0px;" />
             </div>
             <div class="row justify-content-center"></div>
          </div>

@@ -2,22 +2,52 @@
    <div class="header" v-if="isLogin">
       <div class="BG-Header">
          <div class="container ">
-            <div class="row justify-content-center p-3">
+            <div class="row justify-content-center p-1">
                <div class="col-xl-9 col-md-9 col-12">
                   <div class="row justify-content-center">
-                     <div class="col-6 align-self-center"><mdb-icon icon="bars" @click.native="toggleLeftSideNav" class="icon-menu fas2 fab2" /></div>
-                     <div class="col-6 text-right">
-                        <router-link to="/"><img src="/images/logo/joker24h.png" width="40%;" style="max-width:80px;"/></router-link>
+                     <div class="col-4 align-self-center mt-1"><mdb-icon icon="bars" @click.native="toggleLeftSideNav" class="icon-menu fas2 fab2" /></div>
+                     <div class="col-4 text-center">
+                        <router-link to="/"><img src="/images/logo/sexy222.png" width="110%;" style="max-width:150px;"/></router-link>
+                     </div>
+                     <div class="col-4"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="BG-gray-header" v-if="$route.name !== 'Profile'">
+         <div class="container ">
+            <div class="row justify-content-center">
+               <div class="col-xl-9 col-md-9 col-12">
+                  <div class="row justify-content-center mt-2">
+                     <div class="col-xl-6 col-md-6 col-6">
+                        ยูสเซอร์เนม : <span class="color_pink">{{ user.username }}</span>
+                     </div>
+                     <div class="col-xl-6 col-md-6 col-6 text-right">
+                        รหัสผ่าน : <span class="color_pink">{{ user.password }}</span>
+                     </div>
+                  </div>
+                  <div class="line-main my-3"></div>
+                  <div class="row justify-content-center mt-2">
+                     <div class="col-7 font16">
+                        <div>ยอดเงินคงเหลือ</div>
+                        <div>
+                           <span class="color_pink font24">{{ currencyFormat(amount) }}</span> บาท
+                        </div>
+                     </div>
+                     <div class="col-5 align-self-center text-right">
+                        <router-link to="/Profile">
+                           <button type="button" class="btn btn-profile color_back font14" style="font-weight:400;">ข้อมูลบัญชี</button>
+                        </router-link>
                      </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <div class="mb-4"></div>
       <mdb-side-nav :OpenedFromOutside.sync="toggleA" hidden waves>
          <mdb-side-nav-nav>
-            <div class="container mt-4">
+            <!-- <div class="container mt-4">
                <div class="row justify-content-center">
                   <div class="col-4"><img src="/images/icon/user.png" width="110%;" class="ml-2 mt-1" style="max-width:55px;" /></div>
                   <div class="col-8 font14 color_blue">
@@ -28,8 +58,11 @@
                   </div>
                </div>
             </div>
-            <hr class="my-hr mt-4" />
-            <div class="row justify-content-center mx-2">
+            <hr class="my-hr mt-4" /> -->
+            <div class="row justify-content-center p-2">
+               <div class="col"><img src="/images/logo/sexy222.png" width="100%;" class="ml-2 mt-1" style="max-width:110px;" /></div>
+            </div>
+            <div class="row justify-content-center m-2">
                <div class="col">
                   <router-link to="/">
                      <div class="font16"><i class="fas fa-home"></i>หน้าหลัก</div></router-link
@@ -41,7 +74,7 @@
                   <div><i class="my-2 fas fa-thumbs-up"></i><span class="font16">โปรโมชั้น</span></div>
                   <div><i class="my-2 fas fa-download"></i><span class="font16">ดาวน์โหลด</span></div>
                   <div>
-                     <router-link to="/Logout" class="font16"><i class="my-2 fas fa-sign-out-alt"></i>ออกจากระบบ</router-link>
+                     <router-link to="/Logout" class="font16 color_pink"><i class="my-2 fas fa-sign-out-alt color_pink"></i><b>ออกจากระบบ</b></router-link>
                   </div>
                   <hr class="my-hr mt-3" />
                   <a href="https://facebook.com/Joker24h-107816474080548/?ref=bookmarks" target="_blank">
@@ -70,8 +103,8 @@
                </label>
             </div>
             <div class="col-9 mt-2">
-               <label class="color_yellow">เลือกเปิดเพื่อรับโบนัส !!</label>
-               <label class="color_yellow">ระบบจะเลือกโบนัสที่ดีที่สุดให้คุณ</label>
+               <label class="color_pink" style="font-weight:400;">เลือกเปิดเพื่อรับโบนัส !!</label>
+               <label class="color_pink" style="font-weight:400;">ระบบจะเลือกโบนัสที่ดีที่สุดให้คุณ</label>
             </div>
          </div>
       </mdb-modal>
@@ -213,8 +246,13 @@ export default {
 
 <style lang="scss">
 .BG-Header {
-   background: #181818;
-   box-shadow: 0px 2px 10px #70f6ff;
+   background: linear-gradient(97.95deg, #522b7e 1.16%, #be2b61 100%) !important;
+   // box-shadow: 0px 2px 10px #70f6ff;
+}
+.BG-gray-header {
+   background: rgb(39, 39, 39);
+   border-radius: 0px 0px 20px 20px;
+   padding: 15px;
 }
 .header {
    .fas,
@@ -239,14 +277,14 @@ export default {
       display: contents;
    }
    .icon-menu {
-      color: #ffde30;
+      color: #ffffff;
       cursor: pointer;
       font-size: 22px;
    }
    .btn-profile {
       background: #fcff68 !important;
       border-radius: 4px;
-      padding: 5px 15px 6px 15px;
+      padding: 5px 11px 6px 10px;
    }
 }
 /*----------Switch-----------*/
@@ -284,7 +322,7 @@ export default {
    transition: 0.4s;
 }
 input:checked + .slider {
-   background-color: #fac549;
+   background-color: #EB4384;
 }
 input:focus + .slider {
    box-shadow: 0 0 1px #2196f3;

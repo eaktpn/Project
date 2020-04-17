@@ -3,30 +3,32 @@
       <div class="container">
          <div class="row justify-content-center mt-4">
             <div class="col-xl-7 col-md-9 col-11 font14">
-               <div class="color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/Login" class="color_yellow"> ย้อนกลับ</router-link></div>
+               <div class="color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/Index" class="color_yellow"> ย้อนกลับ</router-link></div>
             </div>
          </div>
       </div>
       <div class="Register d-flex flex-column justify-content-center">
          <div class="container">
-            <div class="row justify-content-center">
-               <div class="col-xl-7 col-md-9 col-11 font28" style="font-weight:400;">
-                  <img src="/images/logo/joker24h.png" width="100%;" style="max-width:90px;" />
-                  สมัครสมาชิก
+            <div class="row justify-content-center" style="margin-top:-20px;">
+               <div class="col-xl-7 col-md-9 col-11 text-center font26" style="font-weight:400;">
+                  <img src="/images/logo/sexy222.png" width="100%;" style="max-width:250px;" />
+                  <div class="color_pink">สมัครสมาชิก</div>
                </div>
             </div>
             <div class="row justify-content-center mt-3">
-               <div class="col-xl-7 col-md-9 col-11 ">
+               <div class="col-xl-7 col-md-9 col-11">
                   <i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์
                   <input type="text" v-model="phonenumber" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" maxlength="10" @keypress="isNumber($event)" />
                </div>
                <div class="col-xl-7 col-md-9 col-11 mt-2">
                   <i class="fas fa-key"></i> กรอกรหัสผ่าน
-                  <input type="password" v-model="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" maxlength="16" />
+                  <input type="password" v-model="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" maxlength="16" id="password-field" />
+                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" @click="show_hide()"></span>
                </div>
                <div class="col-xl-7 col-md-9 col-11 mt-2">
                   <i class="fas fa-key"></i> ยืนยันรหัสผ่าน
-                  <input type="password" v-model="againpassword" class="form-control1 mt-1" placeholder="กรอกรหัสผ่านอีกครั้ง" maxlength="16" />
+                  <input type="password" v-model="againpassword" class="form-control1 mt-1" placeholder="กรอกรหัสผ่านอีกครั้ง" maxlength="16" id="password-field2" />
+                  <span toggle="#password-field2" class="fa fa-fw fa-eye field-icon toggle-password2" @click="show_hide2()"></span>
                </div>
                <div class="col-xl-7 col-md-9 col-11 mt-2">
                   <i class="fas fa-address-book"></i> เลือกธนาคาร
@@ -56,7 +58,7 @@
             </div>
             <div class="row justify-content-center ">
                <div class="col-xl-5 col-md-6 col-11 mt-3">
-                  <mdb-btn @click="register()" block size="sm" class="btn-login-orange color_back font18" style="font-weight:400;">สมัครสมาชิก</mdb-btn>
+                  <mdb-btn @click="register()" block size="sm" class="btn-Purple_Pink color_white font18" style="font-weight:400;">สมัครสมาชิก</mdb-btn>
                </div>
             </div>
          </div>
@@ -118,6 +120,24 @@ export default {
       ...mapActions({
          storeLogin: "login"
       }),
+      show_hide: function() {
+         $(".toggle-password").toggleClass("fa-eye fa-eye-slash");
+         var input = $($(".toggle-password").attr("toggle"));
+         if (input.attr("type") == "password") {
+            input.attr("type", "text");
+         } else {
+            input.attr("type", "password");
+         }
+      },
+      show_hide2: function() {
+         $(".toggle-password2").toggleClass("fa-eye fa-eye-slash");
+         var input = $($(".toggle-password2").attr("toggle"));
+         if (input.attr("type") == "password") {
+            input.attr("type", "text");
+         } else {
+            input.attr("type", "password");
+         }
+      },
       isNumber: function(evt) {
          evt = evt ? evt : window.event;
          var charCode = evt.which ? evt.which : evt.keyCode;
@@ -294,8 +314,8 @@ export default {
                   //       allowOutsideClick: false,
                   //       allowEscapeKey: false
                   //    });
-                  // } else 
-if (response.data.code === "ER_DUP_ENTRY") {
+                  // } else
+                  if (response.data.code === "ER_DUP_ENTRY") {
                      this.$swal({
                         icon: "error",
                         title: "เกิดข้อผิดพลาด",
@@ -407,6 +427,16 @@ if (response.data.code === "ER_DUP_ENTRY") {
 }
 .custom-select {
    background-color: #181818 !important;
-   color: #ffffff !important;
+   color: #ffde30 !important;
+}
+
+/*------- Show-Hide Pass -------*/
+.field-icon {
+   float: right;
+   margin-left: -15px;
+   margin-right: 10px;
+   margin-top: -27px;
+   position: relative;
+   z-index: 2;
 }
 </style>

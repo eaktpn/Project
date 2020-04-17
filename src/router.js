@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+const Index = () => import("./components/Index.vue");
 const Login = () => import("./components/Login.vue");
 const Logout = () => import("./components/Logout.vue");
 const Register = () => import("./components/Register.vue");
@@ -14,6 +15,8 @@ const Deposittrue = () => import("./components/Deposittrue.vue");
 const Depositauto = () => import("./components/Depositauto.vue");
 const Withdraw = () => import("./components/Withdraw.vue");
 const ModalCheck = () => import("./components/ModalCheck.vue");
+const settingbonus = () => import("./components/setting_bonus.vue");
+
 Vue.use(Router);
 
 export default new Router({
@@ -30,79 +33,89 @@ export default new Router({
    },
    routes: [
       {
+         path: "/Index",
+         name: "Index",
+         components: {header: Header, default: Index},
+      },
+      {
          path: "/Login",
          name: "Login",
-         components: {header: Header, default: Login}
+         components: {header: Header, default: Login},
       },
       {
          path: "/Logout",
          name: "Logout",
-         components: {default: Logout}
+         components: {default: Logout},
       },
       {
          path: "/Register",
          name: "Register",
-         components: {header: Header, default: Register}
+         components: {header: Header, default: Register},
       },
       {
          path: "/Header",
          name: "Header",
-         components: {header: Header}
+         components: {header: Header},
       },
       {
          path: "/",
          name: "Main",
-         components: {header: Header, default: Main}
+         components: {header: Header, default: Main},
       },
       {
          path: "/Main",
          name: "Main",
-         components: {header: Header, default: Main}
+         components: {header: Header, default: Main},
       },
       {
          path: "/Profile",
          name: "Profile",
-         components: {header: Header, default: Profile}
+         components: {header: Header, default: Profile},
       },
       {
          path: "/Affiliate",
          name: "Affiliate",
-         components: {header: Header, default: Affiliate}
+         components: {header: Header, default: Affiliate},
       },
       {
          path: "/History",
          name: "History",
-         components: {header: Header, default: History}
+         components: {header: Header, default: History},
       },
       {
          path: "/Bonusspecial",
          name: "Bonusspecial",
-         components: {header: Header, default: Bonusspecial}
+         components: {header: Header, default: Bonusspecial},
       },
       {
          path: "/Deposit",
          name: "Deposit",
-         components: {header: Header, default: Deposit}
+         components: {header: Header, default: Deposit},
       },
       {
          path: "/Deposittrue",
          name: "Deposittrue",
-         components: {header: Header, default: Deposittrue}
+         components: {header: Header, default: Deposittrue},
       },
       {
          path: "/Depositauto",
          name: "Depositauto",
-         components: {header: Header, default: Depositauto}
+         components: {header: Header, default: Depositauto},
       },
       {
          path: "/Withdraw",
          name: "Withdraw",
-         components: {header: Header, default: Withdraw}
+         components: {header: Header, default: Withdraw},
       },
       {
          path: "/ModalCheck",
          name: "ModalCheck",
-         components: {header: Header, default: ModalCheck}
-      }
-   ]
+         components: {header: Header, default: ModalCheck},
+      },
+      {
+         path: "/settingbonus",
+         name: "Settingbonus",
+         components: {header: Header, default: settingbonus},
+      },
+   ],
 });

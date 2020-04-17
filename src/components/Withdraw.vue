@@ -1,30 +1,14 @@
 <template>
    <div class="container" v-if="isLogin">
-      <div class="row justify-content-center">
-         <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
+      <div class="row justify-content-center px-3 mt-4">
+         <div class="col-xl-9 col-md-9 col-12 BG-gray-radius" style="font-weight:400;">
             <div class="row justify-content-center">
-               <div class="col-6 font26">ถอนเงิน</div>
-               <div class="col-6 align-self-center text-right color_yellow">
-                  <mdb-icon icon="angle-double-left" />
-                  <router-link to="/" class="color_yellow">ย้อนกลับ</router-link>
-               </div>
+               <div class="col-6 color_pink font22">ถอนเงิน</div>
+               <div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
             </div>
          </div>
       </div>
-      <div class="row justify-content-center p-3">
-         <div class="col-xl-9 col-md-9 col-12 BG-gray">
-            <div class="row my-1" style="margin-top:-5px;">
-               <div>
-                  <img src="/images/icon/dollar-coin.png" class="mx-3" width="100%;" style="max-width:65px; margin-top:-2px;" />
-               </div>
-               <div class="align-self-center">
-                  <div class="font16">ยอดเงิน</div>
-                  <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="row justify-content-center px-3">
+      <div class="row justify-content-center px-3 mt-3">
          <div class="col-xl-9 col-md-9 col-12 BG-yellow color_red font18 p-4" style="font-weight:400;">
             <div class="text-center">กติกาการถอนเงิน</div>
             <div class="font16 mt-2" style="color:#747474;">1. กรณี ไม่รับโบนัส จะต้องมีรายการเล่นอย่างน้อย 1 ครั้ง <br />2. กรณีมีการทุจริต การตัดสินใจของแอดมินถือเป็นที่สุด</div>
@@ -54,7 +38,7 @@
          </div>
          <div class="row justify-content-center">
             <div class="col-xl-5 col-md-6 col-11 mt-2">
-               <mdb-btn block size="sm" :disabled="btn_confirm" :class="btn_confirm ? 'btn-login-gray font16' : 'btn-login-orange font16'" @click="withdraw()" style="font-weight:400;">ยืนยันการถอน</mdb-btn>
+               <mdb-btn block size="sm" :disabled="btn_confirm" :class="btn_confirm ? 'btn-login-gray font16' : 'btn-Purple_Pink color_white font16'" @click="withdraw()" style="font-weight:400;">ยืนยันการถอน</mdb-btn>
             </div>
          </div>
          <div class="col-12">
@@ -65,7 +49,7 @@
       </div>
       <div class="col-12 text-center mt-2">
          <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
-            <mdb-btn size="md" class="btn-line-dep color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
+            <mdb-btn size="md" class="animation-Button animation-border color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
          </a>
          <div class="color_gray font14 mt-2">**หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
          <div class="mt-4"></div>
@@ -91,7 +75,7 @@ export default {
          withdraw_hide: null,
          withdraw_fix_show: null,
          withdraw_amount_show: null,
-         withdraw_with_show: null
+         withdraw_with_show: null,
       };
    },
    // components: {
@@ -106,14 +90,14 @@ export default {
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
-      })
+         token: "token",
+      }),
    },
    methods: {
       ...mapActions({
          storeLogin: "login",
          storeLoout: "logout",
-         updateAmount: "updateAmount"
+         updateAmount: "updateAmount",
       }),
       currencyFormat(n) {
          n = parseFloat(n);
@@ -133,23 +117,23 @@ export default {
       withdraw() {
          $(".preloader").show();
          let payload = {
-            amount: this.withdraw_amount
+            amount: this.withdraw_amount,
          };
          let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
+            expiresIn: "5s",
          });
-         this.$axios.post("/withdraw", {token: token}, this.token).then(response => {
+         this.$axios.post("/withdraw", {token: token}, this.token).then((response) => {
             this.updateAmount(response.data.amount);
             $(".preloader").hide();
             if (response.data.code === "SUCCESS") {
                let payload = {
                   username: this.user.username,
-                  current: this.withdraw_amount
+                  current: this.withdraw_amount,
                };
                let token = jwt.sign(payload, this.$keypayload, {
-                  expiresIn: "5s"
+                  expiresIn: "5s",
                });
-               this.$axios.post("/affiliateWithdraw", {token: token}, this.token).then(response => {
+               this.$axios.post("/affiliateWithdraw", {token: token}, this.token).then((response) => {
                   console.log(response.data);
                });
                this.$swal({
@@ -159,15 +143,15 @@ export default {
                   timer: 5000,
                   showConfirmButton: true,
                   allowOutsideClick: false,
-                  allowEscapeKey: false
-               }).then(result => {
+                  allowEscapeKey: false,
+               }).then((result) => {
                   if (result.value) {
-                     this.$router.push("/").catch(err => {
+                     this.$router.push("/").catch((err) => {
                         console.log(err);
                      });
                   }
                });
-               this.$router.push("/").catch(err => {
+               this.$router.push("/").catch((err) => {
                   console.log(err);
                });
             } else {
@@ -178,18 +162,18 @@ export default {
                   timer: 5000,
                   showConfirmButton: true,
                   allowOutsideClick: false,
-                  allowEscapeKey: false
+                  allowEscapeKey: false,
                });
-               this.$router.push("/").catch(err => {
+               this.$router.push("/").catch((err) => {
                   console.log(err);
                });
             }
          });
-      }
+      },
    },
 
    mounted() {
-      popup_withdraw.child("withdraw").on("value", snap => {
+      popup_withdraw.child("withdraw").on("value", (snap) => {
          //Popup affiliate
          var leng = snap.val();
          var show_popup_withdraw = [];
@@ -197,10 +181,10 @@ export default {
          for (var i = 0; i < leng.length; i++) {
             if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
                show_popup_withdraw.push({
-               title: snap.val()[i].title,
-              html: snap.val()[i].text,
-              imageUrl: snap.val()[i].imageUrl,
-              showConfirmButton: true,
+                  title: snap.val()[i].title,
+                  html: snap.val()[i].text,
+                  imageUrl: snap.val()[i].imageUrl,
+                  showConfirmButton: true,
                });
             }
             this.$swal.queue(show_popup_withdraw);
@@ -211,7 +195,7 @@ export default {
             $(".preloader").show();
             this.$axios
                .get("/is_login", this.token)
-               .then(response => {
+               .then((response) => {
                   $(".preloader").hide();
                   if (response.data.msg === "LOGOUT") {
                      this.$swal({
@@ -221,11 +205,11 @@ export default {
                         timer: 5000,
                         showConfirmButton: true,
                         allowOutsideClick: false,
-                        allowEscapeKey: false
+                        allowEscapeKey: false,
                      });
                      this.$router.push("/Logout");
                   } else {
-                     this.$axios.get("/wdfix", this.token).then(response => {
+                     this.$axios.get("/wdfix", this.token).then((response) => {
                         this.withdraw_fix = response.data.payload;
                         if (this.withdraw_fix > this.amount) {
                            this.withdraw_fix_show = true;
@@ -276,7 +260,7 @@ export default {
                            //   }
                            // });
                         } else {
-                           this.$axios.get("/hisWD", this.token).then(response => {
+                           this.$axios.get("/hisWD", this.token).then((response) => {
                               if (response.data.count !== 0) {
                                  this.$swal({
                                     title: "ไม่สามารถทำรายการถอนได้",
@@ -284,8 +268,8 @@ export default {
                                     html: "เนื่องจากมีรายการถอนอยู่",
                                     showConfirmButton: true,
                                     allowOutsideClick: false,
-                                    allowEscapeKey: false
-                                 }).then(result => {
+                                    allowEscapeKey: false,
+                                 }).then((result) => {
                                     if (result.value) {
                                        this.withdraw_hide = false;
                                        this.$router.push("/");
@@ -297,7 +281,7 @@ export default {
                      });
                   }
                })
-               .catch(err => {
+               .catch((err) => {
                   console.log(err);
                });
          }
@@ -305,7 +289,7 @@ export default {
          console.log("Logout Withdraw");
          this.$router.push("/Logout");
       }
-   }
+   },
 };
 </script>
 
@@ -327,6 +311,6 @@ export default {
    padding: 10px;
 }
 .border-with {
-   border: 1px solid #999999;
+   border: 1px solid #EB4384;
 }
 </style>

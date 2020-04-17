@@ -15,36 +15,40 @@ const state = {
    user: null,
    amount: 0,
    token: null,
-   service: "SlotIM",
-   version: "1.0:29/06/2562"
+   service: "SEXY222",
+   version: "1.0:29/06/2562",
+   settingBonus: false,
    // api: "//195.123.239.140"
 };
 
 const getters = {
-   isLogin: state => {
+   isLogin: (state) => {
       return state.isLogin;
    },
-   user: state => {
+   user: (state) => {
       return state.user;
    },
-   amount: state => {
+   amount: (state) => {
       return state.amount;
    },
-   token: state => {
+   token: (state) => {
       return state.token;
    },
-   server: state => {
+   server: (state) => {
       return state.server;
    },
-   version: state => {
+   version: (state) => {
       return state.version;
    },
-   steppage: state => {
+   steppage: (state) => {
       return state.steppage;
    },
-   steplog: state => {
+   steplog: (state) => {
       return state.steplog;
-   }
+   },
+   settingBonus: (state) => {
+      return state.settingBonus;
+   },
 };
 
 const mutations = {
@@ -63,13 +67,14 @@ const mutations = {
    steppage: (state, payload) => {
       state.steppage = payload;
    },
-   steplog: (state, payload) => {
-      state.steplog = payload;
-   }
+   settingBonus: (state, payload) => {
+      state.settingBonus = payload;
+   },
+
 };
 const actions = {
    updateAmount: ({commit}, payload) => {
-      Axios.get("//joker24h.abatopup.com/api/amount", state.token).then(respone => {
+      Axios.get("//joker24h.abatopup.com/api/amount", state.token).then((respone) => {
          console.log(payload);
          commit("amount", respone.data);
       });
@@ -78,14 +83,14 @@ const actions = {
       commit("isLogin", true);
       let auth = {
          headers: {
-            Authorization: "Bearer " + payload
-         }
+            Authorization: "Bearer " + payload,
+         },
       };
       commit("token", auth);
       let user = jwt.decode(payload);
       if (user) {
          commit("user", user.results[0]);
-         Axios.get("//joker24h.abatopup.com/api/amount", state.token).then(respone => {
+         Axios.get("//joker24h.abatopup.com/api/amount", state.token).then((respone) => {
             commit("amount", respone.data);
          });
       }
@@ -100,12 +105,15 @@ const actions = {
    },
    updatesteplog: ({commit}, payload) => {
       commit("steplog", payload);
-   }
+   },
+   updatesettingBonus: ({commit}, payload) => {
+      commit("settingBonus", payload);
+   },
 };
 
 export default new Vuex.Store({
    state,
    actions,
    mutations,
-   getters
+   getters,
 });

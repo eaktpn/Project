@@ -11,34 +11,7 @@
             </carousel>
          </div>
       </div>
-      <div class="row justify-content-center p-3" style="margin-top:-5px;">
-         <div class="col-xl-9 col-md-9 col-12 BG-gray-radius">
-            <div class="row justify-content-center mt-2">
-               <div><img src="/images/icon/dollar-coin.png" class="mx-3" width="100%;" style="max-width:65px; margin-top:-2px;" /></div>
-               <div class="align-self-center">
-                  <div class="font16">ยอดเงิน</div>
-                  <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
-               </div>
-            </div>
-            <div class="line-main my-3"></div>
-            <div class="row justify-content-center">
-               <div class="col font16 mb-2">
-                  <div class="text-center">
-                     ยูสเซอร์เนม : <span style="color:#5E72E4;">{{ user.username }}</span>
-                  </div>
-                  <div class="text-center mt-2">
-                     รหัสผ่าน : <span style="color:#5E72E4;">{{ user.password }}</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col text-center">
-               <router-link to="/Profile">
-                  <button type="button" class="btn btn-profile color_yellow font14" style="font-weight:200;">ข้อมูลบัญชี</button>
-               </router-link>
-            </div>
-         </div>
-      </div>
-      <div class="row justify-content-center px-3">
+      <div class="row justify-content-center px-3 mt-2">
          <div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
       </div>
       <div class="row justify-content-center p-2 mt-2">
@@ -47,7 +20,7 @@
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <router-link to="/Depositauto">
                      <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/wallet.png" width="60px;" />
+                        <img src="/images/icon/wallet.png" width="60px;" class="p-1" />
                         <div class="color_white font16" style="font-weight:400;">ฝากเงิน</div>
                      </div>
                   </router-link>
@@ -63,8 +36,8 @@
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <router-link to="/Affiliate">
                      <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/add-user.png" width="60px;" class="p-1" />
-                        <div class="color_white font16" style="font-weight:400;">แนะนำเพื่อน</div>
+                        <img src="/images/icon/add-user2.png" width="60px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">รับรายได้ฟรี</div>
                      </div>
                   </router-link>
                </div>
@@ -79,30 +52,21 @@
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <router-link to="/History">
                      <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/wall-clock.png" width="60px;" class="p-1" />
-                        <div class="color_white font16" style="font-weight:400;">ประวัติทำรายการ</div>
+                        <img src="/images/icon/wall-clock2.png" width="60px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">ประวัติ</div>
                      </div>
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <a href="https://lin.ee/4loZnaa" target="_blank">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/chat.png" width="60px;" class="p-1" />
-                        <div class="color_white font16" style="font-weight:400;">ติดต่อพนักงาน</div>
-                     </div>
-                  </a>
-               </div>
-               <!-- <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <div @click="start_wheel()">
-                     <div class="BG-gray-radius-main" style="cursor: pointer;">
-                        <img src="/images/icon/chat.png" width="60px;" class="p-1" />
-                        <div class="color_white font16" style="font-weight:400;">กงล้อ</div>
-                     </div>
+                  <div class="BG-gray-radius-main" style="cursor: pointer;" @click= settingBonusshow()>
+                     <img src="/images/icon/bonus-setting.png" width="60px;" class="p-1" />
+                     <div class="color_white font16" style="font-weight:400;">ตั้งค่าโบนัส</div>
                   </div>
-               </div> -->
+               </div>
             </div>
          </div>
       </div>
+      <settingbonus v-if="settingBonus === true"></settingbonus>
       <ModalCheck></ModalCheck>
       <div v-if="user">
          <Checkfullnamebank v-if="user.active === 1"></Checkfullnamebank>
@@ -141,6 +105,7 @@
 let getwheelEvent = "https://allbet.asia/wheel/script";
 import ModalCheck from "../components/ModalCheck.vue";
 import Checkfullnamebank from "../components/Checkfullname_bank.vue";
+import settingbonus from "../components/setting_bonus.vue";
 const jwt = require("jsonwebtoken");
 import momentjs from "moment";
 import {mapActions, mapGetters} from "vuex";
@@ -162,19 +127,22 @@ export default {
          confirm_OTP: "",
          counting: null,
          settingSwitch: "",
-         showsetting: false
+         showsetting: false,
+         settingbonuscheck: false,
       };
    },
    components: {
       ModalCheck,
       Carousel,
       Slide,
-      Checkfullnamebank
+      Checkfullnamebank,
+      settingbonus,
    },
    methods: {
       ...mapActions({
          storeLogin: "login",
-         storeLoout: "logout"
+         storeLoout: "logout",
+updatesettingBonus : 'updatesettingBonus'
       }),
       currencyFormat(n) {
          n = parseFloat(n);
@@ -323,6 +291,9 @@ export default {
       //       });
       //    }
       // },
+settingBonusshow () {
+   this.updatesettingBonus(true)
+},
       OTPcheck() {
          this.counting = true;
          this.btnsubmit = false;
@@ -330,15 +301,15 @@ export default {
       },
       onChange() {
          let payload = {
-            bonus_status: this.settingSwitch ? 1 : 0
+            bonus_status: this.settingSwitch ? 1 : 0,
          };
          let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
+            expiresIn: "5s",
          });
          $(".preloader").show();
          this.$axios
             .post("/is_bonus", {token: token}, this.token)
-            .then(response => {
+            .then((response) => {
                $(".preloader").hide();
                if (response.data.code != "SUCCESS") {
                   this.$swal({
@@ -348,13 +319,13 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                }
                $(".preloader").hide();
                this.$axios
                   .get("/is_login", this.token)
-                  .then(response => {
+                  .then((response) => {
                      $(".preloader").hide();
                      if (response.data.msg != "LOGOUT") {
                         this.$session.set("isLogin", true);
@@ -368,7 +339,7 @@ export default {
                            timer: 5000,
                            showConfirmButton: true,
                            allowOutsideClick: false,
-                           allowEscapeKey: false
+                           allowEscapeKey: false,
                         });
                         $(".preloader").hide();
                         this.$router.push("/Logout");
@@ -389,14 +360,15 @@ export default {
             this.settingSwitch = false;
          }
          this.showsetting = true;
-      }
+      },
    },
    computed: {
       ...mapGetters({
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
+         token: "token",
+settingBonus:'settingBonus'
       }),
       checkOTP: function() {
          if (this.user.active === 0) {
@@ -404,10 +376,10 @@ export default {
          } else {
             return false;
          }
-      }
+      },
    },
    mounted() {
-      popup_main.child("main").on("value", snap => {
+      popup_main.child("main").on("value", (snap) => {
          //Popup affiliate
          var leng = snap.val();
          var show_popup_main = [];
@@ -418,7 +390,7 @@ export default {
                   title: snap.val()[i].title,
                   html: snap.val()[i].text,
                   imageUrl: snap.val()[i].imageUrl,
-                  showConfirmButton: true
+                  showConfirmButton: true,
                });
             }
             this.$swal.queue(show_popup_main);
@@ -429,11 +401,11 @@ export default {
             // this.$session.set("page", "/");
             this.$axios
                .get("/is_login", this.token)
-               .then(response => {
+               .then((response) => {
                   if (response.data.msg != "LOGOUT") {
                      this.$axios
                         .get("/affiliateUpdate", this.token) // Update affiliate
-                        .then(response => {
+                        .then((response) => {
                            console.log("affiliateUpdate " + response.data.msg);
                         })
                         .catch(function(error) {
@@ -453,7 +425,7 @@ export default {
                         timer: 5000,
                         showConfirmButton: true,
                         allowOutsideClick: false,
-                        allowEscapeKey: false
+                        allowEscapeKey: false,
                      });
                      this.$router.push("/Logout");
                   }
@@ -469,10 +441,10 @@ export default {
          console.log("Logout main");
          this.$router.push("/Logout");
       }
-      bannerRef.orderByKey().on("value", snap => {
+      bannerRef.orderByKey().on("value", (snap) => {
          this.bannerimg = snap.val();
       });
-   }
+   },
 };
 </script>
 
@@ -491,9 +463,9 @@ export default {
    border: 0.5px solid #969595;
 }
 .login-game {
-   background: #232323;
+   background: linear-gradient(97.95deg, #522b7e 1.16%, #be2b61 100%) !important;
+   box-shadow: 2px 3px 2px 0px #808080;
    border-radius: 12px;
-   border: 1px solid #36d3f5;
 }
 .padding-main {
    padding-right: 6px !important;

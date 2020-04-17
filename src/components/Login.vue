@@ -1,32 +1,40 @@
 <template>
    <div class="BG-Gradient d-flex flex-column justify-content-center">
       <div class="container">
-         <div class="row justify-content-center">
-            <div class="col-xl-8 col-md-8 col-11 text-center "><img src="/images/logo/joker24h.png" width="100%;" style="max-width:160px;" /></div>
+         <div class="row justify-content-center" id="z-index">
+            <div class="col-xl-8 col-md-8 col-11 text-center "><img src="/images/logo/sexy222.png" width="100%;" style="max-width:300px;" /></div>
          </div>
          <form @submit.prevent="checklogin()">
-            <div class="row justify-content-center mt-3">
-               <div class="col-xl-7 col-md-9 col-11 ">
-                  <i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์
-                  <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)" />
-               </div>
-               <div class="col-xl-7 col-md-9 col-11 mt-2">
-                  <i class="fas fa-key"></i> กรอกรหัสผ่าน
-                  <input type="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" v-model="password" maxlength="16" />
-               </div>
-            </div>
-            <div class="row justify-content-center ">
-               <div class="col-xl-5 col-md-6 col-11 mt-3">
-                  <mdb-btn @click="checklogin()" block size="sm" class="btn-login-orange color_back font18" style="font-weight:400;">เข้าสู่ระบบ</mdb-btn>
+            <div class="row justify-content-center" style="margin:-50px 15px 0px 15px ;">
+               <div class="col-xl-8 col-md-9 col-12 BG-gray-radius">
+                  <div class="row justify-content-center mt-5">
+                     <div class="col-xl-11 col-md-11 col-11 mt-2">
+                        <i class="fas fa-mobile-alt"></i> กรอกเบอร์โทรศัพท์
+                        <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)" />
+                     </div>
+                     <div class="col-xl-11 col-md-11 col-11 mt-2">
+                        <i class="fas fa-key"></i> กรอกรหัสผ่าน
+                        <input type="password" v-model="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" maxlength="16" id="password-field" />
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" @click="show_hide()"></span>
+                     </div>
+                  </div>
+                  <div class="row justify-content-center mb-4">
+                     <div class="col-xl-8 col-md-10 col-11 mt-3">
+                        <mdb-btn @click="checklogin()" block size="sm" class="btn-Purple_Pink color_white font18" style="font-weight:400;">เข้าสู่ระบบ</mdb-btn>
+                     </div>
+                  </div>
                </div>
             </div>
          </form>
-         <div class="row justify-content-center color_yellow font16 mt-3">
-            <div class style="cursor: pointer;" @click="showModal = true">ลงทะเบียนใช้งาน</div>
+         <div class="row justify-content-center font16 mt-4">
+            <div class="color_yellow" style="font-weight:300;"><mdb-icon icon="angle-double-left" /><router-link to="/Index" class="color_yellow"> ย้อนกลับ</router-link></div>
          </div>
-         <div style="margin-bottom:50px;"></div>
+         <div style="margin-bottom:30px;"></div>
+         <!-- <div class="row justify-content-center color_yellow font16 mt-3">
+            <div class style="cursor: pointer;" @click="showModal = true">ลงทะเบียนใช้งาน</div>
+         </div> -->
 
-         <mdb-modal class="color_back" :show="showModal" @close="showModal = false" centered>
+         <!-- <mdb-modal class="color_back" :show="showModal" @close="showModal = false" centered>
             <mdb-modal-header>
                <mdb-modal-title class="color_blue" style="font-weight:400;">เงื่อนไขการสมัคร</mdb-modal-title>
             </mdb-modal-header>
@@ -47,7 +55,7 @@
                   <mdb-btn block :disabled="check_condition === false" size="sm" :class="check_condition === false ? 'btn-login-gray font16' : 'btn-login-orange color_back font16'" style="font-weight:400;" @click="GoRegister()">ตกลง</mdb-btn>
                </div>
             </div>
-         </mdb-modal>
+         </mdb-modal> -->
       </div>
    </div>
 </template>
@@ -63,8 +71,8 @@ export default {
       return {
          phonenumber: "",
          password: "",
-         check_condition: false,
-         showModal: false,
+         // check_condition: false,
+         // showModal: false,
          errors: []
       };
    },
@@ -80,6 +88,15 @@ export default {
       ...mapActions({
          storeLogin: "login"
       }),
+      show_hide: function() {
+         $(".toggle-password").toggleClass("fa-eye fa-eye-slash");
+         var input = $($(".toggle-password").attr("toggle"));
+         if (input.attr("type") == "password") {
+            input.attr("type", "text");
+         } else {
+            input.attr("type", "password");
+         }
+      },
       isNumber: function(evt) {
          evt = evt ? evt : window.event;
          var charCode = evt.which ? evt.which : evt.keyCode;
@@ -97,9 +114,9 @@ export default {
          }
          this.showsetting = true;
       },
-      GoRegister() {
-         this.$router.push("/Register");
-      },
+      // GoRegister() {
+      //    this.$router.push("/Register");
+      // },
       checklogin: function() {
          this.errors = [];
          // Check phonenumber
@@ -239,11 +256,25 @@ export default {
 </script>
 
 <style>
+#z-index {
+   z-index: 5 !important;
+   position: relative;
+}
 .BG-Gradient {
-   background: radial-gradient(50% 50% at 50% 50%, #363636 0%, #181818 78.65%);
+   background: #141414;
    height: 100vh;
 }
 .logo {
    min-width: 160px;
+}
+
+/*------- Show-Hide Pass -------*/
+.field-icon {
+   float: right;
+   margin-left: -15px;
+   margin-right: 10px;
+   margin-top: -27px;
+   position: relative;
+   z-index: 2;
 }
 </style>

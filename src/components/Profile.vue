@@ -1,9 +1,9 @@
 <template>
    <div class="container" v-if="isLogin">
-      <div class="row justify-content-center">
-         <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
+      <div class="row justify-content-center px-3 mt-4">
+         <div class="col-xl-9 col-md-9 col-12 BG-gray-radius" style="font-weight:400;">
             <div class="row justify-content-center">
-               <div class="col-6 font26">ข้อมูลผู้ใช้</div>
+               <div class="col-6 color_pink font22">ข้อมูลผู้ใช้</div>
                <div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
             </div>
          </div>
@@ -11,20 +11,38 @@
       <div class="row justify-content-center p-3">
          <div class="col-xl-9 col-md-9 col-12 BG-gray-radius">
             <div class="row">
-               <div class="col-xl-6 col-md-6 col-12">
+               <div class="col-xl-12 col-md-12 col-12">
                   <div class="row mt-4">
-                     <div class="col-5 text-right" style="margin-top:-5px;"><img src="/images/icon/dollar-coin.png" width="110%;" class="ml-2 mt-1" style="max-width:65px;" /></div>
-                     <div class="col-7">
+                     <div class="col-xl-5 col-md-5 col-4 text-right"><img src="/images/icon/profile.png" width="110%;" class="ml-2 mt-1" style="max-width:65px;" /></div>
+                     <div class="col-xl-7 col-md-7 col-8">
+                        <div class="font18">ยูสเซอร์เนม : {{ user.username }}</div>
+                        <div class="font18">รหัสผ่าน : {{ user.password }}</div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xl-12 col-md-12 col-12">
+                  <div class="row mt-4">
+                     <div class="col-xl-5 col-md-5 col-4 text-right" style="margin-top:-5px;"><img src="/images/icon/dollar-coin.png" width="110%;" class="ml-2 mt-1" style="max-width:55px;" /></div>
+                     <div class="col-xl-7 col-md-7 col-8">
                         <div class=" font18">ยอดเงิน</div>
                         <div class="color_blue font24" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
                      </div>
                   </div>
                </div>
-               <div class="col-xl-6 col-md-6 col-12">
+               <div class="col-xl-12 col-md-12 col-12">
                   <div class="row mt-3">
-                     <div class="col-5 text-right"><img src="/images/icon/insignia.png" width="110%;" class="ml-2 mt-1" style="max-width:65px;" /></div>
-                     <div class="col-7 align-self-center">
+                     <div class="col-xl-5 col-md-5 col-4 text-right"><img src="/images/icon/insignia.png" width="110%;" class="ml-2 mt-1" style="max-width:55px;" /></div>
+                     <div class="col-xl-7 col-md-7 col-8 align-self-center">
                         <div class=" font18">แต้มสะสม</div>
+                        <div class="color_blue font24" style="font-weight:400;">{{ user.point }}</div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xl-12 col-md-12 col-12">
+                  <div class="row mt-3">
+                     <div class="col-xl-5 col-md-5 col-4 text-right"><img src="/images/icon/diamond.png" width="110%;" class="mr-1 mt-2" style="max-width:45px;" /></div>
+                     <div class="col-xl-7 col-md-7 col-8 align-self-center">
+                        <div class=" font18">เพชร</div>
                         <div class="color_blue font24" style="font-weight:400;">{{ user.point }}</div>
                      </div>
                   </div>
@@ -33,19 +51,12 @@
             <div class="row justify-content-center mt-4"><div class="col-xl-11 col-md-11 col-11 line-profile"></div></div>
             <div class="row justify-content-center mt-4">
                <div class="col font16 mb-4">
-                  <div class="text-center">
-                     ยูสเซอร์เนม : <span style="color:#5E72E4;">{{ user.username }}</span>
-                  </div>
                   <div class="text-center mt-2">
-                     รหัสผ่าน : <span style="color:#5E72E4;">{{ user.password }}</span>
-                  </div>
-                  <div class="text-center mt-4">
-                     บัญชีธนาคาร :
-                     <img :src="'/images/bank/' + user.bank_code + '.png'" style="width:25px;" alt /> {{ user.bank_number }}
-                     <div class="font14 mt-3" style="color:#FFDE30;">
-                        {{ user.fullname_bank }}
-                     </div>
-                     <div><mdb-btn class="font14 color_back btn-edit-name mt-1" @click="Editbank()">แก้ไขชื่อ</mdb-btn></div>
+                     <div>บัญชีธนาคาร : <img :src="'/images/bank/' + user.bank_code + '.png'" style="width:25px;" alt /> {{ user.bank_type }}</div>
+                     <div class="mt-2">เลขบัญชี : {{ user.bank_number }}</div>
+                     <div class="mt-2" v-if="user.bank_code != 'SCB'">ชื่อบัญชี : {{ user.full_name }}</div>
+                     <div class="mt-2" v-if="user.bank_code == 'SCB'">ชื่อบัญชี : {{ user.fullname_bank }}</div>
+                     <div v-if="user.bank_code == 'SCB'"><mdb-btn class="font14 color_back btn-edit-names mt-1" @click="Editbank()">แก้ไขชื่อ</mdb-btn></div>
                   </div>
                </div>
             </div>
@@ -87,7 +98,7 @@
                      <div>
                         <small class="text-primary">กรุณากรอกเป็นภาษาอังกฤษ ตัวพิมพ์ใหญ่ A-Z</small>
                      </div>
-                     <input type="text" class="form-control" v-model="FistnameSCB" onpaste="return false" onkeyup="this.value = this.value.toUpperCase();" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122" />
+                     <input type="text" class="form-control" v-model="FistnameSCB" onpaste="return false" onkeyup="this.value = this.value.toUpperCase();" @keypress="is_character(event)" />
                   </div>
                </div>
                <div class="col-2 col-md-2 px-0 align-self-center mt-3">
@@ -100,7 +111,7 @@
                      <div>
                         <small class="text-primary">กรุณากรอกเป็นภาษาอังกฤษ ตัวพิมพ์ใหญ่ A-Z</small>
                      </div>
-                     <input type="text" class="form-control" onpaste="return false" onkeyup="this.value = this.value.toUpperCase();" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122" v-model="LastnameSCB" />
+                     <input type="text" class="form-control" v-model="LastnameSCB" onpaste="return false" onkeyup="this.value = this.value.toUpperCase();" @keypress="is_character(event)" />
                   </div>
                </div>
                <div class="col-2 col-md-2 px-0 align-self-center mt-3">
@@ -186,6 +197,15 @@ export default {
          storeLogin: "login",
          storeLoout: "logout"
       }),
+      is_character: function(evt) {
+         evt = evt ? evt : window.event;
+         var charCode = evt.which ? evt.which : evt.keyCode;
+         if (charCode < 97 || charCode > 122) {
+            evt.preventDefault();
+         } else {
+            return true;
+         }
+      },
       currencyFormat(n) {
          n = parseFloat(n);
          return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -324,7 +344,7 @@ export default {
 .line-profile {
    border: 0.5px solid #969595;
 }
-.btn-edit-name {
+.btn-edit-names {
    background: #fcff68 !important;
    border-radius: 4px;
    padding: 2px 9px 1px 9px;

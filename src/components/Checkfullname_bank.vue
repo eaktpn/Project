@@ -36,7 +36,7 @@
                      <div>
                         <small class="text-primary">กรุณากรอกเป็นภาษาอังกฤษ ตัวพิมพ์ใหญ่ A-Z</small>
                      </div>
-                     <input type="text" id="example1" class="form-control" v-model="FistnameSCB" onkeyup="this.value = this.value.toUpperCase();" onpaste="return false" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122" />
+                     <input type="text" id="example1" class="form-control" v-model="FistnameSCB" onkeyup="this.value = this.value.toUpperCase();" onpaste="return false" @keypress="is_character(event)" />
                   </div>
                </div>
                <div class="col-2 col-md-2 px-0 align-self-center mt-3">
@@ -49,7 +49,7 @@
                      <div>
                         <small class="text-primary">กรุณากรอกเป็นภาษาอังกฤษ ตัวพิมพ์ใหญ่ A-Z</small>
                      </div>
-                     <input type="text" id="example1" class="form-control" onkeyup="this.value = this.value.toUpperCase();" onpaste="return false" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122" v-model="LastnameSCB" />
+                     <input type="text" id="example1" class="form-control" v-model="LastnameSCB" onkeyup="this.value = this.value.toUpperCase();" onpaste="return false"  @keypress="is_character($event)" />
                   </div>
                </div>
                <div class="col-2 col-md-2 px-0 align-self-center mt-3">
@@ -146,6 +146,15 @@ export default {
          storeLogin: "login",
          storeLogout: "logout"
       }),
+      is_character: function(evt) {
+         evt = evt ? evt : window.event;
+         var charCode = evt.which ? evt.which : evt.keyCode;
+         if (charCode < 97 || charCode > 122) {
+            evt.preventDefault();
+         } else {
+            return true;
+         }
+      },
       checkNamk() {
          if (this.FistnameSCB === "") {
             this.$swal({
