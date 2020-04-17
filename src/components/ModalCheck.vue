@@ -22,7 +22,7 @@
             <div class="col-12 text-center color_white font14 mt-3">
                หากเกิดปัญหา ให้ติดต่อแอดมินทาง
                <span class="color_green">
-                  <a href="https://line.me/R/ti/p/@596zqntk" target="_blank"><b>LINE คลิ๊ก</b></a></span
+                  <a href="https://lin.ee/vXk9XAw" target="_blank"><b>LINE คลิ๊ก</b></a></span
                >
             </div>
          </div>
@@ -46,7 +46,7 @@
             <p class="text-white font14" style="margin-top:20px;">
                กรณีไม่ได้รับรหัส
                <b>OTP</b> ให้ติดต่อแอดมินทาง
-               <a href="http://line.me/ti/p/@winbetth" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
+               <a href="https://lin.ee/vXk9XAw" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
                   <b>LINE CLICK</b>
                </a>
             </p>

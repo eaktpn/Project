@@ -8,11 +8,12 @@
             <div class="row justify-content-center mt-3">
                <div class="col-xl-7 col-md-9 col-11 color_yellow">
                   <mdb-icon icon="fas fa-mobile-alt" /> กรอกเบอร์โทรศัพท์
-                  <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)"/>
+                  <input type="text" class="form-control1 mt-1" placeholder="เบอร์โทรศัพท์" v-model="phonenumber" maxlength="10" @keypress="isNumber($event)" />
                </div>
                <div class="col-xl-7 col-md-9 col-11 color_yellow mt-2">
                   <mdb-icon icon="fas fa-key" /> กรอกรหัสผ่าน
-                  <input type="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" v-model="password" maxlength="16" />
+                  <input type="password" v-model="password" class="form-control1 mt-1" placeholder="รหัสผ่าน" maxlength="16" id="password-field" />
+                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" @click="show_hide()"></span>
                </div>
             </div>
             <div class="row justify-content-center ">
@@ -57,6 +58,15 @@ export default {
       ...mapActions({
          storeLogin: "login"
       }),
+      show_hide: function() {
+         $(".toggle-password").toggleClass("fa-eye fa-eye-slash");
+         var input = $($(".toggle-password").attr("toggle"));
+         if (input.attr("type") == "password") {
+            input.attr("type", "text");
+         } else {
+            input.attr("type", "password");
+         }
+      },
       isNumber: function(evt) {
          evt = evt ? evt : window.event;
          var charCode = evt.which ? evt.which : evt.keyCode;
@@ -222,5 +232,15 @@ export default {
 }
 .logo {
    min-width: 160px;
+}
+
+/*------- Show-Hide Pass -------*/
+.field-icon {
+   float: right;
+   margin-left: -15px;
+   margin-right: 10px;
+   margin-top: -27px;
+   position: relative;
+   z-index: 2;
 }
 </style>

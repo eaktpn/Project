@@ -63,7 +63,7 @@
                         <i class="my-1 fab fa-facebook-square text-primary"></i><span class="font16 text-primary"><b>Facebook</b></span>
                      </div>
                   </a>
-                  <a href="" target="_blank">
+                  <a href="https://lin.ee/vXk9XAw" target="_blank">
                      <div>
                         <i class="fab fa-line text-success"></i><span class="font16 text-success"><b>Line</b></span>
                      </div>

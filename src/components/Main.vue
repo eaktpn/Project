@@ -82,7 +82,7 @@
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <a href="https://line.me/R/ti/p/@596zqntk" target="_blank">
+                  <a href="https://lin.ee/vXk9XAw" target="_blank">
                      <div class="BG-gray-radius" style="cursor: pointer;">
                         <img src="/images/icon/contact.png" width="70px;" class="p-1" />
                         <div class="color_white font16" style="font-weight:400;">ติดต่อ</div>
