@@ -89,6 +89,20 @@
                      </div>
                   </a>
                </div>
+               <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
+                  <a href="javascript:start_wheel();" class="BG-gray-radius" style="cursor: pointer;">
+                     <img src="/images/icon/contact.png" width="70px;" class="p-1" />
+                     <div class="color_white font16" style="font-weight:400;">กงล้อ</div>
+                  </a>
+               </div>
+               <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
+                  <a href="javascript:start_wheel();">
+                     <div class="BG-gray-radius" style="cursor: pointer;">
+                        <img src="/images/icon/contact.png" width="60px;" class="p-1" />
+                        <div class="color_white font16" style="font-weight:400;">กงล้อ</div>
+                     </div>
+                  </a>
+               </div>
             </div>
          </div>
       </div>
@@ -100,6 +114,7 @@
 </template>
 
 <script>
+let getwheelEvent = "https://allbet.asia/wheel/script";
 import ModalCheck from "../components/ModalCheck.vue";
 import Checkfullnamebank from "../components/Checkfullname_bank.vue";
 const jwt = require("jsonwebtoken");
@@ -123,21 +138,21 @@ export default {
          confirm_OTP: "",
          counting: null,
          settingSwitch: "",
-         showsetting: false
+         showsetting: false,
       };
    },
    components: {
       ModalCheck,
       Carousel,
       Slide,
-      Checkfullnamebank
+      Checkfullnamebank,
    },
    computed: {
       ...mapGetters({
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
+         token: "token",
       }),
       checkOTP: function() {
          if (this.user.active === 0) {
@@ -145,13 +160,16 @@ export default {
          } else {
             return false;
          }
-      }
+      },
    },
    methods: {
       ...mapActions({
          storeLogin: "login",
-         storeLoout: "logout"
+         storeLoout: "logout",
       }),
+      wheel() {
+         $.getScript(getwheelEvent + "?session_id=" + this.user.session_id + "&service=SIAMSLOTXO");
+      },
       currencyFormat(n) {
          n = parseFloat(n);
          return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -181,15 +199,15 @@ export default {
       },
       onChange() {
          let payload = {
-            bonus_status: this.settingSwitch ? 1 : 0
+            bonus_status: this.settingSwitch ? 1 : 0,
          };
          let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
+            expiresIn: "5s",
          });
          $(".preloader").show();
          this.$axios
             .post("/is_bonus", {token: token}, this.token)
-            .then(response => {
+            .then((response) => {
                $(".preloader").hide();
                if (response.data.code != "SUCCESS") {
                   this.$swal({
@@ -199,13 +217,13 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                }
                $(".preloader").hide();
                this.$axios
                   .get("/is_login", this.token)
-                  .then(response => {
+                  .then((response) => {
                      $(".preloader").hide();
                      if (response.data.msg != "LOGOUT") {
                         this.$session.set("isLogin", true);
@@ -219,7 +237,7 @@ export default {
                            timer: 5000,
                            showConfirmButton: true,
                            allowOutsideClick: false,
-                           allowEscapeKey: false
+                           allowEscapeKey: false,
                         });
                         $(".preloader").hide();
                         this.$router.push("/Logout");
@@ -240,10 +258,10 @@ export default {
             this.settingSwitch = false;
          }
          this.showsetting = true;
-      }
+      },
    },
    mounted() {
-      popup_main.child("main").on("value", snap => {
+      popup_main.child("main").on("value", (snap) => {
          //Popup affiliate
          var leng = snap.val();
          var show_popup_main = [];
@@ -254,7 +272,7 @@ export default {
                   title: snap.val()[i].title,
                   html: snap.val()[i].text,
                   icon: snap.val()[i].type,
-                  showConfirmButton: snap.val()[i].showConfirmButton
+                  showConfirmButton: snap.val()[i].showConfirmButton,
                });
             }
             this.$swal.queue(show_popup_main);
@@ -265,11 +283,11 @@ export default {
             // this.$session.set("page", "/");
             this.$axios
                .get("/is_login", this.token)
-               .then(response => {
+               .then((response) => {
                   if (response.data.msg != "LOGOUT") {
                      this.$axios
                         .get("/affiliateUpdate", this.token) // Update affiliate
-                        .then(response => {
+                        .then((response) => {
                            console.log("affiliateUpdate " + response.data.msg);
                         })
                         .catch(function(error) {
@@ -279,6 +297,7 @@ export default {
                      this.$session.set("isLogin", true);
                      this.$session.set("token", response.data);
                      this.storeLogin(response.data);
+                     $.getScript(getwheelEvent + "?session_id=" + this.user.session_id + "&service=SIAMSLOTXO");
                      //this.confirm_phonenumber = this.user.phone_number; // คืนค่าเบอร์โทรศัพท์ไปช่อง input
                   } else {
                      this.$swal({
@@ -288,7 +307,7 @@ export default {
                         timer: 5000,
                         showConfirmButton: true,
                         allowOutsideClick: false,
-                        allowEscapeKey: false
+                        allowEscapeKey: false,
                      });
                      this.$router.push("/Logout");
                   }
@@ -304,10 +323,10 @@ export default {
          console.log("Logout main");
          this.$router.push("/Logout");
       }
-      bannerRef.orderByKey().on("value", snap => {
+      bannerRef.orderByKey().on("value", (snap) => {
          this.bannerimg = snap.val();
       });
-   }
+   },
 };
 </script>
 
