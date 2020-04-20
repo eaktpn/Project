@@ -1,9 +1,9 @@
 <template>
    <div class="container" v-if="isLogin">
-      <div class="row justify-content-center">
-         <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
+      <div class="row justify-content-center px-3 mt-4">
+         <div class="col-xl-9 col-md-9 col-12 BG-gray-radius" style="font-weight:400;">
             <div class="row justify-content-center">
-               <div class="col-6 font26">ฝากเงิน</div>
+               <div class="col-6 color_pink font22">ฝากเงิน</div>
                <div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
             </div>
          </div>
@@ -36,8 +36,7 @@
                </div>
                <div class="col-xl-4 col-md-5 col-5 col-auto BG-gray-radius text-white font14" style="margin:10px;">
                   <router-link to="/Depositauto">
-                     <img src="/images/icon/wallet.png" width="100px;" />
-
+                     <img src="/images/icon/wallet.png" class="p-3" width="100px;" />
                      <div class="color_white">
                         ฝากเงินผ่านระบบ
                         <br />AUTO
@@ -59,6 +58,13 @@
             <div class="mt-1 font14" style="color:#747474; font-weight:400;">ต้องใช้บัญชีที่สมัคร ฝากเงินเข้ามาเท่านั้น และต้องโอนเงินผ่านช้องทางแอพพลิเคชั่น ของธนาคารบานมือถือเท่านั้น มิเช่นนั้นจะไม่สามารถยืนยันรายการฝากได้ ถ้าเกิดข้อผิดพลาดของระบบ ให้แจ้งกับพนักงานทันที กรณีที่ไม่แจ้งเราขอสงวนสิทธิ์การถอนเงิน ทุกกรณี</div>
          </div>
       </div>
+      <div class="row justify-content-center p-3">
+         <a href="https://line.me/R/ti/p/@248zcbiq" target="_blank">
+            <mdb-btn size="md" class="animation-Button animation-border color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
+         </a>
+         <div class="font14 mt-2">*กดเพิ่มเพื่อนเพื่อรับบริการแจ้งเตือนยอดฝาก</div>
+         <div class="text-center color_gray font14 my-2">**หลังจากโอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
+      </div>
    </div>
 </template>
 
@@ -76,18 +82,18 @@ export default {
          user: "user",
          amount: "amount",
          server: "server",
-         token: "token"
-      })
+         token: "token",
+      }),
    },
    methods: {
       ...mapActions({
          storeLogin: "login",
-         storeLogout: "logout"
+         storeLogout: "logout",
       }),
       currencyFormat(n) {
          n = parseFloat(n);
          return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-      }
+      },
    },
    mounted() {
       this.$session.set("page", "/Deposit");
@@ -95,7 +101,7 @@ export default {
          $(".preloader").show();
          this.$axios
             .get("/is_login", this.token)
-            .then(response => {
+            .then((response) => {
                $(".preloader").hide();
                if (response.data.msg === "LOGOUT") {
                   // จะคืนค่า LOGOUT มา ก็ต่อเมื่อมีการ Login จากที่อื่น
@@ -106,7 +112,7 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                   this.$router.push("/Logout");
                }
@@ -115,7 +121,7 @@ export default {
                console.log(error);
             });
       }
-   }
+   },
 };
 </script>
 
