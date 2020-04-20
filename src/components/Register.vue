@@ -297,7 +297,7 @@ export default {
                      this.$swal({
                         icon: "error",
                         title: "เกิดข้อผิดพลาด",
-                        text: "เกิดข้อผิดพลาดของเซิฟเวอร์",
+                        html: response.data.msg,
                         timer: 5000,
                         showConfirmButton: true,
                         allowOutsideClick: false,
