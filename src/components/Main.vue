@@ -11,14 +11,14 @@
             </carousel>
          </div>
       </div>
-      <div class="row justify-content-center px-3 mt-2">
+      <div class="row justify-content-center px-3 mt-3">
          <div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
       </div>
       <div class="row justify-content-center p-2 mt-2">
          <div class="col-xl-9 col-md-9 col-12">
             <div class="row text-center">
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <router-link to="/Depositauto">
+                  <router-link to="/Deposit">
                      <div class="BG-gray-radius-main" style="cursor: pointer;">
                         <img src="/images/icon/wallet.png" width="60px;" class="p-1" />
                         <div class="color_white font16" style="font-weight:400;">ฝากเงิน</div>
