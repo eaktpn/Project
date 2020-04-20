@@ -8,7 +8,7 @@
                <div class="color_white font14 p-2" style="cursor:pointer;">ยืนยันตัวตนผ่านโทรศัพท์</div>
             </div>
             <div class="col-6 text-center mt-2">
-               <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
+               <a href="https://line.me/R/ti/p/@248zcbiq" target="_blank">
                   <!-- <i class="fab fa-line fa-9x text-success" style="cursor:pointer;"></i> -->
                   <img src="/images/icon/line2.png" class="mx-3" width="100%;" style="max-width:130px; cursor:pointer;" />
                   <div class="color_white font14 p-2" style="cursor:pointer;">ยืนยันตัวตนผ่าน Line</div>
@@ -46,7 +46,7 @@
             <p class="text-white font14" style="margin-top:20px;">
                กรณีไม่ได้รับรหัส
                <b>OTP</b> ให้ติดต่อแอดมินทาง
-               <a href="http://line.me/ti/p/@winbetth" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
+               <a href="https://lin.ee/4loZnaa" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
                   <b>LINE CLICK</b>
                </a>
             </p>

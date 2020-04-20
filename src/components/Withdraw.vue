@@ -48,7 +48,7 @@
          </div>
       </div>
       <div class="col-12 text-center mt-2">
-         <a href="https://line.me/R/ti/p/@586fphiq" target="_blank">
+         <a href="https://line.me/R/ti/p/@248zcbiq" target="_blank">
             <mdb-btn size="md" class="animation-Button animation-border color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
          </a>
          <div class="color_gray font14 mt-2">**หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่ผากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
