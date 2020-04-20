@@ -46,7 +46,7 @@
             <p class="text-white font14" style="margin-top:20px;">
                กรณีไม่ได้รับรหัส
                <b>OTP</b> ให้ติดต่อแอดมินทาง
-               <a href="http://line.me/ti/p/@winbetth" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
+               <a href="https://lin.ee/4loZnaa" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
                   <b>LINE CLICK</b>
                </a>
             </p>
