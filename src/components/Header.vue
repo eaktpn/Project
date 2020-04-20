@@ -77,7 +77,7 @@
                      <router-link to="/Logout" class="font16 color_pink"><i class="my-2 fas fa-sign-out-alt color_pink"></i><b>ออกจากระบบ</b></router-link>
                   </div>
                   <hr class="my-hr mt-3" />
-                  <a href="https://facebook.com/Joker24h-107816474080548/?ref=bookmarks" target="_blank">
+                  <a href="https://facebook.com/Sexy222-103227088036432/" target="_blank">
                      <div>
                         <i class="my-1 fab fa-facebook-square text-primary"></i><span class="font16 text-primary"><b>Facebook</b></span>
                      </div>
