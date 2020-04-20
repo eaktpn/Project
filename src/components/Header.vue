@@ -20,7 +20,7 @@
             <div class="row justify-content-center">
                <div class="col-xl-9 col-md-9 col-12">
                   <div class="row justify-content-center mt-2">
-                     <div class="col-xl-6 col-md-6 col-6">
+                     <div class="col-xl-6 col-md-6 col-6" style="cursor:pointer;" @click="copy_user(user.username)">
                         ยูสเซอร์เนม : <span class="color_pink">{{ user.username }}</span>
                      </div>
                      <div class="col-xl-6 col-md-6 col-6 text-right">
@@ -32,7 +32,10 @@
                      <div class="col-7 font16">
                         <div>ยอดเงินคงเหลือ</div>
                         <div>
-                           <span class="color_pink font24"><b>{{ currencyFormat(amount) }}</b></span> บาท
+                           <span class="color_pink font24"
+                              ><b>{{ currencyFormat(amount) }}</b></span
+                           >
+                           บาท
                         </div>
                      </div>
                      <div class="col-5 align-self-center text-right">
@@ -145,6 +148,10 @@ export default {
       currencyFormat(n) {
          n = parseFloat(n);
          return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+      },
+copy_user(username) {
+         this.$copyText(username);
+         this.$swal("คัดลอกสำเร็จ", "ยูสเซอร์เนม " + username ,"success");
       },
       onChange() {
          let payload = {
@@ -322,7 +329,7 @@ export default {
    transition: 0.4s;
 }
 input:checked + .slider {
-   background-color: #EB4384;
+   background-color: #eb4384;
 }
 input:focus + .slider {
    box-shadow: 0 0 1px #2196f3;
