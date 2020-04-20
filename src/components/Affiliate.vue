@@ -130,7 +130,7 @@
                <span class="col-xl-1 col-md-1 col-1">#</span>
                <span class="col-xl-4 col-md-4 col-4">ว/ด/ป เวลา</span>
                <span class="col-xl-3 col-md-3 col-3">ยูสเซอร์</span>
-               <span class="col-xl-4 col-md-4 col-4">ยอดเสียของเพื่อน 5%</span>
+               <span class="col-xl-4 col-md-4 col-4">ยอดเสียของเพื่อน 3%</span>
             </div>
             <div class="line-aff mt-2"></div>
             <div class="row text-center font14 mt-2" v-for="(logaff, key) in afflog" :key="key">
