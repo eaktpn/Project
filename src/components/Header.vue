@@ -32,7 +32,7 @@
                      <div class="col-7 font16">
                         <div>ยอดเงินคงเหลือ</div>
                         <div>
-                           <span class="color_pink font24">{{ currencyFormat(amount) }}</span> บาท
+                           <span class="color_pink font24"><b>{{ currencyFormat(amount) }}</b></span> บาท
                         </div>
                      </div>
                      <div class="col-5 align-self-center text-right">
