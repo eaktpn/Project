@@ -89,20 +89,14 @@
                      </div>
                   </a>
                </div>
-               <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <a href="javascript:start_wheel();" class="BG-gray-radius" style="cursor: pointer;">
-                     <img src="/images/icon/contact.png" width="70px;" class="p-1" />
-                     <div class="color_white font16" style="font-weight:400;">กงล้อ</div>
-                  </a>
-               </div>
-               <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
+               <!-- <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
                   <a href="javascript:start_wheel();">
                      <div class="BG-gray-radius" style="cursor: pointer;">
                         <img src="/images/icon/contact.png" width="60px;" class="p-1" />
                         <div class="color_white font16" style="font-weight:400;">กงล้อ</div>
                      </div>
                   </a>
-               </div>
+               </div> -->
             </div>
          </div>
       </div>
