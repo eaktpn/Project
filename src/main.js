@@ -49,7 +49,7 @@ Vue.prototype.$keypayload = keypayload;
 
 import axios from "axios";
 // axios.defaults.baseURL = "//slotimjoker.abatopup.com/api";
-axios.defaults.baseURL = "//joker24h.abatopup.com/api";
+axios.defaults.baseURL = "//sexy222.abatopup.com/api";
 Vue.prototype.$axios = axios;
 window.$ = require("jquery"); //ติตตั้งเรียกใช้ jquery
 

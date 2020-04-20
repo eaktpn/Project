@@ -74,7 +74,7 @@ const mutations = {
 };
 const actions = {
    updateAmount: ({commit}, payload) => {
-      Axios.get("//joker24h.abatopup.com/api/amount", state.token).then((respone) => {
+      Axios.get("//sexy222.abatopup.com/api/amount", state.token).then((respone) => {
          console.log(payload);
          commit("amount", respone.data);
       });
@@ -90,7 +90,7 @@ const actions = {
       let user = jwt.decode(payload);
       if (user) {
          commit("user", user.results[0]);
-         Axios.get("//joker24h.abatopup.com/api/amount", state.token).then((respone) => {
+         Axios.get("//sexy222.abatopup.com/api/amount", state.token).then((respone) => {
             commit("amount", respone.data);
          });
       }
