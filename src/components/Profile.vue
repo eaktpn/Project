@@ -42,9 +42,7 @@
                   <div class="text-center mt-4">
                      บัญชีธนาคาร :
                      <img :src="'/images/bank/' + user.bank_code + '.png'" style="width:25px;" alt /> {{ user.bank_number }}
-                     <div class="font14 mt-3" style="color:#FFDE30;">
-                        {{ user.fullname_bank }}
-                     </div>
+                     <div class="font14 mt-3" style="color:#FFDE30;">{{ user.fullname_bank }}</div>
                      <div v-if="user.bank_code != 'SCB'" style="color:#FFDE30;">{{ user.full_name }}</div>
                      <div v-if="user.bank_code == 'SCB'"><mdb-btn class="font14 color_back btn-edit-name mt-1" @click="Editbank()">แก้ไขชื่อ</mdb-btn></div>
                   </div>
