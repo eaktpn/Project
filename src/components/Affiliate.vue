@@ -16,7 +16,7 @@
       <div class="row justify-content-center mb-2" v-if="codesuggestcode === undefined">
          <mdb-btn class="btn-aff color_back font14 mt-2" @click="afffriend()">ขอ Link แนะนำเพื่อน</mdb-btn>
       </div>
-      <div class="row justify-content-center p-3">
+      <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12 BG-gray color_blue font22" style="font-weight:400;">
             <div class="row justify-content-center">
                <div class="col-xl-5 col-md-5 col-6 align-self-center pl-4">
@@ -36,10 +36,10 @@
             </div>
          </div>
       </div>
-      <div class="row justify-content-center mt-2">
+      <div class="row justify-content-center mt-2" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12">ลิ้งค์แนะนำของคุณ</div>
       </div>
-      <div class="row justify-content-center mt-2">
+      <div class="row justify-content-center mt-2" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12 font16">
             <section class="preview">
                <mdb-input basic :value="'http://joker24h.abatopup.com/systemaff?join=' + codesuggest" disabled>
@@ -48,10 +48,10 @@
             </section>
          </div>
       </div>
-      <div class="row justify-content-center mt-3">
+      <div class="row justify-content-center mt-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12">แชร์</div>
       </div>
-      <div class="row justify-content-center mt-2">
+      <div class="row justify-content-center mt-2" v-if="codesuggestcode !== undefined">
          <div class="col-xl-10 col-md-10 col-12">
             <social-sharing :url="'http://joker24h.abatopup.com/systemaff?join=' + codesuggest" title="ลิ้งสมัคร " discription="ชวนเพื่อนมาเล่น" quote="ชวนเพื่อนมาเล่นสล๊อต" hashtags="ชวนเพื่อนมาเล่นสลอต" v-cloak inline-template class="row">
                <div class="row justify-content-center text-center">
@@ -84,10 +84,10 @@
             </social-sharing>
          </div>
       </div>
-      <div class="row justify-content-center mt-3">
+      <div class="row justify-content-center mt-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12">สถิติ</div>
       </div>
-      <div class="row justify-content-center p-3">
+      <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12 BG-gray">
             <div class="row text-center color_yellow">
                <span class="col-xl-5 col-md-5 col-4">ว/ด/ป เวลา</span>
@@ -102,7 +102,7 @@
             </div>
          </div>
       </div>
-      <div class="row justify-content-center mt-1">
+      <div class="row justify-content-center mt-1" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12">
             <div class="row">
                <div class="col-6 color_white font16">สมาชิกที่คุณแนะนำ</div>
@@ -124,13 +124,13 @@
             </div>
          </div>
       </div>
-      <div class="row justify-content-center p-3">
+      <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12 BG-gray">
             <div class="row text-center color_yellow mt-1">
                <span class="col-xl-1 col-md-1 col-1">#</span>
                <span class="col-xl-4 col-md-4 col-4">ว/ด/ป เวลา</span>
                <span class="col-xl-3 col-md-3 col-3">ยูสเซอร์</span>
-               <span class="col-xl-4 col-md-4 col-4">ยอดเสีย 5%</span>
+               <span class="col-xl-4 col-md-4 col-4">ยอดเสียของเพื่อน 5%</span>
             </div>
             <div class="row text-center font14 mt-2" v-for="(logaff, key) in afflog" :key="key">
                <span class="col-xl-1 col-md-1 col-1">{{ key + 1 }}</span>
