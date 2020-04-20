@@ -99,14 +99,6 @@
                      <span class="col-xl-3 col-md-3 col-3 mb-2">{{ val.Bonus }}</span>
                   </div>
                </div>
-               <div >
-                  <div class="row justify-content-center text-center font14">
-                     <span class="col-xl-3 col-md-3 col-3">55</span>
-                     <span class="col-xl-3 col-md-3 col-3">โบนัสฟรี</span>
-                     <span class="col-xl-3 col-md-3 col-3">ฟรี</span>
-                     <span class="col-xl-3 col-md-3 col-3 mb-2">55</span>
-                  </div>
-               </div>
             </div>
          </div>
       </div>
