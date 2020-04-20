@@ -151,7 +151,7 @@ updatesettingBonus : 'updatesettingBonus'
       linkGame() {
          var formPlaygame = document.createElement("form");
          formPlaygame.setAttribute("method", "post");
-         formPlaygame.setAttribute("action", "https://joker.slot789th.com");
+         formPlaygame.setAttribute("action", "https://aba-gaming.com/sexy222");
          formPlaygame.setAttribute("target", "_blank");
          var i = document.createElement("input");
          i.setAttribute("type", "hidden");
@@ -416,7 +416,7 @@ settingBonus:'settingBonus'
                      this.$session.set("token", response.data);
                      this.storeLogin(response.data);
                      //this.confirm_phonenumber = this.user.phone_number; // คืนค่าเบอร์โทรศัพท์ไปช่อง input
-                     $.getScript(getwheelEvent + "?session_id=" + this.user.session_id + "&service=JOKER24H");
+                     $.getScript(getwheelEvent + "?session_id=" + this.user.session_id + "&service=SEXY222");
                   } else {
                      this.$swal({
                         title: "เกิดข้อผิดพลาด",
