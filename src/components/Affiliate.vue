@@ -112,7 +112,7 @@
                   >
                </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                <div class="col-12 color_white font16">
                   <span>
                      <label class="color_white" style="margin-top:2px;">เลือกวันที่แสดง</label>
@@ -121,10 +121,10 @@
                      <date-picker class="input-date" style="margin-left:20px; padding-right:5px;" lang="en" format="YYYY-MM-DD" v-model="dateselect" @change="selectDate()"></date-picker>
                   </span>
                </div>
-            </div>
+            </div> -->
          </div>
       </div>
-      <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
+      <!-- <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12 BG-gray">
             <div class="row text-center color_pink mt-1">
                <span class="col-xl-1 col-md-1 col-1">#</span>
@@ -140,6 +140,22 @@
                <span class="col-xl-4 col-md-4 col-4">{{ currencyFormat(logaff.winloss) }}</span>
             </div>
          </div>
+      </div> -->
+      <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
+         <div class="col-xl-9 col-md-9 col-12 BG-gray">
+            <div class="row text-center color_pink mt-1">
+               <span class="col-xl-6 col-md-6 col-6">ว/ด/ป เวลา</span>
+               <span class="col-xl-6 col-md-6 col-6">ยูสเซอร์</span>
+            </div>
+            <div class="line-aff mt-2"></div>
+            <div class="scroll scroll1">
+               <!-- scrollbar -->
+               <div class="row text-center font14 mt-2" v-for="(list_aff, key) in listaff" :key="key">
+                  <span class="col-xl-6 col-md-6 col-6">{{ list_aff.join_date | moment("YYYY-MM-DD") }}</span>
+                  <span class="col-xl-6 col-md-6 col-6">{{ list_aff.username }}</span>
+               </div>
+            </div>
+         </div>
       </div>
       <div class="row justify-content-center mt-1" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12">ประวัติการทำรายการ 20 รายการล่าสุด</div>
@@ -151,9 +167,12 @@
                <span class="col-xl-6 col-md-6 col-6">จำนวนเงิน</span>
             </div>
             <div class="line-aff mt-2"></div>
-            <div class="row text-center font14 mt-2" v-for="(his, key) in history" :key="key">
-               <span class="col-xl-6 col-md-6 col-6">{{ his.date | momentjs("YYYY-MM-DD") }}</span>
-               <span class="col-xl-6 col-md-6 col-6">{{ his.amount }}</span>
+            <div class="scroll scroll1">
+               <!-- scrollbar -->
+               <div class="row text-center font14 mt-2" v-for="(his, key) in history" :key="key">
+                  <span class="col-xl-6 col-md-6 col-6">{{ his.date | moment("YYYY-MM-DD") }}</span>
+                  <span class="col-xl-6 col-md-6 col-6">{{ his.amount }}</span>
+               </div>
             </div>
          </div>
       </div>
@@ -170,7 +189,7 @@ import momentjs from "moment";
 import moment from "moment"; //ใช้กับเวลา
 import {mapGetters} from "vuex";
 import $ from "jquery";
-import DatePicker from "vue2-datepicker"; //ปฏิทิน
+// import DatePicker from "vue2-datepicker"; //ปฏิทิน
 // import {mdbContainer, mdbRow, mdbCol, mdbInput, mdbBtn} from "mdbvue";
 var popup_aff = firebase.database().ref("popup");
 export default {
@@ -178,6 +197,7 @@ export default {
    data() {
       return {
          btn_confirm: true,
+         listaff: "",
          history: "",
          codejoin: "",
          wallet: "",
@@ -423,9 +443,9 @@ export default {
          }
       },
    },
-   components: {
-      DatePicker,
-   },
+   // components: {
+   //    DatePicker,
+   // },
    mounted() {
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {
@@ -510,6 +530,11 @@ export default {
                if (this.walletSum >= 100) {
                   this.btn_confirm = false;
                }
+            });
+
+            this.$axios.get("/listAffiliated", this.token).then((response) => {
+               this.listaff = response.data.payload;
+               console.log(this.listaff);
             });
          }
       } else {
