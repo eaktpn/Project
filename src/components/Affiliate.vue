@@ -178,8 +178,8 @@ export default {
             {
                key: "today",
                highlight: true,
-               dates: new Date()
-            }
+               dates: new Date(),
+            },
          ],
          date: new Date(),
          option: {
@@ -191,16 +191,16 @@ export default {
             color: {
                header: "primary",
                headerText: "white",
-               checkedDay: "primary"
+               checkedDay: "primary",
             },
             placeholder: "2018-04-13",
             buttons: {
                ok: "OK",
                clear: "Clear",
-               today: "Today"
+               today: "Today",
             },
-            overlayOpacity: 0.5
-         }
+            overlayOpacity: 0.5,
+         },
       };
    },
    computed: {
@@ -208,8 +208,8 @@ export default {
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
-      })
+         token: "token",
+      }),
    },
    methods: {
       coppyText() {
@@ -224,19 +224,19 @@ export default {
          if (parseFloat(this.wallet) > 0) {
             $(".preloader").show();
             let payload = {
-               username: this.user.username
+               username: this.user.username,
             };
             let token = jwt.sign(payload, this.$keypayload, {
-               expiresIn: "5s"
+               expiresIn: "5s",
             });
             $(".preloader").show();
-            this.$axios.post("/walletDeposit", {token: token}, this.token).then(response => {
+            this.$axios.post("/walletDeposit", {token: token}, this.token).then((response) => {
                $(".preloader").hide();
                if (response.data.code === "SUCCESS") {
-                  this.$axios.get("/affiliateAddwallet", this.token).then(response => {
+                  this.$axios.get("/affiliateAddwallet", this.token).then((response) => {
                      console.log(response.data);
                   });
-                  this.$axios.get("/wallet", this.token).then(response => {
+                  this.$axios.get("/wallet", this.token).then((response) => {
                      this.history = response.data.payload;
                      this.walletSum = response.data.walletSum;
                   });
@@ -247,7 +247,7 @@ export default {
                      timer: 3000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                   this.$router.push("/Affiliate");
                } else {
@@ -259,7 +259,7 @@ export default {
                      timer: 5000,
                      showConfirmButton: true,
                      allowOutsideClick: false,
-                     allowEscapeKey: false
+                     allowEscapeKey: false,
                   });
                }
             });
@@ -271,7 +271,7 @@ export default {
                timer: 3000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          }
       },
@@ -279,15 +279,15 @@ export default {
          this.dateselect = moment(this.dateselect).format("YYYY-MM-DD");
          console.log(this.dateselect);
          let payload = {
-            date: this.dateselect
+            date: this.dateselect,
          };
          let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
+            expiresIn: "5s",
          });
          $(".preloader").show();
          this.$axios
             .post("/affiliateLog", {token: token}, this.token)
-            .then(response => {
+            .then((response) => {
                $(".preloader").hide();
                if (response.data.payload.length > 0) {
                   this.afflog = JSON.parse(response.data.payload[0].stat);
@@ -303,27 +303,27 @@ export default {
       },
       afffriend() {
          let payload = {
-            join: this.codesuggestcode
+            join: this.codesuggestcode,
          };
          let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s"
+            expiresIn: "5s",
          });
          $(".preloader").show();
          this.$axios
             .post("/affiliateRegister", {token: token}, this.token)
-            .then(response => {
+            .then((response) => {
                this.codesuggestcode = response.data.payload;
                this.codesuggest = response.data.payload.token;
                this.tableaff = response.data.payload;
                let payload = {
-                  date: new Date().toISOString().slice(0, 10)
+                  date: new Date().toISOString().slice(0, 10),
                };
                let token = jwt.sign(payload, this.$keypayload, {
-                  expiresIn: "5s"
+                  expiresIn: "5s",
                });
                this.$axios
                   .post("/affiliateLog", {token: token}, this.token)
-                  .then(response => {
+                  .then((response) => {
                      $(".preloader").hide();
                      if (response.data.payload.length > 0) {
                         this.afflog = response.data.payload;
@@ -352,20 +352,20 @@ export default {
                confirmButtonColor: "#3085d6",
                cancelButtonColor: "#d33",
                confirmButtonText: "ตกลง",
-               cancelButtonText: "ยกเลิก"
-            }).then(result => {
+               cancelButtonText: "ยกเลิก",
+            }).then((result) => {
                if (result.value) {
                   let payload = {
-                     username: this.user.username
+                     username: this.user.username,
                   };
                   let token = jwt.sign(payload, this.$keypayload, {
-                     expiresIn: "5s"
+                     expiresIn: "5s",
                   });
                   $(".preloader").show();
-                  this.$axios.post("/walletWithdraw", {token: token}, this.token).then(response => {
+                  this.$axios.post("/walletWithdraw", {token: token}, this.token).then((response) => {
                      $(".preloader").hide();
                      if (response.data.code === "SUCCESS") {
-                        this.$axios.get("/wallet", this.token).then(response => {
+                        this.$axios.get("/wallet", this.token).then((response) => {
                            this.history = response.data.payload;
                            this.walletSum = response.data.walletSum;
                         });
@@ -376,7 +376,7 @@ export default {
                            timer: 6000,
                            showConfirmButton: true,
                            allowOutsideClick: false,
-                           allowEscapeKey: false
+                           allowEscapeKey: false,
                         });
                         this.$router.push("/");
                      } else {
@@ -387,7 +387,7 @@ export default {
                            timer: 5000,
                            showConfirmButton: true,
                            allowOutsideClick: false,
-                           allowEscapeKey: false
+                           allowEscapeKey: false,
                         });
                      }
                   });
@@ -401,20 +401,20 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          }
-      }
+      },
    },
-components: {
-      DatePicker
+   components: {
+      DatePicker,
    },
    mounted() {
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {
             // this.$session.set("page", "/Affiliate");
             this.dateselect = moment(new Date()).format("YYYY-MM-") + (moment(new Date()).format("DD") - 1);
-            popup_aff.child("affiliate").on("value", snap => {
+            popup_aff.child("affiliate").on("value", (snap) => {
                //Popup affiliate
                var leng = snap.val();
                var show_popup_aff = [];
@@ -422,10 +422,10 @@ components: {
                for (var i = 0; i < leng.length; i++) {
                   if (snap.val()[i].status === 1 && momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].date_start && momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].date_end) {
                      show_popup_aff.push({
-                            title: snap.val()[i].title,
-              html: snap.val()[i].text,
-              imageUrl: snap.val()[i].imageUrl,
-              showConfirmButton: true,
+                        title: snap.val()[i].title,
+                        html: snap.val()[i].text,
+                        imageUrl: snap.val()[i].imageUrl,
+                        showConfirmButton: true,
                      });
                   }
                   this.$swal.queue(show_popup_aff);
@@ -435,7 +435,7 @@ components: {
             $(".preloader").show();
             this.$axios
                .get("/affiliateToken", this.token)
-               .then(response => {
+               .then((response) => {
                   $(".preloader").hide();
                   if (response.data.payload === undefined) {
                      this.codesuggestcode = response.data.payload;
@@ -453,7 +453,7 @@ components: {
                      }
                      this.$axios
                         .get("/affiliateWallet", this.token)
-                        .then(response => {
+                        .then((response) => {
                            this.wallet = response.data.payload;
                         })
                         .catch(function(error) {
@@ -466,14 +466,14 @@ components: {
                });
             var dateto = new Date();
             let payload = {
-               date: new Date().toISOString().slice(0, 8) + (dateto.getDate() - 1)
+               date: new Date().toISOString().slice(0, 8) + (dateto.getDate() - 1),
             };
             let token = jwt.sign(payload, this.$keypayload, {
-               expiresIn: "5s"
+               expiresIn: "5s",
             });
             this.$axios
                .post("/affiliateLog", {token: token}, this.token)
-               .then(response => {
+               .then((response) => {
                   if (response.data.payload.length > 0) {
                      this.afflog = JSON.parse(response.data.payload[0].stat);
                      this.logdividend = response.data.payload[0].dividend;
@@ -487,7 +487,7 @@ components: {
                .catch(function(error) {
                   console.log(error);
                });
-            this.$axios.get("/wallet", this.token).then(response => {
+            this.$axios.get("/wallet", this.token).then((response) => {
                this.history = response.data.payload;
                this.walletSum = response.data.walletSum;
                if (this.walletSum >= 100) {
@@ -498,7 +498,7 @@ components: {
       } else {
          this.$router.push("/Logout");
       }
-   }
+   },
 };
 </script>
 
