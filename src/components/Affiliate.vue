@@ -118,7 +118,7 @@
                      <label class="color_white" style="margin-top:2px;">เลือกวันที่แสดง</label>
                   </span>
                   <span>
-                     <date-picker class="input-date" style="margin-left:20px; padding-right:5px;" lang="en" format="YYYY-MM-DD" v-model="dateselect" @change="selectDate()"></date-picker>
+                     <date-picker class="input-date" valueType="format" style="margin-left:20px; padding-right:5px;" lang="en" v-model="dateselect" @change="selectDate()"></date-picker>
                   </span>
                </div>
             </div>
