@@ -3,7 +3,7 @@
       <div class="row justify-content-center px-3 mt-4">
          <div class="col-xl-9 col-md-9 col-12 BG-gray-radius" style="font-weight:400;">
             <div class="row justify-content-center">
-               <div class="col-6 color_pink font22">แนะนำเพื่อนเงิน</div>
+               <div class="col-6 color_pink font22">แนะนำเพื่อน</div>
                <div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
             </div>
          </div>
@@ -16,7 +16,7 @@
       <div class="row justify-content-center mb-2" v-if="codesuggestcode === undefined">
          <mdb-btn class="btn-aff color_back font14 mt-2" @click="afffriend()">ขอ Link แนะนำเพื่อน</mdb-btn>
       </div>
-      <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
+      <!-- <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12 BG-gray color_blue font22" style="font-weight:400;">
             <div class="row justify-content-center">
                <div class="col-xl-5 col-md-5 col-6 align-self-center pl-4">
@@ -35,8 +35,8 @@
                <div class="col-11 BG-gray2 text-center color_orange font14 mt-3">คุณต้องมียอดเงินมากกว่า 100 บาท <br />จึงจะสามารถถอนเงินได้</div>
             </div>
          </div>
-      </div>
-      <div class="row justify-content-center mt-2" v-if="codesuggestcode !== undefined">
+      </div> -->
+      <div class="row justify-content-center mt-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12">ลิ้งค์แนะนำของคุณ</div>
       </div>
       <div class="row justify-content-center mt-2" v-if="codesuggestcode !== undefined">
@@ -106,11 +106,11 @@
          <div class="col-xl-9 col-md-9 col-12">
             <div class="row">
                <div class="col-6 color_white font16">สมาชิกที่คุณแนะนำ</div>
-               <div class="col-6 color_white text-right font16">
+               <!-- <div class="col-6 color_white text-right font16">
                   <span
                      >รวม<span class="color_yellow"> {{ currencyFormat(logdividend) }}</span> บาท</span
                   >
-               </div>
+               </div> -->
             </div>
             <!-- <div class="row">
                <div class="col-12 color_white font16">
@@ -118,7 +118,7 @@
                      <label class="color_white" style="margin-top:2px;">เลือกวันที่แสดง</label>
                   </span>
                   <span>
-                     <date-picker class="input-date" style="margin-left:20px; padding-right:5px;" lang="en" format="YYYY-MM-DD" v-model="dateselect" @change="selectDate()"></date-picker>
+                     <date-picker class="input-date" valueType="format" style="margin-left:20px; padding-right:5px;" lang="en" v-model="dateselect" @change="selectDate()"></date-picker>
                   </span>
                </div>
             </div> -->
@@ -141,6 +141,7 @@
             </div>
          </div>
       </div> -->
+
       <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12 BG-gray">
             <div class="row text-center color_pink mt-1">
@@ -149,7 +150,6 @@
             </div>
             <div class="line-aff mt-2"></div>
             <div class="scroll scroll1">
-               <!-- scrollbar -->
                <div class="row text-center font14 mt-2" v-for="(list_aff, key) in listaff" :key="key">
                   <span class="col-xl-6 col-md-6 col-6">{{ list_aff.join_date | moment("YYYY-MM-DD") }}</span>
                   <span class="col-xl-6 col-md-6 col-6">{{ list_aff.username }}</span>
@@ -157,7 +157,7 @@
             </div>
          </div>
       </div>
-      <div class="row justify-content-center mt-1" v-if="codesuggestcode !== undefined">
+      <!-- <div class="row justify-content-center mt-1" v-if="codesuggestcode !== undefined">
          <div class="col-xl-9 col-md-9 col-12">ประวัติการทำรายการ 20 รายการล่าสุด</div>
       </div>
       <div class="row justify-content-center p-3" v-if="codesuggestcode !== undefined">
@@ -168,14 +168,13 @@
             </div>
             <div class="line-aff mt-2"></div>
             <div class="scroll scroll1">
-               <!-- scrollbar -->
                <div class="row text-center font14 mt-2" v-for="(his, key) in history" :key="key">
                   <span class="col-xl-6 col-md-6 col-6">{{ his.date | moment("YYYY-MM-DD") }}</span>
                   <span class="col-xl-6 col-md-6 col-6">{{ his.amount }}</span>
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
       <div class="row justify-content-center p-3 mb-2" style="margin-top:-10px;">
          <div class="col-xl-9 col-md-9 col-12 border-note text-center font14">หมายเหตุ ระบบจะทำการคำนวณยอดเงิน<br />เวลา 23:00 - 00:00 ของทุกวัน</div>
       </div>
