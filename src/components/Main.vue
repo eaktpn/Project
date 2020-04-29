@@ -2,7 +2,7 @@
    <div class="container" v-if="isLogin">
       <div class="row justify-content-center mt-3">
          <div class="col-xl-9 col-md-9 col-12 text-center">
-            <carousel :per-page="1" v-bind:autoplay="true" v-bind:loop="true" :mouse-drag="false">
+            <carousel :per-page="1" v-bind:autoplay="true" v-bind:autoplayTimeout="4000" v-bind:loop="true" :mouse-drag="false">
                <slide v-for="(banners, key) in bannerimg" :key="key">
                   <a target="_blank" rel="noreferrer">
                      <img :src="banners" class="img-fluid shadow rounded" width="100%" alt="image" />
@@ -477,10 +477,23 @@ export default {
 </script>
 
 <style>
-.VueCarousel-dot-container {
-   margin-top: -15px !important;
-   margin-bottom: -10px !important;
+/*---------VueCarousel----------*/
+.VueCarousel-dot {
+   padding: 5px !important;
 }
+.VueCarousel-dot-container {
+   margin-top: -20px !important;
+   margin-bottom: 10px !important;
+}
+.VueCarousel-dot--active {
+   background-color: #2461bd !important;
+}
+.VueCarousel-dot[data-v-438fd353] {
+   width: 50px !important;
+   height: 3px !important;
+   border-radius: unset;
+}
+
 .BG-gray-radius-main {
    background: #232323;
    border-radius: 10px;
