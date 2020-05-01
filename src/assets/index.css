@@ -72,6 +72,9 @@ a.close {
 .modal-title {
    color: #ffffff !important;
 }
+.modal-body {
+   color: #ffffff !important;
+}
 .modal[data-v-38054772] {
    background-color: rgba(0, 0, 0, 0.9);
 }
