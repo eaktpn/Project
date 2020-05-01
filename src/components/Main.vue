@@ -491,7 +491,7 @@ export default {
 .VueCarousel-dot[data-v-438fd353] {
    width: 50px !important;
    height: 3px !important;
-   border-radius: unset;
+   border-radius: unset !important;
 }
 
 .BG-gray-radius-main {
