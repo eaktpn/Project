@@ -66,7 +66,7 @@ export default {
          password: "",
          check_condition: false,
          showModal: false,
-         errors: []
+         errors: [],
       };
    },
    computed: {
@@ -74,12 +74,12 @@ export default {
          isLogin: "isLogin",
          user: "user",
          amount: "amount",
-         token: "token"
-      })
+         token: "token",
+      }),
    },
    methods: {
       ...mapActions({
-         storeLogin: "login"
+         storeLogin: "login",
       }),
       show_hide: function() {
          $(".toggle-password").toggleClass("fa-eye fa-eye-slash");
@@ -122,7 +122,7 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          } else if (this.phonenumber[0] !== "0") {
             this.errors.push("เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 0 เท่านั้น");
@@ -133,7 +133,7 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          } else if (this.phonenumber[0] === "0") {
             if (this.phonenumber[1] === "8" || this.phonenumber[1] === "9" || this.phonenumber[1] === "6") {
@@ -147,7 +147,7 @@ export default {
                   timer: 5000,
                   showConfirmButton: true,
                   allowOutsideClick: false,
-                  allowEscapeKey: false
+                  allowEscapeKey: false,
                });
             }
          }
@@ -161,7 +161,7 @@ export default {
                timer: 5000,
                showConfirmButton: true,
                allowOutsideClick: false,
-               allowEscapeKey: false
+               allowEscapeKey: false,
             });
          } else {
             let msg = [false, false, false];
@@ -185,7 +185,7 @@ export default {
                   timer: 5000,
                   showConfirmButton: true,
                   allowOutsideClick: false,
-                  allowEscapeKey: false
+                  allowEscapeKey: false,
                });
             }
          }
@@ -197,14 +197,14 @@ export default {
             let payload = {
                phone_number: this.phonenumber,
                password: this.password,
-               ip: this.ipuser //ส่ง ip user
+               ip: this.ipuser, //ส่ง ip user
             };
             let token = jwt.sign(payload, this.$keypayload, {
-               expiresIn: "5s"
+               expiresIn: "5s",
             });
             this.$axios
                .post("/login", {token: token})
-               .then(response => {
+               .then((response) => {
                   if (response.data.msg != "USER_NOT_FOUND") {
                      this.$session.set("isLogin", true);
                      this.$session.set("token", response.data);
@@ -220,7 +220,7 @@ export default {
                         timer: 5000,
                         showConfirmButton: true,
                         allowOutsideClick: false,
-                        allowEscapeKey: false
+                        allowEscapeKey: false,
                      });
                   }
                })
@@ -229,22 +229,27 @@ export default {
                   console.log(error);
                });
          }
-      }
+      },
    },
    mounted() {
+      if (this.$route.query.phone_number && this.$route.query.password) {
+         this.phonenumber = this.$route.query.phone_number;
+         this.password = this.$route.query.password;
+         this.login();
+      }
       $(".preloader").show();
       let apiGetIp = "https://api.ipify.org";
       axios
          .get(apiGetIp)
-         .then(response => {
+         .then((response) => {
             $(".preloader").hide();
             this.ipuser = "" + response.data;
          })
-         .catch(error => {
+         .catch((error) => {
             $(".preloader").hide();
             console.log(error);
          });
-   }
+   },
 };
 </script>
 
