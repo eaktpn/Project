@@ -233,7 +233,7 @@ export default {
                if (response.data.code === "ERROR") {
                   this.$swal({
                      title: "เกิดข้อผิดพลาด",
-                     text: response.data.msg + "ฝาก",
+                     html: response.data.msg + "ฝาก",
                      icon: "error",
                      timer: 5000,
                      showConfirmButton: true,
