@@ -49,7 +49,7 @@
       <div v-if="withdraw_with_show === true">
          <div class="row justify-content-center" style="margin-top:-16px;">
             <div class="col-xl-5 col-md-6 col-11 text-rigth">
-               <input :disabled="amount < 1" type="text" style="width:100%;" id="withdraw_amount" class="form-control text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @change="check_amount()" />
+               <input :disabled="amount < 1" type="text" style="width:100%;" id="withdraw_amount" class="form-control text-right withdraw-input-css mt-3" v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}" maxlength="9" @keyup="check_amount()" />
             </div>
          </div>
          <div class="row justify-content-center">
