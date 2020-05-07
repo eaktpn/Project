@@ -413,7 +413,7 @@ export default {
       if (this.$session.get("isLogin")) {
          if (this.isLogin) {
             // this.$session.set("page", "/Affiliate");
-            this.dateselect = moment(new Date()).format("YYYY-MM-") + (moment(new Date()).format("DD") - 1);
+            this.dateselect = moment(this.dateselect).format("YYYY-MM-DD");
             popup_aff.child("affiliate").on("value", (snap) => {
                //Popup affiliate
                var leng = snap.val();
