@@ -20,7 +20,7 @@ import firebase from "firebase";
 import {mapGetters} from "vuex";
 import $ from "jquery";
 const firebaseConfig = {
-   databaseURL: "https://topup-sexy222.firebaseio.com/"
+   databaseURL: "https://topup-sexy222.firebaseio.com/",
 };
 firebase.initializeApp(firebaseConfig);
 export default {
@@ -36,16 +36,14 @@ export default {
    },
    methods: {
       ...mapGetters({
-         isLogin: "isLogin"
-      })
+         isLogin: "isLogin",
+      }),
    },
    mounted() {
       // if (location.protocol != "https:") {
-      //   location.href =
-      //     "https:" +
-      //     window.location.href.substring(window.location.protocol.length);
+      //    location.href = "https:" + window.location.href.substring(window.location.protocol.length);
       // }
-   }
+   },
 };
 </script>
 

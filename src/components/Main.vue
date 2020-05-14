@@ -58,7 +58,7 @@
                   </router-link>
                </div>
                <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-                  <div class="BG-gray-radius-main" style="cursor: pointer;" @click= settingBonusshow()>
+                  <div class="BG-gray-radius-main" style="cursor: pointer;" @click="settingBonusshow()">
                      <img src="/images/icon/bonus-setting.png" width="60px;" class="p-1" />
                      <div class="color_white font16" style="font-weight:400;">ตั้งค่าโบนัส</div>
                   </div>
@@ -106,7 +106,7 @@ let getwheelEvent = "https://allbet.asia/wheel/script";
 import ModalCheck from "../components/ModalCheck.vue";
 import Checkfullnamebank from "../components/Checkfullname_bank.vue";
 import settingbonus from "../components/setting_bonus.vue";
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 import momentjs from "moment";
 import {mapActions, mapGetters} from "vuex";
 import {Carousel, Slide} from "vue-carousel";
@@ -142,7 +142,7 @@ export default {
       ...mapActions({
          storeLogin: "login",
          storeLoout: "logout",
-updatesettingBonus : 'updatesettingBonus'
+         updatesettingBonus: "updatesettingBonus",
       }),
       currencyFormat(n) {
          n = parseFloat(n);
@@ -291,68 +291,68 @@ updatesettingBonus : 'updatesettingBonus'
       //       });
       //    }
       // },
-settingBonusshow () {
-   this.updatesettingBonus(true)
-},
+      settingBonusshow() {
+         this.updatesettingBonus(true);
+      },
       OTPcheck() {
          this.counting = true;
          this.btnsubmit = false;
          console.log(this.counting);
       },
-      onChange() {
-         let payload = {
-            bonus_status: this.settingSwitch ? 1 : 0,
-         };
-         let token = jwt.sign(payload, this.$keypayload, {
-            expiresIn: "5s",
-         });
-         $(".preloader").show();
-         this.$axios
-            .post("/is_bonus", {token: token}, this.token)
-            .then((response) => {
-               $(".preloader").hide();
-               if (response.data.code != "SUCCESS") {
-                  this.$swal({
-                     title: "เกิดข้อผิดพลาด",
-                     text: "ไม่สามารเปิด-ปิดโบนัสได้",
-                     icon: "error",
-                     timer: 5000,
-                     showConfirmButton: true,
-                     allowOutsideClick: false,
-                     allowEscapeKey: false,
-                  });
-               }
-               $(".preloader").hide();
-               this.$axios
-                  .get("/is_login", this.token)
-                  .then((response) => {
-                     $(".preloader").hide();
-                     if (response.data.msg != "LOGOUT") {
-                        this.$session.set("isLogin", true);
-                        this.$session.set("token", response.data);
-                        this.storeLogin(response.data);
-                     } else {
-                        this.$swal({
-                           title: "เกิดข้อผิดพลาด",
-                           text: "มีการเข้าสู่ระบบจากที่อื่น",
-                           icon: "error",
-                           timer: 5000,
-                           showConfirmButton: true,
-                           allowOutsideClick: false,
-                           allowEscapeKey: false,
-                        });
-                        $(".preloader").hide();
-                        this.$router.push("/Logout");
-                     }
-                  })
-                  .catch(function(error) {
-                     console.log(error);
-                  });
-            })
-            .catch(function(error) {
-               console.log(error);
-            });
-      },
+      // onChange() {
+      //    let payload = {
+      //       bonus_status: this.settingSwitch ? 1 : 0,
+      //    };
+      //    let token = jwt.sign(payload, this.$keypayload, {
+      //       expiresIn: "5s",
+      //    });
+      //    $(".preloader").show();
+      //    this.$axios
+      //       .post("/is_bonus", {token: token}, this.token)
+      //       .then((response) => {
+      //          $(".preloader").hide();
+      //          if (response.data.code != "SUCCESS") {
+      //             this.$swal({
+      //                title: "เกิดข้อผิดพลาด",
+      //                text: "ไม่สามารเปิด-ปิดโบนัสได้",
+      //                icon: "error",
+      //                timer: 5000,
+      //                showConfirmButton: true,
+      //                allowOutsideClick: false,
+      //                allowEscapeKey: false,
+      //             });
+      //          }
+      //          $(".preloader").hide();
+      //          this.$axios
+      //             .get("/is_login", this.token)
+      //             .then((response) => {
+      //                $(".preloader").hide();
+      //                if (response.data.msg != "LOGOUT") {
+      //                   this.$session.set("isLogin", true);
+      //                   this.$session.set("token", response.data);
+      //                   this.storeLogin(response.data);
+      //                } else {
+      //                   this.$swal({
+      //                      title: "เกิดข้อผิดพลาด",
+      //                      text: "มีการเข้าสู่ระบบจากที่อื่น",
+      //                      icon: "error",
+      //                      timer: 5000,
+      //                      showConfirmButton: true,
+      //                      allowOutsideClick: false,
+      //                      allowEscapeKey: false,
+      //                   });
+      //                   $(".preloader").hide();
+      //                   this.$router.push("/Logout");
+      //                }
+      //             })
+      //             .catch(function(error) {
+      //                console.log(error);
+      //             });
+      //       })
+      //       .catch(function(error) {
+      //          console.log(error);
+      //       });
+      // },
       showModalcheck() {
          if (this.user.is_bonus === 1) {
             this.settingSwitch = true;
@@ -368,7 +368,7 @@ settingBonusshow () {
          user: "user",
          amount: "amount",
          token: "token",
-settingBonus:'settingBonus'
+         settingBonus: "settingBonus",
       }),
       checkOTP: function() {
          if (this.user.active === 0) {
