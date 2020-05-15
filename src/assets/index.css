@@ -1,0 +1,74 @@
+.color_orange {
+   color: #eba900 !important;
+}
+.font22 {
+   font-size: 22px !important;
+}
+.font14 {
+   font-size: 14px !important;
+}
+
+/*-------- animate-flicker --------*/
+@keyframes flickerAnimation {
+   100% {
+      opacity: 1;
+   }
+   0% {
+      opacity: 0.90;
+   }
+   100% {
+      opacity: 1;
+   }
+}
+@-o-keyframes flickerAnimation {
+   0% {
+      opacity: 1;
+   }
+   50% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
+}
+@-moz-keyframes flickerAnimation {
+   0% {
+      opacity: 1;
+   }
+   50% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
+}
+@-webkit-keyframes flickerAnimation {
+   0% {
+      opacity: 1;
+   }
+   50% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
+}
+.animate-flicker {
+   -webkit-animation: flickerAnimation 0.5s infinite;
+   -moz-animation: flickerAnimation 0.5s infinite;
+   -o-animation: flickerAnimation 0.5s infinite;
+   animation: flickerAnimation 0.08s infinite;
+}
+
+/*-------- rotate-y-positive --------*/
+@keyframes rotateYPositive {
+   from {
+      transform: rotateY(0deg);
+   }
+   to {
+      transform: rotateY(360deg);
+   }
+}
+.rotate-y-positive {
+   animation: rotateYPositive 5s linear infinite;
+}

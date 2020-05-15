@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+const Allbaccarat_game = () => import("./components/Allbaccarat_game.vue");
+const test = () => import("./components/test.vue");
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    }
-  ]
-})
+   mode: "history",
+   routes: [
+      {
+         path: "/",
+         name: "Allbaccarat_game",
+         components: {default: Allbaccarat_game},
+      },
+      {
+         path: "/Allbaccarat_game",
+         name: "Allbaccarat_game",
+         components: {default: Allbaccarat_game},
+      },
+      {
+         path: "/test",
+         name: "test",
+         components: {default: test},
+      },
+   ],
+});
