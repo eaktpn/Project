@@ -1,43 +1,68 @@
 <template>
-   <div class="containers-wrapper">
-      <div class="container">
-         <div class="rotating-element rotate-y-positive">
-         </div>
-      </div>
-   </div>
+  <div class="block"></div>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
-<style>
-.rotating-element {
-   width: 100px;
-   height: 100px;
+<style lang="scss" scope>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
 }
 
-.rotating-element {
-   position: absolute;
-   display: flex;
-   justify-content: space-between;
-   background-color: yellow;
-   box-sizing: border-box;
-   border: 1px solid black;
+.block {
+  position: absolute;
+  margin: 50px 50px 50px 50px;
+  width: 500px;
+  height: 250px;
+  background: linear-gradient(0deg, #000, #272727);
+  border-radius: 5px;
 }
 
-.rotate-y-positive {
-   animation: rotateYPositive 5s linear infinite;
+.block:before,
+.block:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(
+    45deg,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000
+  );
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 30s linear infinite;
+  border-radius: 5px;
 }
 
-@keyframes rotateYPositive {
-   from {
-      transform: rotateY(0deg);
-   }
-   to {
-      transform: rotateY(360deg);
-   }
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
-
+.block:after {
+  filter: blur(5px);
+  border-radius: 5px;
+}
 </style>

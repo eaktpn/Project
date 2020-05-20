@@ -92,29 +92,27 @@
       <!-- <div class="module-border-wrap-condition">
         <div class="module-border-condition"> -->
 
-      <div class="block">
-        <div class="row justify-content-center ">
-          <div class="col-xl-12 col-md-12 col-12 text-center">
-            <div class="color_orange font22" style="font-weight:500;">
-              ALLBACCARAT
-            </div>
-            <div class="font22" style="font-weight:400;">บาคาร่าออนไลน์</div>
+      <div class="row justify-content-center ">
+        <div class="col-xl-12 col-md-12 col-12 text-center">
+          <div class="color_orange font22" style="font-weight:500;">
+            ALLBACCARAT
           </div>
-          <div class="col-xl-5 col-md-5 col-12">
-            <img src="/sexy.jpg" width="100%;" />
-          </div>
-          <div class="col-xl-7 col-md-7 col-12 font14 mt-3">
-            เราเป็นผู้ให้บริการบาคาร่าออนไลน์แบบเรียลไทม์ ส่งตรงจากบ่อน Casino
-            ผู้เล่นสามารถดูไพ่ที่แจก ก่อนเริ่มเดิมพันได้ในเวลา 20-30 วินาที
-            Baccarat Online เป็นเกมส์ที่มีเสน่ห์ มีนักพนันเล่นกันเป็นจำนวนมาก
-            ผู้เล่นยังสามารถรับเงินรางวัลจากเกมส์ไปได้
-            ภายในเวลาไม่กี่วินาทีก่อนที่เกมส์การแข่งขันจะจบลงอีกด้วย
-            และผู้เล่นจะได้รับประสบการณ์ การเล่นคาสิโนออนไลน์ที่ปลอดภัย
-            โดยมีระบบตรวจสอบที่ได้รับการยอมรับในระดับสากล สมัครเล่นบาคาร่ากับ
-            Sexybaccarat รับโบนัสแรกเข้าทันที
-            และลุ้นรับโบนัสอีกมากมายกับโปรโมชั่นประจำเดือน
-            สนใจเล่นบาคาร่ากับเราติดต่อเราได้ตลอด 24 ช.ม.
-          </div>
+          <div class="font22" style="font-weight:400;">บาคาร่าออนไลน์</div>
+        </div>
+        <div class="col-xl-5 col-md-5 col-12">
+          <img src="/sexy.jpg" width="100%;" />
+        </div>
+        <div class="col-xl-7 col-md-7 col-12 font14 mt-3">
+          เราเป็นผู้ให้บริการบาคาร่าออนไลน์แบบเรียลไทม์ ส่งตรงจากบ่อน Casino
+          ผู้เล่นสามารถดูไพ่ที่แจก ก่อนเริ่มเดิมพันได้ในเวลา 20-30 วินาที
+          Baccarat Online เป็นเกมส์ที่มีเสน่ห์ มีนักพนันเล่นกันเป็นจำนวนมาก
+          ผู้เล่นยังสามารถรับเงินรางวัลจากเกมส์ไปได้
+          ภายในเวลาไม่กี่วินาทีก่อนที่เกมส์การแข่งขันจะจบลงอีกด้วย
+          และผู้เล่นจะได้รับประสบการณ์ การเล่นคาสิโนออนไลน์ที่ปลอดภัย
+          โดยมีระบบตรวจสอบที่ได้รับการยอมรับในระดับสากล สมัครเล่นบาคาร่ากับ
+          Sexybaccarat รับโบนัสแรกเข้าทันที
+          และลุ้นรับโบนัสอีกมากมายกับโปรโมชั่นประจำเดือน
+          สนใจเล่นบาคาร่ากับเราติดต่อเราได้ตลอด 24 ช.ม.
         </div>
       </div>
       <!-- </div>
@@ -208,7 +206,7 @@ export default {}
 }
 
 .block {
-  position: absolute;
+  position: relative;
   margin: 50px 50px 50px 50px;
   background: #101010;
   border-radius: 5px;
