@@ -30,23 +30,6 @@
                 />200.00</span
               >
             </div>
-            <!-- <div class="row" style="margin-top:-5px;">
-                  <div class="col align-self-center">
-                     <router-link to="/"><img src="/logo/sexybaccarat.png" width="100%;" style="max-width:100px;"/></router-link>
-                  </div>
-                  <div class="col align-self-center">
-                     <router-link to="/"><img src="/logo/dreamgaming.png" width="100%;" style="max-width:80px;"/></router-link>
-                  </div>
-                  <div class="col align-self-center">
-                     <router-link to="/"><img src="/logo/pretty-gaming.png" width="100%;" style="max-width:100px;"/></router-link>
-                  </div>
-                  <div class="col align-self-center">
-                     <router-link to="/"><img src="/logo/ag-asia-gaming.png" width="100%;" style="max-width:100px;"/></router-link>
-                  </div>
-                  <div class="col align-self-center mr-4">
-                     <router-link to="/"><img src="/logo/sagaming.png" width="100%;" style="max-width:100px;"/></router-link>
-                  </div>
-               </div> -->
           </div>
         </div>
         <div class="linear_gradient" style="margin: -35px 0px 0px 100px;"></div>
@@ -55,46 +38,56 @@
         </div>
         <div class="row justify-content-center mt-2">
           <div class="col-xl col-md col-4">
-            <router-link to="/"
+            <a
+              href="https://adosoft.net/SourceGaming/sexygame?user=ado001&pass=Aa112233"
+              target="_bank"
               ><img
                 src="/btn_game/sexybaccarat.png"
                 class="animate-flicker"
                 width="100%;"
-            /></router-link>
+            /></a>
           </div>
           <div class="col-xl col-md col-4">
-            <router-link to="/"
+            <a
+              href="https://adosoft.net/SourceGaming/dreamgame?user=ado001&pass=Aa112233"
+              target="_bank"
               ><img src="/btn_game/dreamgaming.png" width="100%;"
-            /></router-link>
+            /></a>
           </div>
           <div class="col-xl col-md col-4">
-            <router-link to="/"
+            <a
+              href="https://adosoft.net/SourceGaming/pretty?user=ado001&pass=Aa112233"
+              target="_bank"
               ><img
                 src="/btn_game/pretty.png"
                 class="animate-flicker"
                 width="100%;"
-            /></router-link>
+            /></a>
           </div>
           <div class="col-xl col-md col-4">
-            <router-link to="/"
+            <a
+              href="https://adosoft.net/SourceGaming/ag?user=ado001&pass=Aa112233"
+              target="_bank"
               ><img src="/btn_game/ag.png" width="100%;"
-            /></router-link>
+            /></a>
           </div>
           <div class="col-xl col-md col-4">
-            <router-link to="/"
+            <a
+              href="https://adosoft.net/SourceGaming/sagame?user=ado001&pass=Aa112233"
+              target="_bank"
               ><img src="/btn_game/sa.png" class="animate-flicker" width="100%;"
-            /></router-link>
+            /></a>
           </div>
         </div>
       </div>
     </div>
-    <div class="container my-4">
+    <div class="container">
       <!-- <div class="module-border-wrap-condition">
         <div class="module-border-condition"> -->
 
       <div class="block">
-        <div class="row justify-content-center ">
-          <div class="col-xl-12 col-md-12 col-12 text-center">
+        <div class="row justify-content-center module-border">
+          <div class="col-xl-12 col-md-12 col-12 text-center mb-2">
             <div class="color_orange font22" style="font-weight:500;">
               ALLBACCARAT
             </div>
@@ -103,6 +96,7 @@
           <div class="col-xl-5 col-md-5 col-12">
             <img src="/sexy.jpg" width="100%;" />
           </div>
+
           <div class="col-xl-7 col-md-7 col-12 font14 mt-3">
             เราเป็นผู้ให้บริการบาคาร่าออนไลน์แบบเรียลไทม์ ส่งตรงจากบ่อน Casino
             ผู้เล่นสามารถดูไพ่ที่แจก ก่อนเริ่มเดิมพันได้ในเวลา 20-30 วินาที
@@ -119,8 +113,7 @@
       </div>
       <!-- </div>
         </div> -->
-
-      <div class="row justify-content-center text-center p-3">
+      <div class="row justify-content-center text-center my-3 p-3">
         <div class="col align-self-center">
           <router-link to="/"
             ><img
@@ -193,7 +186,7 @@ export default {}
   );
   height: 5px;
 }
-.module-border-wrap-condition {
+/* .module-border-wrap-condition {
   max-width: 100%;
   position: relative;
   background: linear-gradient(165deg, #3f0bc3, #c800ad);
@@ -205,15 +198,21 @@ export default {}
   color: white;
   padding: 20px 25px 25px 25px;
   border-radius: 6px !important;
-}
-
-.block {
-  position: absolute;
-  margin: 50px 50px 50px 50px;
+} */
+.module-border {
   background: #101010;
-  border-radius: 5px;
+  margin-right: 0px;
+  margin-left: 0px;
+  border-radius: 6px;
+  padding: 20px;
 }
-
+.block {
+  position: relative;
+  margin-top: 40px;
+  margin-right: 6px;
+  margin-left: 6px;
+  z-index: 1;
+}
 .block:before,
 .block:after {
   content: '';
@@ -238,7 +237,7 @@ export default {}
   height: calc(100% + 4px);
   z-index: -1;
   animation: steam 30s linear infinite;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 @keyframes steam {
@@ -254,7 +253,7 @@ export default {}
 }
 
 .block:after {
-  filter: blur(5px);
-  border-radius: 5px;
+  filter: blur(12px);
+  border-radius: 6px;
 }
 </style>
