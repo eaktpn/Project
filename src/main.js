@@ -12,10 +12,15 @@ Vue.config.productionTip = false
 import Notify from 'mdbvue/lib/components/Notify'
 Vue.use(Notify)
 
+import * as mdbvue from 'mdbvue'
+for (const component in mdbvue) {
+	Vue.component(component, mdbvue[component])
+}
+
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: (h) => h(App),
 }).$mount('#app')
 
 // sfd45fsd
