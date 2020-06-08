@@ -12,12 +12,12 @@
 			</div>
 		</div>
 		<div class="row justify-content-center px-3 mt-3">
-			<div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม 1</div>
+			<div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame2()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
 		</div>
 		<!-- <a href="https://sexy333.com/" target="_blank"> -->
-		<div class="row justify-content-center px-3 mt-3">
+		<!-- <div class="row justify-content-center px-3 mt-3">
 			<div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame2()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม 2</div>
-		</div>
+		</div> -->
 		<!-- </a> -->
 		<div class="row justify-content-center p-2 mt-2">
 			<div class="col-xl-9 col-md-9 col-12">
