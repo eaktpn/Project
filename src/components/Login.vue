@@ -174,14 +174,12 @@
 							msg[2] = true
 						}
 					}
-					if (msg[0] && msg[1] && msg[2]) {
-						console.log('1')
-					} else {
+					if (msg[0] != true || msg[1] != true || msg[2] != true) {
 						this.errors.push('กรุณากรอกรหัสผ่านที่มีพิมพ์เล็กพิมพ์ใหญ่และตัวเลขผสมกัน')
 						return this.$swal({
 							title: 'รหัสผ่าน',
 							text: 'กรุณากรอกรหัสผ่านที่มีพิมพ์เล็กพิมพ์ใหญ่และตัวเลขผสมกัน',
-							icon: 'warning',
+							type: 'warning',
 							timer: 5000,
 							showConfirmButton: true,
 							allowOutsideClick: false,
