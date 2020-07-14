@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-center px-3 mt-3">
-			<div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame2()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
+			<div class="col-xl-9 col-md-9 col-12 login-game text-center color_back font28" style="font-weight:400; cursor: pointer;" @click="linkGame2()"><img src="/images/icon/gamepad22.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
 		</div>
 		<!-- <a href="https://sexy333.com/" target="_blank"> -->
 		<!-- <div class="row justify-content-center px-3 mt-3">
@@ -368,7 +368,6 @@
 			OTPcheck() {
 				this.counting = true
 				this.btnsubmit = false
-				console.log(this.counting)
 			},
 			// onChange() {
 			//    let payload = {
@@ -534,7 +533,7 @@
 		border: 0.5px solid #969595;
 	}
 	.login-game {
-		background: linear-gradient(97.95deg, #522b7e 1.16%, #be2b61 100%) !important;
+		background: linear-gradient(97.95deg, #ff6d00 1.16%, #ffea31 100%) !important;
 		box-shadow: 2px 3px 2px 0px #808080;
 		border-radius: 12px;
 	}
@@ -544,10 +543,6 @@
 	}
 	.modal-title {
 		color: #eaa33b;
-	}
-	.btn-profile {
-		border-color: #fac549;
-		padding: 3px 7px;
 	}
 	a {
 		color: #ffffff;
