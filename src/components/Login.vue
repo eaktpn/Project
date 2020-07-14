@@ -219,14 +219,23 @@
 					this.$axios
 						.post('/login', {token: token})
 						.then((response) => {
-							if (response.data.msg != 'USER_NOT_FOUND') {
+							$('.preloader').hide()
+							if (response.data.code === 'ERROR') {
+								this.$swal({
+									title: 'เข้าสู่ระบบ',
+									text: response.data.msg,
+									icon: 'error',
+									timer: false,
+									showConfirmButton: true,
+									allowOutsideClick: false,
+									allowEscapeKey: false,
+								})
+							} else if (response.data.msg != 'USER_NOT_FOUND') {
 								this.$session.set('isLogin', true)
 								this.$session.set('token', response.data)
 								this.storeLogin(response.data)
-								$('.preloader').hide()
 								this.$router.push('/')
 							} else {
-								$('.preloader').hide()
 								this.$swal({
 									title: 'เกิดข้อผิดพลาด',
 									text: 'เบอร์โทรศัพท์หรือรหัสผ่านผิด',

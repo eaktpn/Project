@@ -48,7 +48,7 @@
 						>
 					</div>
 				</div>
-				<a href="https://line.me/R/ti/p/@248zcbiq" target="_blank">
+				<a href="https://line.me/R/ti/p/@756gpeky" target="_blank">
 					<mdb-btn size="md" class="animation-Button animation-border color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
 				</a>
 				<div class="font14 mt-2">*กดเพิ่มเพื่อนเพื่อรับบริการแจ้งเตือนยอดฝาก</div>

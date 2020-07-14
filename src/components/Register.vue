@@ -304,18 +304,17 @@
 									allowEscapeKey: false,
 								})
 							}
-							// if (response.data.msg === "ERROR_NOT_FOUND_TOKEN_ON_METHOD") {
-							//    this.$swal({
-							//       icon: "error",
-							//       title: "เกิดข้อผิดพลาด",
-							//       text: "มีปัญชีนี้อยู่ในระบบแล้ว",
-							//       timer: 5000,
-							//       showConfirmButton: true,
-							//       allowOutsideClick: false,
-							//       allowEscapeKey: false
-							//    });
-							// } else
-							if (response.data.code === 'ER_DUP_ENTRY') {
+							if (response.data.msg === 'ERROR_NOT_FOUND_TOKEN_ON_METHOD') {
+								this.$swal({
+									icon: 'error',
+									title: 'เกิดข้อผิดพลาด',
+									html: response.data.msg,
+									timer: 5000,
+									showConfirmButton: true,
+									allowOutsideClick: false,
+									allowEscapeKey: false,
+								})
+							} else if (response.data.code === 'ER_DUP_ENTRY') {
 								this.$swal({
 									icon: 'error',
 									title: 'เกิดข้อผิดพลาด',
@@ -334,12 +333,8 @@
 									showConfirmButton: true,
 									allowOutsideClick: false,
 									allowEscapeKey: false,
-								}).then((result) => {
-									if (result.value) {
-										this.register()
-									}
 								})
-							} else if (response.data.msg === 'Register Success') {
+							} else if (response.data.code === 'SUCCESS') {
 								this.$swal({
 									icon: 'success',
 									title: 'สมัครสำเร็จ',
@@ -370,7 +365,17 @@
 				this.$axios
 					.post('/login', {token: token})
 					.then((response) => {
-						if (response.data.msg != 'USER_NOT_FOUND') {
+						if (response.data.code === 'ERROR') {
+							this.$swal({
+								title: 'เข้าสู่ระบบ',
+								text: response.data.msg,
+								icon: 'error',
+								timer: false,
+								showConfirmButton: true,
+								allowOutsideClick: false,
+								allowEscapeKey: false,
+							})
+						} else if (response.data.msg != 'USER_NOT_FOUND') {
 							this.$session.set('isLogin', true)
 							this.$session.set('token', response.data)
 							this.storeLogin(response.data)

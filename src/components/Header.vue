@@ -236,7 +236,6 @@
 				this.$axios
 					.post('/login', {token: token})
 					.then((response) => {
-						// console.log(response.data);
 						if (response.data.msg != 'USER_NOT_FOUND') {
 							this.$session.set('isLogin', true)
 							this.$session.set('token', response.data)

@@ -222,7 +222,7 @@
 				// })
 				var formPlaygame = document.createElement('form')
 				formPlaygame.setAttribute('method', 'get')
-				formPlaygame.setAttribute('action', 'https://sexy222.abatopup.com/api/logingame')
+				formPlaygame.setAttribute('action', 'http://win222.abatopup.com/api/logingame')
 				formPlaygame.setAttribute('target', '_blank')
 				var i = document.createElement('input')
 				i.setAttribute('type', 'hidden')
