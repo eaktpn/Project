@@ -453,7 +453,7 @@
 				//Popup affiliate
 				var leng = snap.val()
 				var show_popup_main = []
-				console.log(snap.val())
+				// console.log(snap.val())
 				for (var i = 0; i < leng.length; i++) {
 					if (snap.val()[i].status === 1 && momentjs().format('YYYY-MM-DD HH:mm') >= snap.val()[i].date_start && momentjs().format('YYYY-MM-DD HH:mm') <= snap.val()[i].date_end) {
 						show_popup_main.push({
