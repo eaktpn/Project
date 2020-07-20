@@ -3,7 +3,7 @@
 		<div class="row justify-content-center px-3 mt-4">
 			<div class="col-xl-9 col-md-9 col-12 BG-gray-radius" style="font-weight:400;">
 				<div class="row justify-content-center">
-					<div class="col-6 color_orange font22">ฝากเงิน</div>
+					<div class="col-6 color_yellow font22">ฝากเงิน</div>
 					<div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
 				</div>
 			</div>

@@ -73,7 +73,7 @@ const mutations = {
 }
 const actions = {
 	updateAmount: ({commit}, payload) => {
-		Axios.get('//win222.abatopup.com/api/amount', state.token).then((respone) => {
+		Axios.get('https://win222.abatopup.com/api/amount', state.token).then((respone) => {
 			console.log(payload)
 			commit('amount', respone.data)
 		})
@@ -89,7 +89,7 @@ const actions = {
 		let user = jwt.decode(payload)
 		if (user) {
 			commit('user', user.results[0])
-			Axios.get('//win222.abatopup.com/api/amount', state.token).then((respone) => {
+			Axios.get('https://win222.abatopup.com/api/amount', state.token).then((respone) => {
 				commit('amount', respone.data)
 			})
 		}

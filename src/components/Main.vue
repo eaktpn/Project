@@ -222,7 +222,7 @@
 				// })
 				var formPlaygame = document.createElement('form')
 				formPlaygame.setAttribute('method', 'get')
-				formPlaygame.setAttribute('action', 'http://win222.abatopup.com/api/logingame')
+				formPlaygame.setAttribute('action', 'https://win222.abatopup.com/api/logingame')
 				formPlaygame.setAttribute('target', '_blank')
 				var i = document.createElement('input')
 				i.setAttribute('type', 'hidden')
@@ -473,15 +473,15 @@
 						.get('/is_login', this.token)
 						.then((response) => {
 							if (response.data.msg != 'LOGOUT') {
-								this.$axios
-									.get('/affiliateUpdate', this.token) // Update affiliate
-									.then((response) => {
-										console.log('affiliateUpdate ' + response.data.msg)
-									})
-									.catch(function(error) {
-										$('.preloader').hide()
-										console.log(error)
-									})
+								// this.$axios
+								// 	.get('/affiliateUpdate', this.token) // Update affiliate
+								// 	.then((response) => {
+								// 		console.log('affiliateUpdate ' + response.data.msg)
+								// 	})
+								// 	.catch(function(error) {
+								// 		$('.preloader').hide()
+								// 		console.log(error)
+								// 	})
 								this.$session.set('isLogin', true)
 								this.$session.set('token', response.data)
 								this.storeLogin(response.data)

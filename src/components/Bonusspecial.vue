@@ -3,7 +3,7 @@
 		<div class="row justify-content-center px-3 mt-4">
 			<div class="col-xl-9 col-md-9 col-12 BG-gray-radius" style="font-weight:400;">
 				<div class="row justify-content-center">
-					<div class="col-6 color_orange font22">โบนัสพิเศษ</div>
+					<div class="col-6 color_yellow font22">โบนัสพิเศษ</div>
 					<div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 						<div class="color_blue font14">รับโบนัสก่อน {{ val.end_time | moment('YYYY-MM-DD') }}</div>
 					</div>
 					<div class="col align-self-center text-right" style="margin-right:-10px;">
-						<mdb-btn color="warning" size="sm" class="color_back font16 px-3" @click="getbonus(val.id, val.bonus)">รับโบนัส</mdb-btn>
+						<mdb-btn color="warning" size="sm" class="color_back font16 px-3" @click="getbonus(val.id, val.bonus, val.trunover, val.hesh)">รับโบนัส</mdb-btn>
 					</div>
 				</div>
 			</div>
@@ -52,50 +52,44 @@
 				storeLogin: 'login',
 				storeLogout: 'logout',
 			}),
-			getbonus(id, bonus) {
+			getbonus(id, bonus, trunover) {
 				let payload = {
-					id_freebonus: id,
+					id: id,
+					bonus: bonus,
+					trunover: trunover,
 				}
 				let token = jwt.sign(payload, this.$keypayload, {
 					expiresIn: '5s',
 				})
-				this.$swal({
-					title: 'รับโบนัสฟรีจำนวน ' + bonus + ' บาท',
-					icon: 'success',
-					text: '',
-					// showCloseButton: true,
-					confirmButtonText: 'รับโบนัส',
-					allowOutsideClick: false,
-					allowEscapeKey: false,
-				})
 				$('.preloader').show()
 				this.$axios.post('/get_freebonus', {token: token}, this.token).then((response) => {
-					$('.preloader').hide()
 					if (response.data.code === 'SUCCESS') {
+						$('.preloader').hide()
 						this.$swal({
-							title: 'รับโบนัสสำเร็จ!',
+							title: 'รับโบนัสสำเร็จ',
 							icon: 'success',
-							confirmButtonText: 'ตกลง',
+							timer: 8000,
+							html: 'ต้องทำเทิร์น ' + trunover,
+							showConfirmButton: true,
 							allowOutsideClick: false,
 							allowEscapeKey: false,
-						}).then((result) => {
-							if (result.value) {
-								this.$router.push('/')
-							}
+						}).then((response) => {
+							console.log(response)
+							$('.preloader').hide()
+							this.$router.push('/')
 						})
 					} else {
+						$('.preloader').hide()
 						this.$swal({
 							title: 'รับโบนัสไม่สำเร็จ!',
-							text: response.data.msg,
 							icon: 'error',
-							timer: 5000,
-							confirmButtonText: 'ตกลง',
+							showConfirmButton: true,
 							allowOutsideClick: false,
 							allowEscapeKey: false,
-						}).then((result) => {
-							if (result.value) {
-								this.$router.push('/')
-							}
+						}).then((response) => {
+							console.log(response)
+							$('.preloader').hide()
+							this.$router.push('/')
 						})
 					}
 				})

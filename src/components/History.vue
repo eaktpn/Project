@@ -5,7 +5,7 @@
 				<div class="row justify-content-center">
 					<div class="col-12" style="font-weight:400;">
 						<div class="row justify-content-center">
-							<div class="col-6 color_orange font22">ประวัติการใช้งาน</div>
+							<div class="col-6 color_yellow font22">ประวัติการใช้งาน</div>
 							<div class="col-6 align-self-center text-right color_yellow"><mdb-icon icon="angle-double-left" /><router-link to="/" class="color_yellow"> ย้อนกลับ</router-link></div>
 						</div>
 					</div>
@@ -149,39 +149,30 @@
 			},
 		},
 		mounted() {
-			if (this.$session.get('isLogin')) {
-				if (this.isLogin) {
-					$('.preloader').show()
-					this.$axios.get('/is_login', this.token).then((response) => {
-						$('.preloader').hide()
-						if (response.data.msg === 'LOGOUT') {
-							this.$swal({
-								title: 'เกิดข้อผิดพลาด',
-								text: 'มีการเข้าสู่ระบบจากที่อื่น',
-								tpye: 'error',
-								timer: 3000,
-								showConfirmButton: true,
-								allowOutsideClick: false,
-								allowEscapeKey: false,
-							})
-							this.$router.push('/Logout')
-						} else {
-							this.$axios.get('/History', this.token).then((response) => {
-								this.deposit = response.data.data.dataDepo
-								this.depositlength = response.data.data.dataDepo.length
-								this.withdraw = response.data.data.dataWith
-								this.withdrawlength = response.data.data.dataWith.length
-								this.Bonus = response.data.data.dataBonus
-								this.Bonuslength = response.data.data.dataBonus.length
-								this.Bonusfree = response.data.data.dataBonusfree
-								this.Bonusfreelength = response.data.data.dataBonusfree.length
-							})
+			if (this.isLogin) {
+				$('.preloader').show()
+				this.$axios.get('/history/deposit', this.token).then((response) => {
+					$('.preloader').hide()
+					this.deposit = response.data.payload
+					this.depositcheckstatus = response.data.payload
+					var checklist = []
+					for (var i = 0; i < this.depositcheckstatus.length; i++) {
+						if (this.depositcheckstatus[i].status === 5) {
+							checklist.push(this.depositcheckstatus[i])
 						}
-					})
-				}
+					}
+					this.hisdepostatus = checklist.length
+				})
+				this.$axios.get('/history/withdraw', this.token).then((response) => {
+					$('.preloader').hide()
+					this.withdraw = response.data.payload
+				})
+				this.$axios.get('/history/bonus', this.token).then((response) => {
+					$('.preloader').hide()
+					this.bonus = response.data.payload
+				})
 			} else {
-				console.log('Logout History')
-				this.$router.push('/Logout')
+				this.$router.push('/')
 			}
 		},
 	}
