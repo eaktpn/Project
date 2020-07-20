@@ -159,7 +159,7 @@
 			},
 			onChange() {
 				let payload = {
-					bonus_status: this.settingSwitch ? 1 : 0,
+					is_bonus: this.settingSwitch ? 1 : 0,
 				}
 				let token = jwt.sign(payload, this.$keypayload, {
 					expiresIn: '5s',
