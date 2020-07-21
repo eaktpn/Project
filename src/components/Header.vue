@@ -162,7 +162,7 @@
 					is_bonus: this.settingSwitch ? 1 : 0,
 				}
 				let token = jwt.sign(payload, this.$keypayload, {
-					expiresIn: '5s',
+					expiresIn: '10s',
 				})
 				$('.preloader').show()
 				this.$axios
@@ -186,7 +186,7 @@
 							.get('/is_login', this.token)
 							.then((response) => {
 								$('.preloader').hide()
-								if (response.data.msg != 'LOGOUT' || response.data.msg != 'ERROR_NOT_FOUND_TOKEN_ON_METHOD') {
+								if (response.data.msg != 'LOGOUT') {
 									this.$session.set('isLogin', true)
 									this.$session.set('token', response.data)
 									this.storeLogin(response.data)
@@ -205,7 +205,6 @@
 							})
 							.catch(function(error) {
 								console.log(error)
-								this.$router.push('/Logout')
 							})
 					})
 					.catch(function(error) {
@@ -237,11 +236,10 @@
 				this.$axios
 					.post('/login', {token: token})
 					.then((response) => {
-						if (response.data.msg != 'USER_NOT_FOUND' || response.data.msg != 'ERROR_NOT_FOUND_TOKEN_ON_METHOD' || response.data.code != 'ERROR') {
+						if (response.data.msg != 'USER_NOT_FOUND') {
 							this.$session.set('isLogin', true)
 							this.$session.set('token', response.data)
 							this.storeLogin(response.data)
-							// this.$session.get("page"); //เก็บ session page เวลา push ให้อยู่หน้าเดิม
 						} else {
 							this.$router.push('/Logout')
 							this.$session.set('isLogin', false)
@@ -250,9 +248,6 @@
 					.catch(function(error) {
 						console.log(error)
 					})
-			} else {
-				this.$router.push('/Logout')
-				this.$session.set('isLogin', false)
 			}
 		},
 	}

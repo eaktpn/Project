@@ -462,15 +462,19 @@
 								this.$router.push('/Logout')
 							}
 						})
-						.catch(function(error) {
-							console.log(error)
+						.catch(() => {
+							console.log('Logout Main 1111111111111111')
+							this.$swal({
+								title: 'เกิดข้อผิดพลาด',
+								text: 'มีการเข้าสู่ระบบจากที่อื่น',
+								icon: 'error',
+								timer: 5000,
+								showConfirmButton: true,
+							}).then(() => this.$router.push('/Logout'))
 						})
-
-					this.checkLogin = 1
 				}
 			} else {
-				this.checkLogin = 0
-				console.log('Logout main')
+				console.log('Logout main 3333333333333333333')
 				this.$router.push('/Logout')
 			}
 			bannerRef.orderByKey().on('value', (snap) => {

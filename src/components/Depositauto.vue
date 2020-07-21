@@ -29,24 +29,24 @@
 						</div>
 						<div class="row justify-content-center mt-3">
 							<div class="col-xl-5 col-md-5 col-4 text-right margin-delete">ธนาคาร :</div>
-							<div class="col-xl-7 col-md-7 col-8 text-left"><img :src="'/images/bank-deposit/' + bank[0].code + '.png'" style="max-width:70px;" /> {{ bank[0].bank_name }}</div>
+							<div class="col-xl-7 col-md-7 col-8 text-left"><img :src="'/images/bank-deposit/' + bank[0].bank + '.png'" style="max-width:60px;" /> {{ bank[0].name }}</div>
 						</div>
 						<div class="row justify-content-center mt-1">
 							<div class="col-xl-5 col-md-5 col-4 text-right margin-delete">ชื่อบัญชี :</div>
-							<div class="col-xl-7 col-md-7 col-8 text-left">{{ bank[0].name }}</div>
+							<div class="col-xl-7 col-md-7 col-8 text-left">{{ bank[0].full_name }}</div>
 						</div>
 						<div class="row justify-content-center mt-1 mb-3">
 							<div class="col-xl-5 col-md-5 col-4 text-right margin-delete">เลขบัญชี :</div>
-							<div class="col-xl-7 col-md-7 col-8 text-left">{{ bank[0].number }}<mdb-btn color="warning" class="color_back font13 px-2 py-0" @click="copy_numberbank(bank[0].bank_name, bank[0].number)">คัดลอก</mdb-btn></div>
+							<div class="col-xl-7 col-md-7 col-8 text-left">{{ bank[0].number }}<mdb-btn color="warning" class="color_back font13 px-2 py-0" @click="copy_numberbank(bank[0].bank, bank[0].number)">คัดลอก</mdb-btn></div>
 						</div>
 					</div>
-					<!-- <div class="hr-deposit my-3"></div> -->
-					<div class="BG-gray-radius my-3">
-						คุณได้โบนัส<label class="font18 color_orange mt-1 ml-2"
-							>“<b>{{ bonus.title }}</b
-							>”</label
-						>
-					</div>
+				</div>
+				<!-- <div class="hr-deposit my-3"></div> -->
+				<div class="BG-gray-radius my-3">
+					คุณได้โบนัส<label class="font18 color_orange mt-1 ml-2"
+						>“<b>{{ bonus.title }}</b
+						>”</label
+					>
 				</div>
 				<a href="https://line.me/R/ti/p/@756gpeky" target="_blank">
 					<mdb-btn size="md" class="animation-Button animation-border color_white font16"> <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์ </mdb-btn>
@@ -102,10 +102,9 @@
 		},
 		mounted() {
 			popup_deposit.child('deposit').on('value', (snap) => {
-				//Popup affiliate
 				var leng = snap.val()
 				var show_popup_deposit = []
-				console.log(snap.val())
+				// console.log(snap.val())
 				for (var i = 0; i < leng.length; i++) {
 					if (snap.val()[i].status === 1 && momentjs().format('YYYY-MM-DD HH:mm') >= snap.val()[i].date_start && momentjs().format('YYYY-MM-DD HH:mm') <= snap.val()[i].date_end) {
 						show_popup_deposit.push({
@@ -122,32 +121,44 @@
 			if (this.$session.get('isLogin')) {
 				if (this.isLogin) {
 					$('.preloader').show()
-					this.$axios.get('/is_login', this.token).then((response) => {
-						$('.preloader').hide()
-						if (response.data.msg === 'LOGOUT') {
+					this.$axios
+						.get('/is_login', this.token)
+						.then((response) => {
+							$('.preloader').hide()
+							if (response.data.msg === 'LOGOUT') {
+								this.$swal({
+									title: 'เกิดข้อผิดพลาด',
+									text: 'มีการเข้าสู่ระบบจากที่อื่น',
+									tpye: 'error',
+									timer: 3000,
+									showConfirmButton: true,
+									allowOutsideClick: false,
+									allowEscapeKey: false,
+								})
+								this.$router.push('/Logout')
+							} else {
+								this.$axios
+									// .get("/showBank?bank=TRUEWALLET", this.token)
+									.get('/showBank', this.token)
+									.then((response) => {
+										this.bank = response.data
+									})
+								this.$axios.get('/bonus', this.token).then((response) => {
+									this.bonus = response.data.payload
+								})
+							}
+						})
+						.catch(() => {
+							$('.preloader').hide()
+							console.log('Logout Depositauto')
 							this.$swal({
 								title: 'เกิดข้อผิดพลาด',
 								text: 'มีการเข้าสู่ระบบจากที่อื่น',
-								tpye: 'error',
-								timer: 3000,
+								icon: 'error',
+								timer: 5000,
 								showConfirmButton: true,
-								allowOutsideClick: false,
-								allowEscapeKey: false,
-							})
-							this.$router.push('/Logout')
-						} else {
-							this.$axios
-								// .get("/showBank?bank=TRUEWALLET", this.token)
-								.get('/showBank', this.token)
-								.then((response) => {
-									console.log(response.data)
-									this.bank = response.data.payload
-								})
-							this.$axios.get('/bonus', this.token).then((response) => {
-								this.bonus = response.data.payload
-							})
-						}
-					})
+							}).then(() => this.$router.push('/Logout'))
+						})
 				}
 			} else {
 				console.log('Logout Depositauto')
