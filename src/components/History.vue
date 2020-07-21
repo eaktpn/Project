@@ -164,7 +164,8 @@
 					this.bonus = response.data.payload
 				})
 			} else {
-				this.$router.push('/')
+				console.log('Logout Bonusspecial')
+				this.$router.push('/Logout')
 			}
 		},
 	}
