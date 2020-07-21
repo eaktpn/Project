@@ -73,36 +73,7 @@
 		</div>
 		<settingbonus v-if="settingBonus === true"></settingbonus>
 		<ModalCheck></ModalCheck>
-		<div v-if="user">
-			<Checkfullnamebank v-if="user.active === 1"></Checkfullnamebank>
-		</div>
-		<!-- <div>
-         <b-modal id="modalOTP" hide-footer centered title="ยืนยัน OTP" no-close-on-esc no-close-on-backdrop hide-header-close v-model="checkOTP">
-            <div>
-               <p class="text-white" style="margin-top:5px;">หมายเลขโทรศัพท์ {{ user.phone_number }}</p>
-               <b-form-input type="text" v-model="confirm_phonenumber" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="margin-top:-10px;"></b-form-input>
-            </div>
-            <div v-if="counting === true">
-               <p class="text-white" style="margin-top:15px;">หมายเลข OTP</p>
-               <b-form-input type="text" v-model="confirm_OTP" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="margin-top:-10px;"></b-form-input>
-            </div>
-            <p class="text-white" style="margin-top:20px;">
-               กรณีไม่ได้รับรหัส
-               <b>OTP</b> ให้ติดต่อแอดมินทาง
-               <a href="http://line.me/ti/p/@winbetth" target="_bank" v-b-tooltip title="Tooltip in a modal!" class="color_green">
-                  <b>LINE CLICK</b>
-               </a>
-            </p>
-            <div class="text-right" style="margin-top:20px; margin-bottom:3px;">
-               <b-button size="xl" variant="warning" @click="OTP()" class="text-white" :disabled="counting">
-                  <countdown v-if="counting" :time="90000" :leading-zero="false" @countdownend="countdownend()">
-                     <template slot-scope="props">{{ props.totalSeconds }} วินาที</template> </countdown
-                  >ขอรหัส OTP
-               </b-button>
-               <b-button type="button" :disabled="btnsubmit" :class="btnsubmit === false ? 'btn btn-infobtn' : 'disabled btn btn-info'" @click="phonenumber()">ยืนยันเบอร์โทรศัพท์</b-button>
-            </div>
-         </b-modal>
-      </div> -->
+		<Checkfullnamebank v-if="user.active === 0"></Checkfullnamebank>
 	</div>
 </template>
 
@@ -440,13 +411,6 @@
 				token: 'token',
 				settingBonus: 'settingBonus',
 			}),
-			checkOTP: function() {
-				if (this.user.active === 0) {
-					return true
-				} else {
-					return false
-				}
-			},
 		},
 		mounted() {
 			popup_main.child('main').on('value', (snap) => {

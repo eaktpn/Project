@@ -186,7 +186,7 @@
 							.get('/is_login', this.token)
 							.then((response) => {
 								$('.preloader').hide()
-								if (response.data.msg != 'LOGOUT') {
+								if (response.data.msg != 'LOGOUT' || response.data.msg != 'ERROR_NOT_FOUND_TOKEN_ON_METHOD') {
 									this.$session.set('isLogin', true)
 									this.$session.set('token', response.data)
 									this.storeLogin(response.data)
@@ -205,6 +205,7 @@
 							})
 							.catch(function(error) {
 								console.log(error)
+								this.$router.push('/Logout')
 							})
 					})
 					.catch(function(error) {
@@ -236,7 +237,7 @@
 				this.$axios
 					.post('/login', {token: token})
 					.then((response) => {
-						if (response.data.msg != 'USER_NOT_FOUND') {
+						if (response.data.msg != 'USER_NOT_FOUND' || response.data.msg != 'ERROR_NOT_FOUND_TOKEN_ON_METHOD' || response.data.code != 'ERROR') {
 							this.$session.set('isLogin', true)
 							this.$session.set('token', response.data)
 							this.storeLogin(response.data)
@@ -249,6 +250,9 @@
 					.catch(function(error) {
 						console.log(error)
 					})
+			} else {
+				this.$router.push('/Logout')
+				this.$session.set('isLogin', false)
 			}
 		},
 	}
