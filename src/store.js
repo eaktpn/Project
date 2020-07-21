@@ -92,8 +92,6 @@ const actions = {
 			Axios.get('https://win222.abatopup.com/api/amount', state.token).then((respone) => {
 				commit('amount', respone.data)
 			})
-		} else {
-			commit('isLogin', false)
 		}
 	},
 	logout: ({commit}) => {
