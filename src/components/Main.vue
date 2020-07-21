@@ -11,14 +11,14 @@
 				</carousel>
 			</div>
 		</div>
-		<div class="row justify-content-center px-3 mt-3">
-			<div class="col-xl-9 col-md-9 col-12 login-game text-center color_back font28" style="font-weight:400; cursor: pointer;" @click="linkGame2()"><img src="/images/icon/gamepad22.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
-		</div>
-		<!-- <a href="https://sexy333.com/" target="_blank"> -->
 		<!-- <div class="row justify-content-center px-3 mt-3">
-			<div class="col-xl-9 col-md-9 col-12 login-game text-center font28" style="font-weight:400; cursor: pointer;" @click="linkGame2()"><img src="/images/icon/gamepad.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม 2</div>
+			<div class="col-xl-9 col-md-9 col-12 login-game text-center color_back font28" style="font-weight:400; cursor: pointer;" @click="linkGame2()"><img src="/images/icon/gamepad22.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
 		</div> -->
-		<!-- </a> -->
+		<a href="https://winbetth.com/" target="_blank">
+			<div class="row justify-content-center px-3 mt-3">
+				<div class="col-xl-9 col-md-9 col-12 login-game text-center color_back font28" style="font-weight:400; cursor: pointer;"><img src="/images/icon/gamepad22.png" class="m-2" width="100%;" style="max-width:50px; margin-top:-2px;" /> เข้าเกม</div>
+			</div>
+		</a>
 		<div class="row justify-content-center p-2 mt-2">
 			<div class="col-xl-9 col-md-9 col-12">
 				<div class="row text-center">
@@ -468,7 +468,6 @@
 			})
 			if (this.$session.get('isLogin')) {
 				if (this.isLogin) {
-					// this.$session.set("page", "/");
 					this.$axios
 						.get('/is_login', this.token)
 						.then((response) => {
@@ -485,7 +484,6 @@
 								this.$session.set('isLogin', true)
 								this.$session.set('token', response.data)
 								this.storeLogin(response.data)
-								//this.confirm_phonenumber = this.user.phone_number; // คืนค่าเบอร์โทรศัพท์ไปช่อง input
 								$.getScript(getwheelEvent + '?session_id=' + this.user.session_id + '&service=SEXY222')
 							} else {
 								this.$swal({
