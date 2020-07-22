@@ -86,7 +86,6 @@
 	import momentjs from 'moment'
 	import {mapActions, mapGetters} from 'vuex'
 	import {Carousel, Slide} from 'vue-carousel'
-	import {} from 'mdbvue'
 	import $ from 'jquery'
 	import firebase from 'firebase'
 	var bannerRef = firebase.database().ref('banner')
