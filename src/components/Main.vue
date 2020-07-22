@@ -207,131 +207,6 @@
 				document.body.appendChild(formPlaygame)
 				formPlaygame.submit()
 			},
-			// OTP() {
-			//    // Check phonenumber
-			//    if (this.confirm_phonenumber === "") {
-			//       this.$swal({
-			//          icon: "error",
-			//          title: "เกิดข้อผิดพลาด",
-			//          text: "กรุณากรอกเบอโทรศัพท์",
-			//          timer: 5000,
-			//          showConfirmButton: true,
-			//          allowOutsideClick: false,
-			//          allowEscapeKey: false
-			//       });
-			//    } else if (this.confirm_phonenumber.length !== 10) {
-			//       this.$swal({
-			//          title: "เบอร์โทรศัพท์",
-			//          text: "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง",
-			//          icon: "warning", //error warning success
-			//          timer: 5000,
-			//          showConfirmButton: true,
-			//          allowOutsideClick: false,
-			//          allowEscapeKey: false
-			//       });
-			//    } else if (this.confirm_phonenumber[0] !== "0") {
-			//       this.$swal({
-			//          title: "เบอร์โทรศัพท์",
-			//          text: "เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 0 เท่านั้น",
-			//          icon: "warning",
-			//          timer: 5000,
-			//          showConfirmButton: true,
-			//          allowOutsideClick: false,
-			//          allowEscapeKey: false
-			//       });
-			//    } else if (this.confirm_phonenumber.length === 10) {
-			//       let payload = {
-			//          phone_number: this.confirm_phonenumber
-			//       };
-			//       let token = jwt.sign(payload, this.$keypayload, {
-			//          expiresIn: "5s"
-			//       });
-			//       $(".preloader").show();
-			//       this.$axios.post("/otp", {token: token}, this.token).then(response => {
-			//          $(".preloader").hide();
-			//          if (response.data.code === "ERROR") {
-			//             this.$swal({
-			//                icon: "warning",
-			//                title: "เกิดข้อผิดพลาด",
-			//                text: response.data.msg,
-			//                timer: 5000,
-			//                showConfirmButton: true,
-			//                allowOutsideClick: false,
-			//                allowEscapeKey: false
-			//             });
-			//          } else {
-			//             this.$swal({
-			//                icon: "success",
-			//                title: "สำเร็จ",
-			//                html: "ระบบได้ส่งรหัส OTP ไปยัง <br> หมายเลข " + this.confirm_phonenumber + " เรียบร้อยแล้ว<br>กรุณากรอกรหัส OTP ที่ได้รับ",
-			//                timer: 5000,
-			//                showConfirmButton: true,
-			//                allowOutsideClick: false,
-			//                allowEscapeKey: false
-			//             });
-			//             this.counting = true;
-			//             this.btnsubmit = false;
-			//          }
-			//       });
-			//    }
-			// },
-			// countdownend: function() {
-			//    this.counting = false;
-			//    this.btnsubmit = true;
-			// },
-			// phonenumber() {
-			//    let payload = {
-			//       phone_number: this.confirm_phonenumber,
-			//       otp: this.confirm_OTP
-			//    };
-			//    if (this.confirm_phonenumber === "" || this.confirm_OTP === "") {
-			//       this.$swal({
-			//          icon: "error",
-			//          title: "เกิดข้อผิดพลาด",
-			//          text: "หมายเลข OTP ผิดพลาด",
-			//          timer: 5000,
-			//          showConfirmButton: true,
-			//          allowOutsideClick: false,
-			//          allowEscapeKey: false
-			//       });
-			//    } else {
-			//       let token = jwt.sign(payload, this.$keypayload, {
-			//          expiresIn: "5s"
-			//       });
-			//       $(".preloader").show();
-			//       this.$axios.post("/otp_verify", {token: token}, this.token).then(response => {
-			//          $(".preloader").hide();
-			//          if (response.data.code === "SUCCESS") {
-			//             this.$swal({
-			//                icon: "success",
-			//                title: "ยืนยันสำเร็จ",
-			//                timer: 5000,
-			//                showConfirmButton: true,
-			//                allowOutsideClick: false,
-			//                allowEscapeKey: false
-			//             }).then(result => {
-			//                if (result.value) {
-			//                   $("#modalOTP").hide();
-			//                   $("#modalOTP___BV_modal_backdrop_").hide();
-			//                }
-			//             });
-			//             this.$router.push("/");
-			//          }
-			//          if (response.data.code === "ERROR") {
-			//             $(".preloader").hide();
-			//             this.$swal({
-			//                icon: "error",
-			//                title: "เกิดข้อผิดพลาด",
-			//                text: "รหัส OTP ไม่ถูกต้อง",
-			//                timer: 5000,
-			//                showConfirmButton: true,
-			//                allowOutsideClick: false,
-			//                allowEscapeKey: false
-			//             });
-			//          }
-			//       });
-			//    }
-			// },
 			settingBonusshow() {
 				this.updatesettingBonus(true)
 			},
@@ -339,60 +214,6 @@
 				this.counting = true
 				this.btnsubmit = false
 			},
-			// onChange() {
-			//    let payload = {
-			//       bonus_status: this.settingSwitch ? 1 : 0,
-			//    };
-			//    let token = jwt.sign(payload, this.$keypayload, {
-			//       expiresIn: "5s",
-			//    });
-			//    $(".preloader").show();
-			//    this.$axios
-			//       .post("/is_bonus", {token: token}, this.token)
-			//       .then((response) => {
-			//          $(".preloader").hide();
-			//          if (response.data.code != "SUCCESS") {
-			//             this.$swal({
-			//                title: "เกิดข้อผิดพลาด",
-			//                text: "ไม่สามารเปิด-ปิดโบนัสได้",
-			//                icon: "error",
-			//                timer: 5000,
-			//                showConfirmButton: true,
-			//                allowOutsideClick: false,
-			//                allowEscapeKey: false,
-			//             });
-			//          }
-			//          $(".preloader").hide();
-			//          this.$axios
-			//             .get("/is_login", this.token)
-			//             .then((response) => {
-			//                $(".preloader").hide();
-			//                if (response.data.msg != "LOGOUT") {
-			//                   this.$session.set("isLogin", true);
-			//                   this.$session.set("token", response.data);
-			//                   this.storeLogin(response.data);
-			//                } else {
-			//                   this.$swal({
-			//                      title: "เกิดข้อผิดพลาด",
-			//                      text: "มีการเข้าสู่ระบบจากที่อื่น",
-			//                      icon: "error",
-			//                      timer: 5000,
-			//                      showConfirmButton: true,
-			//                      allowOutsideClick: false,
-			//                      allowEscapeKey: false,
-			//                   });
-			//                   $(".preloader").hide();
-			//                   this.$router.push("/Logout");
-			//                }
-			//             })
-			//             .catch(function(error) {
-			//                console.log(error);
-			//             });
-			//       })
-			//       .catch(function(error) {
-			//          console.log(error);
-			//       });
-			// },
 			showModalcheck() {
 				if (this.user.is_bonus === 1) {
 					this.settingSwitch = true
@@ -462,7 +283,6 @@
 							}
 						})
 						.catch(() => {
-							console.log('Logout Main 1111111111111111')
 							this.$swal({
 								title: 'เกิดข้อผิดพลาด',
 								text: 'มีการเข้าสู่ระบบจากที่อื่น',
@@ -473,7 +293,6 @@
 						})
 				}
 			} else {
-				console.log('Logout main 3333333333333333333')
 				this.$router.push('/Logout')
 			}
 			bannerRef.orderByKey().on('value', (snap) => {
