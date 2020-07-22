@@ -259,8 +259,8 @@
 										//   }
 										// });
 									} else {
-										this.$axios.get('/hisWD', this.token).then((response) => {
-											if (response.data.count !== 0) {
+										this.$axios.get('/history/withdraw', this.token).then((response) => {
+											if (response.data.payload.count !== 0) {
 												this.$swal({
 													title: 'ไม่สามารถทำรายการถอนได้',
 													icon: 'warning',
