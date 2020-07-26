@@ -18,7 +18,7 @@
 			</div>
 			<div class="row justify-content-center ">
 				<div class="col-xl-5 col-md-7 col-10 text-right mt-3">
-					<a href="https://lin.ee/jBQd0qr" target="_blank">
+					<a href="http://line.me/ti/p/@win222" target="_blank">
 						<button type="button" class="btn btn-success"><img src="/images/icon/lineback.png" width="20" /> ติดต่อ @LINE</button>
 					</a>
 				</div>

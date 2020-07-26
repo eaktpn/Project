@@ -21,7 +21,7 @@
 					<div class="col-xl-9 col-md-9 col-12">
 						<div class="row justify-content-center mt-2">
 							<div class="col-xl-6 col-md-6 col-6" style="cursor:pointer;" @click="copy_user(user.username)">
-								ยูสเซอร์เนม : <span class="color_yellow">{{ user.username }}</span>
+								ยูสเซอร์เนม : <span class="color_yellow">{{ user.username }} <small class="color_blue">คัดลอก</small></span>
 							</div>
 							<div class="col-xl-6 col-md-6 col-6 text-right">
 								รหัสผ่าน : <span class="color_yellow">{{ user.password }}</span>
@@ -84,12 +84,12 @@
 							<router-link to="/Logout" class="font16 color_yellow"><i class="my-2 fas fa-sign-out-alt color_yellow"></i><b>ออกจากระบบ</b></router-link>
 						</div>
 						<hr class="my-hr mt-3" />
-						<a href="https://facebook.com/Sexy222-103227088036432/" target="_blank">
+						<a href="https://www.facebook.com/Win222-109293407540325/" target="_blank">
 							<div>
 								<i class="my-1 fab fa-facebook-square text-primary"></i><span class="font16 text-primary"><b>Facebook</b></span>
 							</div>
 						</a>
-						<a href="https://lin.ee/jBQd0qr" target="_blank">
+						<a href="http://line.me/ti/p/@win222" target="_blank">
 							<div>
 								<i class="fab fa-line text-success"></i><span class="font16 text-success"><b>Line</b></span>
 							</div>

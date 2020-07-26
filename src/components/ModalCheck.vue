@@ -26,7 +26,7 @@
 				</div>
 				<div class="text-center font14 my-3">
 					หากเกิดปัญหา ให้ติดต่อแอดมินทาง
-					<a href="https://lin.ee/jBQd0qr" target="_blank"><span class="color_green font600">LINE คลิ๊ก</span></a>
+					<a href="http://line.me/ti/p/@win222" target="_blank"><span class="color_green font600">LINE คลิ๊ก</span></a>
 				</div>
 			</div>
 		</mdb-modal>
@@ -48,7 +48,7 @@
 				</div>
 				<div class="font14 mt-4">
 					กรณีไม่ได้รับรหัส<b> OTP</b> ให้ติดต่อแอดมินทาง
-					<a href="https://lin.ee/jBQd0qr" target="_blank"><span class="color-8 font600">LINE คลิ๊ก</span></a>
+					<a href="http://line.me/ti/p/@win222" target="_blank"><span class="color-8 font600">LINE คลิ๊ก</span></a>
 				</div>
 				<div class="text-right">
 					<mdb-btn type="submit" class="btn-otp mt-4 px-3 py-2 font500" :disabled="counting" @click="OTP()">
