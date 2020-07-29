@@ -20,11 +20,11 @@
 				<div class="row justify-content-center">
 					<div class="col-xl-9 col-md-9 col-12">
 						<div class="row justify-content-center mt-2">
-							<div class="col-xl-6 col-md-6 col-6" style="cursor:pointer;" @click="copy_user(user.username)">
-								ยูสเซอร์เนม : <span class="color_yellow">{{ user.username }} <small class="color_blue">คัดลอก</small></span>
+							<div class="col-6" style="cursor:pointer;" @click="copy_user(user.username)">
+								ยูสเซอร์เนม : <span class="color_yellow font12">{{ user.username }} <mdb-btn color="primary" class="color_white font10 px-1 py-0 m-0">คัดลอก</mdb-btn></span>
 							</div>
-							<div class="col-xl-6 col-md-6 col-6 text-right">
-								รหัสผ่าน : <span class="color_yellow">{{ user.password }}</span>
+							<div class="col-6 text-right">
+								รหัสผ่าน : <span class="color_yellow font12">{{ user.password }}</span>
 							</div>
 						</div>
 						<div class="line-main my-3"></div>
