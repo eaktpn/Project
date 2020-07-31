@@ -18,6 +18,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
+import VueCarousel from 'vue-carousel'
+Vue.use(VueCarousel)
+
 import VueSession from 'vue-session' //session
 Vue.use(VueSession)
 
