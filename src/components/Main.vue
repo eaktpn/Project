@@ -85,7 +85,7 @@
 						</router-link>
 					</div>
 					<div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
-						<a href="https://lin.ee/4loZnaa" target="_blank">
+						<a href="https://lin.ee/ajg7Ize" target="_blank">
 							<div class="BG-gray-radius-main" style="cursor: pointer;">
 								<img src="/images/icon/chat.png" width="60px;" class="p-1" />
 								<div class="color_white font16" style="font-weight:400;">ติดต่อพนักงาน</div>
