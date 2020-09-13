@@ -439,7 +439,7 @@
 				var show_popup_main = []
 				console.log(snap.val())
 				for (var i = 0; i < leng.length; i++) {
-					if (snap.val()[i].status === 1 && momentjs().format('YYYY-MM-DD HH:mm') >= snap.val()[i].date_start && momentjs().format('YYYY-MM-DD HH:mm') <= snap.val()[i].date_end) {
+					if (snap.val()[i].status === 1 && momentjs().format('YYYY-MM-DD HH:mm') >= snap.val()[i].time_start && momentjs().format('YYYY-MM-DD HH:mm') <= snap.val()[i].time_end) {
 						show_popup_main.push({
 							title: snap.val()[i].title,
 							html: snap.val()[i].text,
@@ -448,6 +448,7 @@
 						})
 					}
 					this.$swal.queue(show_popup_main)
+					console.log(show_popup_main)
 				}
 			})
 			if (this.$session.get('isLogin')) {
