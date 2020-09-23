@@ -477,6 +477,7 @@ export default {
             title: snap.val()[i].title,
             html: snap.val()[i].text,
             imageUrl: snap.val()[i].imageUrl,
+            timer: 5000,
             showConfirmButton: true,
           });
         }
