@@ -11,13 +11,18 @@
         >
           <slide v-for="(banners, key) in bannerimg" :key="key">
             <a target="_blank" rel="noreferrer">
-              <img :src="banners" class="img-fluid shadow rounded" width="100%" alt="image" />
+              <img
+                :src="banners"
+                class="img-fluid shadow rounded"
+                width="100%"
+                alt="image"
+              />
             </a>
           </slide>
         </carousel>
       </div>
     </div>
-    <div class="row justify-content-center p-3" style="margin-top:-5px;">
+    <div class="row justify-content-center p-3" style="margin-top: -5px">
       <div class="col-xl-9 col-md-9 col-12 BG-gray-radius">
         <div class="row justify-content-center mt-2">
           <div>
@@ -25,12 +30,14 @@
               src="/images/icon/dollar-coin.png"
               class="mx-3"
               width="100%;"
-              style="max-width:65px; margin-top:-2px;"
+              style="max-width: 65px; margin-top: -2px"
             />
           </div>
           <div class="align-self-center">
             <div class="font16">ยอดเงิน</div>
-            <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
+            <div class="color_blue font26" style="font-weight: 400">
+              {{ currencyFormat(amount) }}
+            </div>
           </div>
         </div>
         <div class="line-main my-3"></div>
@@ -38,11 +45,11 @@
           <div class="col font16 mb-2">
             <div class="text-center">
               ยูสเซอร์เนม :
-              <span style="color:#5E72E4;">{{ user.username }}</span>
+              <span style="color: #5e72e4">{{ user.username }}</span>
             </div>
             <div class="text-center mt-2">
               รหัสผ่าน :
-              <span style="color:#5E72E4;">{{ user.password }}</span>
+              <span style="color: #5e72e4">{{ user.password }}</span>
             </div>
           </div>
         </div>
@@ -51,8 +58,10 @@
             <button
               type="button"
               class="btn btn-profile color_yellow font14"
-              style="font-weight:200;"
-            >ข้อมูลบัญชี</button>
+              style="font-weight: 200"
+            >
+              ข้อมูลบัญชี
+            </button>
           </router-link>
         </div>
       </div>
@@ -60,15 +69,16 @@
     <div class="row justify-content-center px-3">
       <div
         class="col-xl-9 col-md-9 col-12 login-game text-center font28"
-        style="font-weight:400; cursor: pointer;"
+        style="font-weight: 400; cursor: pointer"
         @click="linkGame()"
       >
         <img
           src="/images/icon/gamepad.png"
           class="m-2"
           width="100%;"
-          style="max-width:50px; margin-top:-2px;"
-        /> เข้าเกม
+          style="max-width: 50px; margin-top: -2px"
+        />
+        เข้าเกม
       </div>
     </div>
     <div class="row justify-content-center p-2 mt-2">
@@ -76,49 +86,73 @@
         <div class="row text-center">
           <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
             <router-link to="/Depositauto">
-              <div class="BG-gray-radius-main" style="cursor: pointer;">
+              <div class="BG-gray-radius-main" style="cursor: pointer">
                 <img src="/images/icon/wallet.png" width="60px;" />
-                <div class="color_white font16" style="font-weight:400;">ฝากเงิน</div>
+                <div class="color_white font16" style="font-weight: 400">
+                  ฝากเงิน
+                </div>
               </div>
             </router-link>
           </div>
           <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
             <router-link to="/Withdraw">
-              <div class="BG-gray-radius-main" style="cursor: pointer;">
+              <div class="BG-gray-radius-main" style="cursor: pointer">
                 <img src="/images/icon/cash.png" width="60px;" class="p-1" />
-                <div class="color_white font16" style="font-weight:400;">ถอนเงิน</div>
+                <div class="color_white font16" style="font-weight: 400">
+                  ถอนเงิน
+                </div>
               </div>
             </router-link>
           </div>
           <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
             <router-link to="/Affiliate">
-              <div class="BG-gray-radius-main" style="cursor: pointer;">
-                <img src="/images/icon/add-user.png" width="60px;" class="p-1" />
-                <div class="color_white font16" style="font-weight:400;">แนะนำเพื่อน</div>
+              <div class="BG-gray-radius-main" style="cursor: pointer">
+                <img
+                  src="/images/icon/add-user.png"
+                  width="60px;"
+                  class="p-1"
+                />
+                <div class="color_white font16" style="font-weight: 400">
+                  แนะนำเพื่อน
+                </div>
               </div>
             </router-link>
           </div>
           <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
             <router-link to="Bonusspecial">
-              <div class="BG-gray-radius-main" style="cursor: pointer;">
-                <img src="/images/icon/gift-box.png" width="60px;" class="p-1" />
-                <div class="color_white font16" style="font-weight:400;">โบนัสพิเศษ</div>
+              <div class="BG-gray-radius-main" style="cursor: pointer">
+                <img
+                  src="/images/icon/gift-box.png"
+                  width="60px;"
+                  class="p-1"
+                />
+                <div class="color_white font16" style="font-weight: 400">
+                  โบนัสพิเศษ
+                </div>
               </div>
             </router-link>
           </div>
           <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
             <router-link to="/History">
-              <div class="BG-gray-radius-main" style="cursor: pointer;">
-                <img src="/images/icon/wall-clock.png" width="60px;" class="p-1" />
-                <div class="color_white font16" style="font-weight:400;">ประวัติทำรายการ</div>
+              <div class="BG-gray-radius-main" style="cursor: pointer">
+                <img
+                  src="/images/icon/wall-clock.png"
+                  width="60px;"
+                  class="p-1"
+                />
+                <div class="color_white font16" style="font-weight: 400">
+                  ประวัติทำรายการ
+                </div>
               </div>
             </router-link>
           </div>
           <div class="col-xl-3 col-md-4 col-4 padding-main mb-3">
             <a href="https://lin.ee/ajg7Ize" target="_blank">
-              <div class="BG-gray-radius-main" style="cursor: pointer;">
+              <div class="BG-gray-radius-main" style="cursor: pointer">
                 <img src="/images/icon/chat.png" width="60px;" class="p-1" />
-                <div class="color_white font16" style="font-weight:400;">ติดต่อพนักงาน</div>
+                <div class="color_white font16" style="font-weight: 400">
+                  ติดต่อพนักงาน
+                </div>
               </div>
             </a>
           </div>
@@ -172,14 +206,12 @@ let getwheelEvent = "https://allbet.asia/wheel/script";
 import ModalCheck from "../components/ModalCheck.vue";
 import Checkfullnamebank from "../components/Checkfullname_bank.vue";
 const jwt = require("jsonwebtoken");
-import momentjs from "moment";
 import { mapActions, mapGetters } from "vuex";
 import { Carousel, Slide } from "vue-carousel";
 import {} from "mdbvue";
 import $ from "jquery";
 import firebase from "firebase";
 var bannerRef = firebase.database().ref("banner");
-var popup_main = firebase.database().ref("popup");
 export default {
   name: "Mian",
   data() {
@@ -462,28 +494,6 @@ export default {
     },
   },
   mounted() {
-    popup_main.child("main").on("value", (snap) => {
-      //Popup affiliate
-      var leng = snap.val();
-      var show_popup_main = [];
-      console.log(snap.val());
-      for (var i = 0; i < leng.length; i++) {
-        if (
-          snap.val()[i].status === 1 &&
-          momentjs().format("YYYY-MM-DD HH:mm") >= snap.val()[i].time_start &&
-          momentjs().format("YYYY-MM-DD HH:mm") <= snap.val()[i].time_end
-        ) {
-          show_popup_main.push({
-            title: snap.val()[i].title,
-            html: snap.val()[i].text,
-            imageUrl: snap.val()[i].imageUrl,
-            timer: 5000,
-            showConfirmButton: true,
-          });
-        }
-        this.$swal.queue(show_popup_main);
-      }
-    });
     if (this.$session.get("isLogin")) {
       this.$axios
         .get("/is_login", this.token)

@@ -3,7 +3,11 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-xl-8 col-md-8 col-11 text-center">
-          <img src="/images/logo/joker24h.png" width="100%;" style="max-width:160px;" />
+          <img
+            src="/images/logo/joker24h.png"
+            width="100%;"
+            style="max-width: 160px"
+          />
         </div>
       </div>
       <form @submit.prevent="checklogin()">
@@ -43,28 +47,52 @@
               block
               size="sm"
               class="btn-login-orange color_back font18"
-              style="font-weight:400;"
-            >เข้าสู่ระบบ</mdb-btn>
+              style="font-weight: 400"
+              >เข้าสู่ระบบ</mdb-btn
+            >
           </div>
         </div>
       </form>
       <div class="row justify-content-center color_yellow font16 mt-3">
-        <div class style="cursor: pointer;" @click="showModal = true">ลงทะเบียนใช้งาน</div>
+        <div class style="cursor: pointer" @click="showModal = true">
+          ลงทะเบียนใช้งาน
+        </div>
       </div>
-      <div style="margin-bottom:50px;"></div>
+      <div style="margin-bottom: 50px"></div>
 
-      <mdb-modal class="color_back" :show="showModal" @close="showModal = false" centered>
+      <mdb-modal
+        class="color_back"
+        :show="showModal"
+        @close="showModal = false"
+        centered
+      >
         <mdb-modal-header>
-          <mdb-modal-title class="color_blue" style="font-weight:400;">เงื่อนไขการสมัคร</mdb-modal-title>
+          <mdb-modal-title class="color_blue" style="font-weight: 400"
+            >เงื่อนไขการสมัคร</mdb-modal-title
+          >
         </mdb-modal-header>
         <mdb-modal-body class="color_white font14">
           <div class="row justify-content-center">
             <div class="col-xl-11 col-md-11 col-11">
-              <p>1. หมายเลขโทรศัพท์ที่ใช้ ต้องสามารถรับข้อความได้ เพราะระบบจำเป็นต้องส่งรหัสยืนยัน ไปยังหมายเลข โทรศัพท์ของท่าน มิเช่นนั้นจะไม่สามารถถอนเงินได้</p>
-              <p>2. ชื่อ - นามสกุล จะต้องตรงกับข้อมูลบัญชี มิเช่นนั้นจะไม่สามารถถอนเงินได้</p>
+              <p>
+                1. หมายเลขโทรศัพท์ที่ใช้ ต้องสามารถรับข้อความได้
+                เพราะระบบจำเป็นต้องส่งรหัสยืนยัน ไปยังหมายเลข โทรศัพท์ของท่าน
+                มิเช่นนั้นจะไม่สามารถถอนเงินได้
+              </p>
+              <p>
+                2. ชื่อ - นามสกุล จะต้องตรงกับข้อมูลบัญชี
+                มิเช่นนั้นจะไม่สามารถถอนเงินได้
+              </p>
               <p>3. ต้องใช้บัญชีที่สมัครฝากเงินเข้ามาเท่านั้น</p>
-              <p>4. ถ้าเกิดข้อผิดพลาดของระบบ ให้ทำการแจ้งพนักงานทันที กรณีไม่แจ้ง ทางเราขอสงวนสิทธิ์การถอนเงิน ทุกกรณี</p>
-              <p>5. สมาชิก 1 คน ต่อ 1 ไอดีเท่านั้น กรณีตรวจพบว่ามีการสมัครหลายไอดี ทางเราจะสงวนสิทธิ์ในการถอน ทุกกรณี</p>
+              <p>
+                4. ถ้าเกิดข้อผิดพลาดของระบบ ให้ทำการแจ้งพนักงานทันที กรณีไม่แจ้ง
+                ทางเราขอสงวนสิทธิ์การถอนเงิน ทุกกรณี
+              </p>
+              <p>
+                5. สมาชิก 1 คน ต่อ 1 ไอดีเท่านั้น
+                กรณีตรวจพบว่ามีการสมัครหลายไอดี ทางเราจะสงวนสิทธิ์ในการถอน
+                ทุกกรณี
+              </p>
             </div>
           </div>
           <mdb-input
@@ -82,10 +110,15 @@
               block
               :disabled="check_condition === false"
               size="sm"
-              :class="check_condition === false ? 'btn-login-gray font16' : 'btn-login-orange color_back font16'"
-              style="font-weight:400;"
+              :class="
+                check_condition === false
+                  ? 'btn-login-gray font16'
+                  : 'btn-login-orange color_back font16'
+              "
+              style="font-weight: 400"
               @click="GoRegister()"
-            >ตกลง</mdb-btn>
+              >ตกลง</mdb-btn
+            >
           </div>
         </div>
       </mdb-modal>
@@ -98,6 +131,9 @@ import axios from "axios";
 const jwt = require("jsonwebtoken");
 import { mapActions, mapGetters } from "vuex";
 import $ from "jquery";
+import momentjs from "moment";
+import firebase from "firebase";
+var popup_main = firebase.database().ref("popup");
 export default {
   name: "Login",
   data() {
@@ -266,6 +302,30 @@ export default {
               this.storeLogin(response.data);
               $(".preloader").hide();
               this.$router.push("/");
+              popup_main.child("main").on("value", (snap) => {
+                //Popup affiliate
+                var leng = snap.val();
+                var show_popup_main = [];
+                console.log(snap.val());
+                for (var i = 0; i < leng.length; i++) {
+                  if (
+                    snap.val()[i].status === 1 &&
+                    momentjs().format("YYYY-MM-DD HH:mm") >=
+                      snap.val()[i].time_start &&
+                    momentjs().format("YYYY-MM-DD HH:mm") <=
+                      snap.val()[i].time_end
+                  ) {
+                    show_popup_main.push({
+                      title: snap.val()[i].title,
+                      html: snap.val()[i].text,
+                      imageUrl: snap.val()[i].imageUrl,
+                      timer: 9000,
+                      showConfirmButton: true,
+                    });
+                  }
+                  this.$swal.queue(show_popup_main);
+                }
+              });
             } else {
               $(".preloader").hide();
               this.$swal({
