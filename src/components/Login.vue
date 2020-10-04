@@ -319,7 +319,7 @@ export default {
                       title: snap.val()[i].title,
                       html: snap.val()[i].text,
                       imageUrl: snap.val()[i].imageUrl,
-                      timer: 9000,
+                      timer: 25000,
                       showConfirmButton: true,
                     });
                   }
