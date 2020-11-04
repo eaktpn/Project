@@ -250,48 +250,46 @@
 					this.$swal.queue(show_popup_main)
 				}
 			})
-			if (this.$session.get('isLogin')) {
-				if (this.isLogin) {
-					this.$axios
-						.get('/is_login', this.token)
-						.then((response) => {
-							if (response.data.msg != 'LOGOUT') {
-								// this.$axios
-								// 	.get('/affiliateUpdate', this.token) // Update affiliate
-								// 	.then((response) => {
-								// 		console.log('affiliateUpdate ' + response.data.msg)
-								// 	})
-								// 	.catch(function(error) {
-								// 		$('.preloader').hide()
-								// 		console.log(error)
-								// 	})
-								this.$session.set('isLogin', true)
-								this.$session.set('token', response.data)
-								this.storeLogin(response.data)
-								$.getScript(getwheelEvent + '?session_id=' + this.user.session_id + '&service=SEXY222')
-							} else {
-								this.$swal({
-									title: 'เกิดข้อผิดพลาด',
-									text: 'มีการเข้าสู่ระบบจากที่อื่น',
-									icon: 'error',
-									timer: 5000,
-									showConfirmButton: true,
-									allowOutsideClick: false,
-									allowEscapeKey: false,
-								})
-								this.$router.push('/Logout')
-							}
-						})
-						.catch(() => {
+			if (this.isLogin) {
+				this.$axios
+					.get('/is_login', this.token)
+					.then((response) => {
+						if (response.data.msg != 'LOGOUT') {
+							// this.$axios
+							// 	.get('/affiliateUpdate', this.token) // Update affiliate
+							// 	.then((response) => {
+							// 		console.log('affiliateUpdate ' + response.data.msg)
+							// 	})
+							// 	.catch(function(error) {
+							// 		$('.preloader').hide()
+							// 		console.log(error)
+							// 	})
+							this.$session.set('isLogin', true)
+							this.$session.set('token', response.data)
+							this.storeLogin(response.data)
+							$.getScript(getwheelEvent + '?session_id=' + this.user.session_id + '&service=SEXY222')
+						} else {
 							this.$swal({
 								title: 'เกิดข้อผิดพลาด',
 								text: 'มีการเข้าสู่ระบบจากที่อื่น',
 								icon: 'error',
 								timer: 5000,
 								showConfirmButton: true,
-							}).then(() => this.$router.push('/Logout'))
-						})
-				}
+								allowOutsideClick: false,
+								allowEscapeKey: false,
+							})
+							this.$router.push('/Logout')
+						}
+					})
+					.catch(() => {
+						this.$swal({
+							title: 'เกิดข้อผิดพลาด',
+							text: 'มีการเข้าสู่ระบบจากที่อื่น',
+							icon: 'error',
+							timer: 5000,
+							showConfirmButton: true,
+						}).then(() => this.$router.push('/Logout'))
+					})
 			} else {
 				this.$router.push('/Logout')
 			}
