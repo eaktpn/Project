@@ -74,7 +74,7 @@
 		<settingbonus v-if="settingBonus === true"></settingbonus>
 		<ModalCheck></ModalCheck>
 		<div v-if="user">
-			<Checkfullnamebank v-if="user.active === 1"></Checkfullnamebank>
+			<Checkfullnamebank v-if="user.active === 0"></Checkfullnamebank>
 		</div>
 		<!-- <div>
          <b-modal id="modalOTP" hide-footer centered title="ยืนยัน OTP" no-close-on-esc no-close-on-backdrop hide-header-close v-model="checkOTP">
