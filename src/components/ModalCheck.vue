@@ -7,11 +7,11 @@
 				</mdb-modal-title>
 			</mdb-modal-header>
 			<div class="row justify-content-center mt-3">
-				<!-- <div class="col-6 text-center mt-2" @click="confirmuser = 'phone_confirm'">
-					<i class="fas fa-mobile-alt fa-8x blue-text" style="cursor:pointer;"></i>
+				<div class="col-6 text-center mt-2" @click="confirmuser = 'phone_confirm'">
+					<!-- <i class="fas fa-mobile-alt fa-8x blue-text" style="cursor:pointer;"></i> -->
 					<img src="/images/icon/mobile.png" class="mx-3" width="100%;" style="max-width: 130px; cursor: pointer;" />
 					<div class="color_white font14 p-2" style="cursor: pointer;">ยืนยันตัวตนผ่านโทรศัพท์</div>
-				</div> -->
+				</div>
 				<div class="col-6 text-center mt-2">
 					<a href="https://line.me/R/ti/p/@756gpeky" target="_blank">
 						<!-- <i class="fab fa-line fa-9x text-success" style="cursor:pointer;"></i> -->
@@ -51,7 +51,7 @@
 					<a href="http://line.me/ti/p/@win222" target="_blank"><span class="color_green font600">LINE คลิ๊ก</span></a>
 				</div>
 				<div class="text-right">
-					<mdb-btn type="submit" class="btn-otp mt-4 px-3 py-2 font500" :disabled="counting" @click="OTP()">
+					<mdb-btn class="btn-otp mt-4 px-3 py-2 font500" :disabled="counting" @click="OTP()">
 						<countdown v-if="counting" :time="90000" :leading-zero="false" @countdownend="countdownend()">
 							<template slot-scope="props">{{ props.totalSeconds }} วินาที</template>
 						</countdown>
@@ -335,23 +335,5 @@
 	}
 	.fa-1-5x {
 		font-size: 1.5em;
-	}
-	.btn-otp {
-		background: #ffc107 !important;
-		border-radius: 5px;
-		color: #131313;
-		font-size: 16px;
-	}
-	.btn-otp:hover {
-		color: #131313;
-	}
-	.btn-confirm-number {
-		background: #2baabb !important;
-		border-radius: 5px;
-		color: #131313;
-		font-size: 16px;
-	}
-	.btn-confirm-number:hover {
-		color: #131313;
 	}
 </style>
