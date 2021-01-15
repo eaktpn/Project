@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="isLogin">
     <div class="row justify-content-center">
-      <div class="col-xl-9 col-md-9 col-12" style="font-weight:400;">
+      <div class="col-xl-9 col-md-9 col-12" style="font-weight: 400">
         <div class="row justify-content-center">
           <div class="col-6 font26">ถอนเงิน</div>
           <div class="col-6 align-self-center text-right color_yellow">
@@ -13,26 +13,31 @@
     </div>
     <div class="row justify-content-center p-3">
       <div class="col-xl-9 col-md-9 col-12 BG-gray">
-        <div class="row my-1" style="margin-top:-5px;">
+        <div class="row my-1" style="margin-top: -5px">
           <div>
             <img
               src="/images/icon/dollar-coin.png"
               class="mx-3"
               width="100%;"
-              style="max-width:65px; margin-top:-2px;"
+              style="max-width: 65px; margin-top: -2px"
             />
           </div>
           <div class="align-self-center">
             <div class="font16">ยอดเงิน</div>
-            <div class="color_blue font26" style="font-weight:400;">{{ currencyFormat(amount) }}</div>
+            <div class="color_blue font26" style="font-weight: 400">
+              {{ currencyFormat(amount) }}
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row justify-content-center px-3">
-      <div class="col-xl-9 col-md-9 col-12 BG-yellow color_red font18 p-4" style="font-weight:400;">
+      <div
+        class="col-xl-9 col-md-9 col-12 BG-yellow color_red font18 p-4"
+        style="font-weight: 400"
+      >
         <div class="text-center">กติกาการถอนเงิน</div>
-        <div class="font16 mt-2" style="color:#747474;">
+        <div class="font16 mt-2" style="color: #747474">
           1. กรณี ไม่รับโบนัส จะต้องมีรายการเล่นอย่างน้อย 1 ครั้ง
           <br />2. กรณีมีการทุจริต การตัดสินใจของแอดมินถือเป็นที่สุด
         </div>
@@ -40,7 +45,12 @@
     </div>
     <div class="row justify-content-center p-3">
       <div class="col-xl-9 col-md-9 col-12 border-with text-center font18 p-3">
-        <img src="/images/icon/warning.png" class="mx-3" width="100%;" style="max-width:45px;" />ถอนขั้นต่ำ 1 บาท
+        <img
+          src="/images/icon/warning.png"
+          class="mx-3"
+          width="100%;"
+          style="max-width: 45px"
+        />ถอนขั้นต่ำ 1 บาท
       </div>
     </div>
     <div class="row justify-content-center">
@@ -48,25 +58,30 @@
         <div class="text-white">จำนวนเงินที่จะถอน</div>
       </div>
     </div>
-    <div class="row justify-content-center" v-if="withdraw_amount_show === true">
-      <mdb-alert class="col-xl-8 col-md-8 col-11 mt-2" color="danger">ยอดเงินของคุณน้อยกว่า 1 บาท</mdb-alert>
+    <div
+      class="row justify-content-center"
+      v-if="withdraw_amount_show === true"
+    >
+      <mdb-alert class="col-xl-8 col-md-8 col-11 mt-2" color="danger"
+        >ยอดเงินของคุณน้อยกว่า 1 บาท</mdb-alert
+      >
     </div>
     <div class="row justify-content-center" v-if="withdraw_fix_show === true">
-      <mdb-alert
-        class="col-xl-8 col-md-8 col-11 mt-2"
-        color="danger"
-      >ไม่สามารถทำการถอนได้ คุณต้องมียอดมากกว่าหรือเท่ากับ {{ withdraw_fix }} จึงจะสามารถถอนได้</mdb-alert>
+      <mdb-alert class="col-xl-8 col-md-8 col-11 mt-2" color="danger"
+        >ไม่สามารถทำการถอนได้ คุณต้องมียอดมากกว่าหรือเท่ากับ
+        {{ withdraw_fix }} จึงจะสามารถถอนได้</mdb-alert
+      >
     </div>
     <div v-if="withdraw_with_show === true">
-      <div class="row justify-content-center" style="margin-top:-16px;">
+      <div class="row justify-content-center" style="margin-top: -16px">
         <div class="col-xl-5 col-md-6 col-11 text-rigth">
           <input
             :disabled="amount < 1"
             type="text"
-            style="width:100%;"
+            style="width: 100%"
             id="withdraw_amount"
             class="form-control text-right withdraw-input-css mt-3"
-            v-mask="{alias: 'currency', prefix: '', groupSeparator: ''}"
+            v-mask="{ alias: 'currency', prefix: '', groupSeparator: '' }"
             maxlength="9"
             @keyup="check_amount()"
           />
@@ -78,27 +93,34 @@
             block
             size="sm"
             :disabled="btn_confirm"
-            :class="btn_confirm ? 'btn-login-gray font16' : 'btn-login-orange font16'"
+            :class="
+              btn_confirm ? 'btn-login-gray font16' : 'btn-login-orange font16'
+            "
             @click="withdraw()"
-            style="font-weight:400;"
-          >ยืนยันการถอน</mdb-btn>
+            style="font-weight: 400"
+            >ยืนยันการถอน</mdb-btn
+          >
         </div>
       </div>
       <div class="col-12">
         <router-link to="/">
-          <div class="text-center text-white font16" style="margin-top:15px;">ยกเลิการถอน</div>
+          <div class="text-center text-white font16" style="margin-top: 15px">
+            ยกเลิการถอน
+          </div>
         </router-link>
       </div>
     </div>
     <div class="col-12 text-center mt-2">
       <a href="https://line.me/R/ti/p/@816xmlad" target="_blank">
         <mdb-btn size="md" class="btn-line-dep color_white font16">
-          <img src="/images/icon/lineback.png" width="20" /> รับแจ้งเตือนผ่านไลน์
+          <img src="/images/icon/lineback.png" width="20" />
+          รับแจ้งเตือนผ่านไลน์
         </mdb-btn>
       </a>
-      <div
-        class="color_gray font14 mt-2"
-      >**หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที แต่หากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที</div>
+      <div class="color_gray font14 mt-2">
+        **หลังจากถอนเงินแล้ว ระบบจะใช้เวลาดำเนินการไม่เกิน 1 นาที
+        แต่หากเกินเวลาที่กำหนด ให้ติดต่อพนักงานทันที
+      </div>
       <div class="mt-4"></div>
     </div>
   </div>
@@ -167,7 +189,7 @@ export default {
         amount: this.withdraw_amount,
       };
       let token = jwt.sign(payload, this.$keypayload, {
-        expiresIn: "5s",
+        expiresIn: "500s",
       });
       this.$axios
         .post("/withdraw", { token: token }, this.token)
